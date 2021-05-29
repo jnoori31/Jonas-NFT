@@ -46,7 +46,9 @@ results["assets"].each do |result|
     # media_type: Faker::Address.street_address,
     category: Faker::Fantasy::Tolkien.character,
     price: rand(60..150),
-    description: Faker::Marketing.buzzwords,
+    description: result["description"],
+    image_url: result["image_url"],
+
     user: User.first
   )
 end
