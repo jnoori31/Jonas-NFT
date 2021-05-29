@@ -7,10 +7,29 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+require 'uri'
+require 'net/http'
+require 'openssl'
+require 'json'
+
 puts "Cleaning Databse"
 Nft.destroy_all
 User.destroy_all
 puts "Creating user"
+
+url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20")
+
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = true
+
+request = Net::HTTP::Get.new(url)
+
+response = http.request(request)
+results = JSON.parse(response.read_body)
+
+
+# puts response.read_body
+puts results["assets"][0]["name"]
 
 fakeruser = User.create!(
   email: 'j@gmail.com',
@@ -21,9 +40,9 @@ fakeruser = User.create!(
   password: 'random'
   )
 puts "Creating 4 faker nfts"
-4.times do
+results["assets"].each do |result|
   nft = Nft.create!(
-    name: Faker::Name.name,
+    name: result["name"],
     # media_type: Faker::Address.street_address,
     category: Faker::Fantasy::Tolkien.character,
     price: rand(60..150),
@@ -33,4 +52,7 @@ puts "Creating 4 faker nfts"
 end
 
 puts "It works"
+
+
+
 
