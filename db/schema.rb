@@ -16,13 +16,13 @@ ActiveRecord::Schema.define(version: 2021_05_27_202745) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "users_id", null: false
-    t.bigint "nfts_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "nft_id", null: false
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["nfts_id"], name: "index_comments_on_nfts_id"
-    t.index ["users_id"], name: "index_comments_on_users_id"
+    t.index ["nft_id"], name: "index_comments_on_nft_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "nfts", force: :cascade do |t|
@@ -30,11 +30,11 @@ ActiveRecord::Schema.define(version: 2021_05_27_202745) do
     t.string "media_type"
     t.integer "price"
     t.string "category"
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_nfts_on_users_id"
+    t.index ["user_id"], name: "index_nfts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_05_27_202745) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "nfts", column: "nfts_id"
-  add_foreign_key "comments", "users", column: "users_id"
-  add_foreign_key "nfts", "users", column: "users_id"
+  add_foreign_key "comments", "nfts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "nfts", "users"
 end
