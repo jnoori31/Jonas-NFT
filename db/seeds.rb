@@ -27,7 +27,6 @@ request = Net::HTTP::Get.new(url)
 response = http.request(request)
 results = JSON.parse(response.read_body)
 
-
 # puts response.read_body
 puts results["assets"][0]["name"]
 
@@ -41,20 +40,24 @@ fakeruser = User.create!(
   )
 puts "Creating 4 faker nfts"
 results["assets"].each do |result|
-  nft = Nft.create!(
-    name: result["name"],
-    # media_type: Faker::Address.street_address,
-    category: Faker::Fantasy::Tolkien.character,
-    price: rand(60..150),
-    description: result["description"],
-    image_url: result["image_url"],
+  #if else select image save to array
+  #46-55: new itteration with new array.
+  #if result["image_url"] != ""
+    nft = Nft.create!(
+      name: result["name"],
+      # media_type: Faker::Address.street_address,
+      category: Faker::Fantasy::Tolkien.character,
+      price: rand(60..150),
+      description: result["description"],
+      image_url: result["image_url"],
 
-    user: User.first
+      user: User.first
   )
 end
 
 puts "It works"
 
+#.map
+#if image exists push into new array then use array to create
 
-
-
+https://lh3.googleusercontent.com/5jtcERWU3mznDiii1R2UL4YGQkBo8f35yHNVdZaUJ-zpeKhQ4douIsYC7DXy4_IFDwlMrkMboim8MhvGlCPTkvtQpj_HOD84WKUCIiM=w600
