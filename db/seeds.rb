@@ -28,8 +28,8 @@ response = http.request(request)
 results = JSON.parse(response.read_body)
 
 puts response.read_body
-puts results["collections"][0]["name"]
 
+puts results["collections"][0]["name"]
 
 fakeruser = User.create!(
   email: 'j@gmail.com',
@@ -49,7 +49,6 @@ results["collections"].each do |result|
     price: rand(60..150),
     description: result["description"],
     image_url: result["image_url"],
-
     user: User.first
 
   )
