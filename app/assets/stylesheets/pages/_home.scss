@@ -1,1 +1,17 @@
 // Specific CSS for your home-page
+a {
+    text-decoration: none;
+}
+.link-friend-page {
+    border: 1px solid #3A77BB;
+    padding: 10px 15px;
+    color: #3A77BB;
+    background-color: white;
+    border-radius: 20px;
+    &:hover {
+        background-color: #3A77BB;
+        color: white;
+        transition-delay: 150ms;
+        transition-duration: 100ms;
+    }
+}

@@ -1,2 +1,49 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<%# Searching for a friend %>
+<div class="container mt-4">
+    <div class="search-friend" style="width: 500px;">
+        <%= form_for root_path, method: :get do %>
+            <div class="row">
+                <div class="col-8">
+                    <%= text_field_tag :name,
+                    params[:name],
+                    class: "form-control",
+                    placeholder: "Find a friend" 
+                    %>
+                </div>
+                <div class="col-4">
+                    <%= submit_tag "Search", class: 'btn btn-primary' %>
+                </div>
+            </div>
+        <% end %>
+        <div id="names_search">
+            <% if !@users.nil? && @users != []%>
+                <% if @users.length > 1 %>
+                    <ul class="list-group">
+                        <% @users.each do |user| %>
+                            <div class="d-flex justify-content-between mt-2">
+                                <div class="infos-user">
+                                    <p style="margin-bottom: 0px"><%= user.first_name %> <%= user.last_name %></p>
+                                </div>
+                                <div class="link-user-page">
+                                    <%= link_to "Profile", user_path(user), class: "link-friend-page" %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </ul>
+                <% else %>
+                    <li class="list-group-item mt-2">
+                        <div class="d-flex justify-content-between">
+                            <div class="infos-user">
+                                <p style="margin-bottom: 0px"><%= @users.first.first_name %> <%= @users.first.last_name %></p>
+                            </div>
+                            <div class="link-user-page">
+                                <%= link_to "Profile", user_path(@users.first), class: "link-friend-page" %>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+<h1>Home</h1> 
