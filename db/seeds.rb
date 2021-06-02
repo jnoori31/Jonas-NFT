@@ -27,8 +27,7 @@ request = Net::HTTP::Get.new(url)
 response = http.request(request)
 results = JSON.parse(response.read_body)
 
-
-# puts response.read_body
+puts response.read_body
 puts results["assets"][0]["name"]
 
 fakeruser = User.create!(
@@ -48,7 +47,6 @@ results["assets"].each do |result|
     price: rand(60..150),
     description: result["description"],
     image_url: result["image_url"],
-
     user: User.first
   )
 end
