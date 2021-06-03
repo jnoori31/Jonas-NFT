@@ -6,7 +6,7 @@ class ChatroomsController < ApplicationController
             redirect_to chatroom_path(chatroom)
             return
         elsif Chatroom.exists?(name: "chatroom-#{owner.first_name}-#{current_user.first_name}")
-            chatroom = Chatroom.find_by(name:"chatroom-#{current_user.first_name}-#{owner.first_name}")
+            chatroom = Chatroom.find_by(name:"chatroom-#{owner.first_name}-#{current_user.first_name}")
             redirect_to chatroom_path(chatroom)
             return
         else
@@ -25,5 +25,8 @@ class ChatroomsController < ApplicationController
 
     def show
         @chatroom = Chatroom.find(params[:id])
+        @owner = User.find(@chatroom.owner_id)
+        @client = User.find(@chatroom.client_id)
+        @message = Message.new()
     end
 end

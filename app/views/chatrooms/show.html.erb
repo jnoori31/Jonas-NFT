@@ -1,2 +1,38 @@
-<h1>Here's the chat</h1>
-<p><%= @chatroom.name %></p>
+<div class="container mt-4">
+    <% if @chatroom.owner_id != current_user.id %>
+        <h1 style="text-align: center;">Hello <%= current_user.first_name.capitalize %> here is your chat with <%= @owner.first_name.capitalize %> </h1>
+    <% else %>
+        <h1 style="text-align: center;">Hello <%= current_user.first_name.capitalize %> here is your chat with <%= @client.first_name.capitalize %> </h1>
+    <% end %>
+    <div class="container-messages" id="messages" data-chatroom-id="<%= @chatroom.id%>" data-user-id="<%= current_user.id %>">
+        <% if @chatroom.messages %>
+            <% @chatroom.messages.each do |message| %>
+                <div class="message" id="message-<%= message.id%>">
+                    <% if message.user.id == current_user.id %>
+                        <div class="d-flex justify-content-end">
+                            <%= render "messages/message", message: message %>
+                        </div>
+                    <% else %>
+                        <div class="d-flex justify-content-start">
+                            <%= render "messages/message", message: message %>
+                        </div>
+                    <% end %>
+                </div>
+            <% end %>
+        <% end %>
+        <div class="content-message-right d-flex justify-content-end"></div>
+        <div class="content-message-left d-flex justify-content-start"></div>
+    </div>
+    <div class="message-input">
+        <%= simple_form_for([@chatroom, @message]) do |f| %>
+            <div class="row">
+                <div class="col-8">
+                    <%= f.text_field :content, label: false, placeholer:'Message..', class: "form-control" %>
+                </div>
+                <div class="col-3">
+                    <%= f.submit "Send", class:"btn btn-outline-primary" %>
+                </div>
+             </div>
+        <% end %>
+    </div>
+</div>
