@@ -3,5 +3,9 @@ class PagesController < ApplicationController
 
   def home
     @nfts = Nft.all
+    sql_query = "first_name ILIKE :query OR last_name ILIKE :query"
+    if params[:name] != ""
+      @users = User.where(sql_query, query: "#{params[:name]}")
+    end
   end
 end

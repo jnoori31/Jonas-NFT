@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
-
 require 'uri'
 require 'net/http'
 require 'openssl'
@@ -27,18 +26,24 @@ request = Net::HTTP::Get.new(url)
 response = http.request(request)
 results = JSON.parse(response.read_body)
 
-puts response.read_body
-
 puts results["collections"][0]["name"]
 
-fakeruser = User.create!(
-  email: 'j@gmail.com',
-  first_name: 'jonas',
-  last_name: 'noori',
-  bio: 'LondonBoi',
-  nickname: 'bluerooster',
-  password: 'random'
+emails = ['p@gmail.com', 'j@gmail.com', 'a@gmail.com', 'f@gmail.com']
+passwords = ['p12345', 'j12345', 'a12345', 'f12345']
+first_names = ['Pierre', 'Jonas', 'Alex', 'Felix']
+last_names = ['Ntiruhungwa', 'Høgh-Noori', 'Morey', 'Habert']
+
+puts "Creating 4 users"
+emails.each_with_index do |email, index|
+  fakeruser = User.create!(
+    email: email,
+    first_name: first_names[index],
+    last_name: last_names[index],
+    bio: 'LondonBoi',
+    nickname: 'bluerooster',
+    password: passwords[index]
   )
+end
 puts "Creating 4 faker nfts"
 
 results["collections"].each do |result|
@@ -50,7 +55,6 @@ results["collections"].each do |result|
     description: result["description"],
     image_url: result["image_url"],
     user: User.first
-
   )
 end
 
@@ -58,5 +62,3 @@ puts "It works"
 
 #.map
 #if image exists push into new array then use array to create
-
-https://lh3.googleusercontent.com/5jtcERWU3mznDiii1R2UL4YGQkBo8f35yHNVdZaUJ-zpeKhQ4douIsYC7DXy4_IFDwlMrkMboim8MhvGlCPTkvtQpj_HOD84WKUCIiM=w600
