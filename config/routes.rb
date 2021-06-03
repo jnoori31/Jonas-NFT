@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :nfts, except: :index do
+    resources :comments, only: :create
     # member do
       # get 'discover', to: "nfts#discover"
       # get 'nfts/:id/discover', to: "nfts#discover"
@@ -12,8 +13,7 @@ Rails.application.routes.draw do
       get 'discover', to: "nfts#discover"
     end
   end
-  resources :comments, only: :create
-  get 'users/:id', to: "comments#create"
+  #get 'users/:id', to: "comments#create"
   resources :users, only: [:show] do
     resources :chatrooms, only: :create
   end
