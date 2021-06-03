@@ -1,3 +1,22 @@
+<!-- <div class="container showcard"> -->
+<!--   <h2><%= @nft.name %></h2> -->
+<!--   <p><%= @nft.price %></p> -->
+<!--   <p><%= @nft.category %></p> -->
+<!--   <p><%= @nft.description %></p> -->
+<!--   <%= link_to "Back to home", root_path  %> -->
+<!--   <%= link_to "Edit", edit_nft_path(@nft)  %> -->
+<!--   <%#= link_to "Delete", flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } %> -->
+<!-- </div> -->
+<!-- <% @comments.each do |comment|  %> -->
+<!-- <%= comment.content  %> -->
+<!-- <% end  %> -->
+
+<!-- <%= simple_form_for(@comment) do |f| %> -->
+<!--   <%= f.input :name %> -->
+<!--   <%= f.input :comment %> -->
+<!--   <%= f.submit %> -->
+<!-- <% end %> --> 
+
 <div class="card">
   <%= image_tag @nft.image_url, height: 175, width: 300, crop: :pad”%>
   <%=@nft.name %>

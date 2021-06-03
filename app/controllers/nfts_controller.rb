@@ -4,3 +4,9 @@ class NftsController < ApplicationController
     @comment = Comment.new
   end
 end
+
+#destroy(comment)
+#favourites gem
+#create
+#edit(commnet)
+
