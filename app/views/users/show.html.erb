@@ -42,12 +42,14 @@
     <div class="container col-8">
       <div class="row">
         <% @Nft.each do |nft| %>
-          <div class="card col-4 p-2" style="width: 18rem;">
-            <%= image_tag nft.image_url, :class=> "card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= nft.name %></h5>
-              <p class="card-text"><%= nft.category %></p>
-              <a href="#" class="btn btn-primary">Follow</a>
+          <div class="container col-4 mb-2">
+            <div class="card" style="width: 18rem;">
+              <%= image_tag nft.image_url, :class=> "card-img-top" %>
+              <div class="card-body">
+                <h5 class="card-title"><%= nft.name %></h5>
+                <p class="card-text"><%= nft.category %></p>
+                <a href="#" class="btn btn-primary">Follow</a>
+              </div>
             </div>
           </div>
         <% end %>
