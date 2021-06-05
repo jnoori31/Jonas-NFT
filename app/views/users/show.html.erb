@@ -1,3 +1,62 @@
+<div class="row">
+  <img class='img-fluid w-100'> <%= image_tag "default_profile_header_2.png" %> </img>
+</div>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-8" >
+      <%= image_tag "default_profile_picture.jpg", height: 100, width: 100, :crop=> 'fill', :class=> 'rounded-circle' %>
+      <h3><%= @user.first_name %> <%=  @user.last_name  %></h3>
+      <h5>@<%= @user.first_name %><%=  @user.last_name  %></h5>
+      <div class="col-7">
+        <p>Alcohol evangelist. Tv specialist. Lifelong beer junkie. Passionate twitter geek.
+    Problem solver. Avid pop culture enthusiast. Web fanatic.</p>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card p-2 mt-5">
+        <div class="row">
+          <div class="col-4 ">
+            <p><b>348</b> Following</p>
+          </div>
+          <div class="col-4 ">
+            <p><b>751</b> Followers</p>
+          </div>
+          <div class="col-4">
+            <button type="button" class="btn btn-dark">Follow</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="border-top: solid 1px ; border-color: #CCCCCC">
+</div>
+<div class="container mt-4">
+  <h1>Filtering button section</h1>
+</div>
+<div class="container mt-4">
+  <div class="row">
+    <div class="container col-4">
+      <h1>user filter and message button</h1>
+    </div>
+    <div class="container col-8">
+      <div class="row">
+        <% @Nft.each do |nft| %>
+          <div class="container col-4 mb-2">
+            <div class="card" style="width: 18rem;">
+              <%= image_tag nft.image_url, :class=> "card-img-top" %>
+              <div class="card-body">
+                <h5 class="card-title"><%= nft.name %></h5>
+                <p class="card-text"><%= nft.category %></p>
+                <a href="#" class="btn btn-primary">Follow</a>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="container mt-4">
     <% if current_user == @user %>
         <h1 class="text-center">Your profile page</h1>
@@ -8,14 +67,16 @@
                 View my chats
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <% @chatrooms.each do |chatroom| %>
-                    <li><%= link_to "Chat with #{chatroom.owner.first_name}", chatroom_path(chatroom) %></li>
-                <% end %> 
+                <% if @chatrooms %>
+                    <% @chatrooms.each do |chatroom| %>
+                        <li><%= link_to "Chat with #{chatroom.owner.first_name}", chatroom_path(chatroom) %></li>
+                    <% end %>
+                <% end %>
             </ul>
         </div>
     <% else %>
         <h1 class="text-center"><%= @user.first_name %> <%=  @user.last_name  %> profile page</h1>
         <%= link_to "Chat", chatrooms_path(user_id: @user.id), method: :post %>
     <% end %>
-    <div class="nft-collection"></div>
+  <div class="nft-collection"></div>
 </div>
