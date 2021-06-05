@@ -1,4 +1,10 @@
-<%# Searching for a friend %>
+<!------------------Banner-------------------------->
+<div class="banner" style= "background-color: #c4c4c4;">
+    <h1>Find & Showcase</h1>
+    <h1>The hottest NFTs</h1>
+  </div>
+
+<!------ Searching for a friend --------------->
 <div class="container mt-4">
     <div class="search-friend" style="width: 500px;">
         <%= form_for root_path, method: :get do %>
@@ -46,19 +52,39 @@
         </div>
     </div>
 </div>
-<h1>Home</h1> 
-<div class="container">
-  <div class="row justify-content-center">
+<!--------------END Searching for a friend------------------------->
+
+<!-------Main container--------------->
+<div class="main-container">
+  <div class="card-left">
+  </div>
+
+
+  <div class="card-center">
     <% @nfts.each do |nft| %>
-      <% if nft.image_url %>
-        <div class="card">
-          <%= image_tag nft.image_url, height: 175, width: 300, crop: :pad”%>
-          <%=nft.name %>
-          <%=nft.price %>
-          <%=nft.description %>
-        </div>
-      <% end %>
+    <% if nft.image_url %>
+    <div class="card-main">
+    <div class="title-card">
+      <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar", alt: "avatar" %>
+      <div class="title-card-block">
+      <h4>Pierre Nitruhugwa</h4>
+      <p>@pierresn</p>
+      <p>6 minutes group</p>
+      </div>
+    </div>
+      <p>Created<%=nft.name %></p>
+      <%= image_tag nft.image_url, height: 175, width: 400, crop: :pad”%>
+    <% end %>
+    <div class="social-media-card">
+      <i class="far fa-heart"></i>
+      <i data-feather="message-circle"></i>
+    </div>
+  </div>
     <% end %>
   </div>
+  <div class="card-right">
+  </div>
 </div>
+<!------------End Main Container------------------->
+
 
