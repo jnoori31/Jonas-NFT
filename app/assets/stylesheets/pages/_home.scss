@@ -1,4 +1,10 @@
 // Specific CSS for your home-page
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+}
 a {
     text-decoration: none;
 }
@@ -21,38 +27,54 @@ a {
   justify-content: space-between;
   width: 100vw;
   margin: auto;
- }.card-left {
+  margin-top: 40px;
+ }
+ .card-left {
   width: 25%;
-  background-color: yellow;
-} .card-center {
+  // background-color: rgb(255, 255, 202);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+} 
+.card-center {
   width: 50%;
   padding: 0px 16px;
 
-} .card-right{
+} 
+.card-right{
   width: 25%;
-  background-color: yellow;
+  // background-color: rgb(255, 255, 202);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
 }
 //  Cards that belong to card-left
 .social-media-card{
-  width: 70%;
-  align-items: center;
+  width: 100%;
+  background-color: white;
+  padding: 15px;
+  // box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  a {
+    color: black;
+    margin-left: 10px;
+  }
+  position: sticky;
+  top: 70px;
 }
 // Cards that belong to card-center
 .card-main{
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  border-bottom: solid grey;
-  width: 70%;
+  width: 500px;
+  // height: 600px;
   margin-bottom: 16px;
 }
 .title-card{
   display: flex;
-  border-bottom: solid grey;
   align-items: center;
 }
 .title-card-block h4{
   color: blue;
-} .title-card-block p{
+} 
+.title-card-block p{
   color: grey;
   margin: 0;
 }
