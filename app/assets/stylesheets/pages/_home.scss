@@ -32,12 +32,18 @@ a {
   width: 25%;
   background-color: yellow;
 }
-
+//  Cards that belong to card-left
+.social-media-card{
+  width: 70%;
+  align-items: center;
+}
+// Cards that belong to card-center
 .card-main{
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-bottom: solid grey;
   width: 70%;
+  margin-bottom: 16px;
 }
 .title-card{
   display: flex;
