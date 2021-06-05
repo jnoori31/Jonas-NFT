@@ -57,6 +57,14 @@
 <!-------Main container--------------->
 <div class="main-container">
   <div class="card-left">
+    <div class="social-media-card">
+      <div class="social-media-icons">
+      <i class="far fa-heart"></i>
+      <i class="far fa-heart"></i>
+      <i class="far fa-heart"></i>
+    </div>
+    <%= link_to "New NFT", new_nft_path  %>
+    </div>
   </div>
 
 
@@ -75,13 +83,14 @@
       <p>Created<%=nft.name %></p>
       <%= image_tag nft.image_url, height: 175, width: 400, crop: :pad”%>
     <% end %>
-    <div class="social-media-card">
+    <div class="social-media-display">
       <i class="far fa-heart"></i>
-      <i data-feather="message-circle"></i>
+      <i class="far fa-comment"></i>
     </div>
   </div>
-    <% end %>
-  </div>
+<% end %>
+ </div>
+
   <div class="card-right">
   </div>
 </div>
