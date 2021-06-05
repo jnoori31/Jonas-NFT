@@ -24,7 +24,11 @@
     <% end %>
 </div>
 <div class="container mt-4">
-  <h1>User details</h1>
+  <%= image_tag "default_profile_picture.jpg", height: 60, width: 60, crop: :fill %>
+  <p><%= @user.first_name %> <%=  @user.last_name  %><br>
+  @<%= @user.first_name %><%=  @user.last_name  %><br>
+  Alcohol evangelist. Tv specialist. Lifelong beer junkie. Passionate twitter geek.
+Problem solver. Avid pop culture enthusiast. Web fanatic.</p>
 </div>
 <div class="container mt-4">
   <h1>Followers and follow user section</h1>
