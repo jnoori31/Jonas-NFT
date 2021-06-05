@@ -5,7 +5,7 @@ require 'openssl'
 require 'json'
 
 puts "Cleaning Databse"
-Nft.destroy_all
+Nft.destroy_all 
 Message.destroy_all
 Chatroom.destroy_all
 User.destroy_all
@@ -20,7 +20,7 @@ request = Net::HTTP::Get.new(url)
 
 response = http.request(request)
 results = JSON.parse(response.read_body)
-puts results["assets"]
+
 emails = ['p@gmail.com', 'j@gmail.com', 'a@gmail.com', 'f@gmail.com']
 passwords = ['p12345', 'j12345', 'a12345', 'f12345']
 first_names = ['Pierre', 'Jonas', 'Alex', 'Felix']
