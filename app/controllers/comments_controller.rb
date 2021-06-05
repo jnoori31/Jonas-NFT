@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment.nft = @nft
     @comment.user = current_user
     if @comment.save
-      redirect_to nft_path(@nft)
+      redirect_to nft_path(@nft, anchor: "comment-#{@comment.id}")
     end
   end
 
