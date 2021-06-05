@@ -13,9 +13,11 @@ Rails.application.routes.draw do
       get 'discover', to: "nfts#discover"
     end
   end
-  #get 'users/:id', to: "comments#create"
-  resources :users, only: [:show] do
-    resources :chatrooms, only: :create
+  resources :comments, only: :create
+  get 'users/:id', to: "comments#create"
+  resources :users, only: [:show]
+
+  resources :chatrooms, only: [:show, :create] do
+    resources :messages, only: :create
   end
-  resources :chatrooms, only: :show
 end
