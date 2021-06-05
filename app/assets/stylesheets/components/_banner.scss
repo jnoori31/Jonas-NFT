@@ -3,12 +3,22 @@
 .banner {
   background-size: cover;
   background-position: center;
-  height: 180px;
+  height: 350px;
+  background-image: url('https://i.redd.it/uhg1tu04wbo41.jpg');
   align-items: center;
-} h1 {
+  h1 {
+    position: absolute;
+    margin-top: 150px;
+  }
+  h3 {
+    position: absolute;
+    margin-top: 200px;
+  }
+}
+h1 {
   color: white;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 40px;
+  font-weight: 600;
 }
 // Banner home page end
 
