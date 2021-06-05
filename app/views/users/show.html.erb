@@ -32,6 +32,30 @@
 <div style="border-top: solid 1px ; border-color: #CCCCCC">
 </div>
 <div class="container mt-4">
+  <h1>Filtering button section</h1>
+</div>
+<div class="container mt-4">
+  <div class="row">
+    <div class="container col-4">
+      <h1>user filter and message button</h1>
+    </div>
+    <div class="container col-8">
+      <div class="row">
+        <% @Nft.each do |nft| %>
+          <div class="card col-4 p-2" style="width: 18rem;">
+            <%= image_tag nft.image_url, :class=> "card-img-top" %>
+            <div class="card-body">
+              <h5 class="card-title"><%= nft.name %></h5>
+              <p class="card-text"><%= nft.category %></p>
+              <a href="#" class="btn btn-primary">Follow</a>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container mt-4">
     <% if current_user == @user %>
         <h1 class="text-center">Your profile page</h1>
         <hr>
@@ -54,15 +78,4 @@
     <% end %>
 </div>
 
-<div class="container mt-4">
-  <h1>Followers and follow user section</h1>
-</div>
-<div class="container mt-4">
-  <h1>Filtering button section</h1>
-</div>
-<div class="container mt-4">
-  <h1>user filter and message button</h1>
-</div>
-<div class="container mt-4">
-  <h1>filtered NFT list</h1>
-</div>
+
