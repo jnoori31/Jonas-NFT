@@ -1,0 +1,13 @@
+<div class="container">
+    <h1>Create or upload a new nft to add to your ccollection!</h1>
+    <p>If your're nft isn't already created</p>
+    <%= link_to "Create NFT on mintable", "https://mintable.app/", target: "blank" %>
+    <p>Otherwise</p>
+        <%# <form action="/nfts/new_nft" method="POST"> %>
+        <form action="/" method="GET">
+            <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts="/>  
+            <input data-type="text" name="tokenNft" placeholder="Token id.." class="form-control"/>
+            <button type="submit" class="btn btn-primary">New NFT</button>
+        </form>
+    </div>
+</div>

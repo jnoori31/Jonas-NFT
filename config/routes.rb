@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :chatrooms, only: [:show, :create] do
     resources :messages, only: :create
   end
+
+  # post '/nfts/new_nft', to: "nfts#new_nft"
 end

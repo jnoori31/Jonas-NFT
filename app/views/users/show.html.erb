@@ -8,15 +8,14 @@
                 View my chats
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <% if @chatrooms %>
-                    <% @chatrooms.each do |chatroom| %>
-                        <li><%= link_to "Chat with #{chatroom.owner.first_name}", chatroom_path(chatroom) %></li>
-                    <% end %>   
-                <% end %>
+                <% @chatrooms.each do |chatroom| %>
+                    <li><%= link_to "Chat with #{chatroom.owner.first_name}", chatroom_path(chatroom) %></li>
+                <% end %> 
             </ul>
         </div>
     <% else %>
         <h1 class="text-center"><%= @user.first_name %> <%=  @user.last_name  %> profile page</h1>
         <%= link_to "Chat", chatrooms_path(user_id: @user.id), method: :post %>
     <% end %>
+    <div class="nft-collection"></div>
 </div>
