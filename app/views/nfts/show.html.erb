@@ -1,34 +1,56 @@
-<!-- <div class="container showcard"> -->
-<!--   <h2><%= @nft.name %></h2> -->
-<!--   <p><%= @nft.price %></p> -->
-<!--   <p><%= @nft.category %></p> -->
-<!--   <p><%= @nft.description %></p> -->
-<!--   <%= link_to "Back to home", root_path  %> -->
-<!--   <%= link_to "Edit", edit_nft_path(@nft)  %> -->
-<!--   <%#= link_to "Delete", flat_path(@flat), method: :delete, data: { confirm: "Are you sure?" } %> -->
-<!-- </div> -->
-<!-- <% @comments.each do |comment|  %> -->
-<!-- <%= comment.content  %> -->
-<!-- <% end  %> -->
+<div class="container" style="background-color: white;">
+  <div class="bg-white">
+    <div class="card-category d-flex align-items-center justify-content-center" style="background-color: black;">
+      <div style="padding: 40px; object-fit: cover;">
+        <%= image_tag @nft.image_url%>
+      </div>
+    </div>
+  </div>
 
-<!-- <%= simple_form_for(@comment) do |f| %> -->
-<!--   <%= f.input :name %> -->
-<!--   <%= f.input :comment %> -->
-<!--   <%= f.submit %> -->
-<!-- <% end %> --> 
+  <div class="d-flex justify-content-around card-product">
+    <div class="nft-name">
+      <h2><%=@nft.name %></h2>
+    </div>
+    <div class="card-product-infos">
+      <p><%=@nft.description %></p>
+      <p>£ <%=@nft.price %></p>
+    </div>
+  </div>
 
-<div class="card">
-  <%= image_tag @nft.image_url, height: 175, width: 300, crop: :pad”%>
-  <%=@nft.name %>
-  <%=@nft.price %>
-  <%=@nft.description %>
+  <div class="d-flex justify-content-around my-4">
+    <div class="card bg-white p-3" style="width: 320px">
+      <p>Owned by</p>
+    </div>
+    <div class="card bg-white p-3" style="width: 520px">
+      <% if @nft.comments.blank? %>
+          Be the first to leave a comment for <strong><%= @nft.name %></strong>
+      <% else %>
+        <% @nft.comments.each do |comment|%>
+        <p><%= comment.user.email %></p>
+        <p id="comment-<%= comment.id %>"><%= comment.content %></p>
+        <% end %>
+      <% end %>
 
-  <% @nft.comments.each do |comment|%>
-    <p><%= comment.content %></p>
-  <% end %>
-
-  <%= simple_form_for [@nft, @comment] do |f| %>
-  <%= f.input :content %>
-  <%= f.submit %>
-<% end %>
+      <%= simple_form_for([ @nft, @comment ], remote: true) do |f| %>
+      <%= f.input :content %>
+      <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

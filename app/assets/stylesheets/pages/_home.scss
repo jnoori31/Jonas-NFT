@@ -15,3 +15,39 @@ a {
         transition-duration: 100ms;
     }
 }
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+  margin: auto;
+ }.card-left {
+  width: 25%;
+  background-color: yellow;
+} .card-center {
+  width: 50%;
+  padding: 0px 16px;
+
+} .card-right{
+  width: 25%;
+  background-color: yellow;
+}
+
+.card-main{
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-bottom: solid grey;
+  width: 70%;
+}
+.title-card{
+  display: flex;
+  border-bottom: solid grey;
+  align-items: center;
+}
+.title-card-block h4{
+  color: blue;
+} .title-card-block p{
+  color: grey;
+  margin: 0;
+}
+

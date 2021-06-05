@@ -15,9 +15,11 @@ Rails.application.routes.draw do
   end
   resources :comments, only: :create
   get 'users/:id', to: "comments#create"
-  resources :users, only: [:show]
+  resources :users, only: :show
 
   resources :chatrooms, only: [:show, :create] do
     resources :messages, only: :create
   end
+
+  # post '/nfts/new_nft', to: "nfts#new_nft"
 end
