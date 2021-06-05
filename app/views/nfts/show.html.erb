@@ -18,20 +18,38 @@
   </div>
 
   <div class="d-flex justify-content-around">
-    <div class="card bg-light">
+    <div class="card bg-light p-3">
       <p>Owned by</p>
     </div>
-    <div class="card bg-light">
-      <% @nft.comments.each do |comment|%>
-      <p><%= comment.content %></p>
+    <div class="card bg-light p-3">
+      <% if @nft.comments.blank? %>
+          Be the first to leave a comment for <strong><%= @nft.name %></strong>
+      <% else %>
+        <% @nft.comments.each do |comment|%>
+        <p><%= comment.user.email %></p>
+        <p><%= comment.content %></p>
+        <% end %>
       <% end %>
 
-      <%= simple_form_for [@nft, @comment] do |f| %>
+      <%= simple_form_for ([@nft, @comment], remote: true) do |f| %>
       <%= f.input :content %>
       <%= f.submit %>
       <% end %>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
