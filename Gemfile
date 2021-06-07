@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
+gem 'pg_search', '~> 2.3.0'
 gem 'faker'
 gem 'turbolinks_render'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

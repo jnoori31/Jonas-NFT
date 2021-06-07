@@ -40,7 +40,7 @@ end
 puts "Creating 4 faker nfts"
 
 results["assets"].each do |result|
-  next if result["image_url"].empty?
+    next if result["image_url"].empty?
   Nft.create!(
     name: result["name"],
     # media_type: Faker::Address.street_address,
