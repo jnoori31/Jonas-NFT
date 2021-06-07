@@ -3,3 +3,5 @@ class Nft < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates :category, presence: true, inclusion: { in: %w(music art sport cinema) }
 end
+
+# we want users to return users NFT's
