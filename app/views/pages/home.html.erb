@@ -1,12 +1,5 @@
 <!------------------Banner-------------------------->
-<div class="banner mt-5" style="background-color: #c4c4c4;" >
-    <div class="d-flex justify-content-begin">
-        <div class="p-3">
-            <h1 class="text-center">Find & Showcase</h1>
-            <h3 class="text-center">The hottest NFTs</h3>
-        </div>
-    </div>
-</div>
+<%= render 'shared/banner', message: "Find & Showcase" %>
 
 <!------ Searching for a friend --------------->
 <div class="container mt-4 d-flex align-items-center w-100">
@@ -56,11 +49,20 @@
         </div>
         <!------------------------- Category search ---------------------------------->
     </div>
-    <select class="select2-category" name="categories_nft">
-        <% @categories_nft.each do |category| %>
-            <option value="<%= category[0...2].upcase%>"><%= category.capitalize %></option>
+    <%# <select class="select2-category" name="categories_nft" data-controller="nftFilter"> %>
+        <%# <option value=""></option> %>
+        <%# @categories_nft.each do |category| %>
+            <%#= simple_form_for root_path do |f| %>
+                <%#= f.select :category, "#{category}" %>
+            <%# end %>
+        <%# end %>
+    <%# </select> %>
+    <% @categories_nft.each do |category| %>
+        <%= simple_form_for root_path, method: :get do |f| %>
+            <%= hidden_field_tag :nft_category, "#{category}" %>
+            <%= f.submit "#{category}", class: "btn btn-outline-success mx-2" %>
         <% end %>
-    </select>
+    <% end %>
 </div>
 <!--------------------------------END Searching for a friend------------------------->
 
