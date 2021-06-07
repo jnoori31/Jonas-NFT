@@ -7,21 +7,24 @@
     </div>
   </div>
 
-  <div class="d-flex justify-content-around card-product">
+  <div class="card-product d-flex justify-content-around">
     <div class="nft-name">
-      <h2><%=@nft.name %></h2>
+      <h2 class="mb-2"><%=@nft.name %></h2>
+      <i class="far fa-heart" style="color:#E94A47; margin-right: 8px;"></i>
+      <i class="far fa-comment" style="color:#E94A47;"></i>
+      <p>Liked by <strong>Jonas</strong> and <strong>43 others</strong> </p>
     </div>
     <div class="card-product-infos">
-      <p><%=@nft.description %></p>
-      <p>£ <%=@nft.price %></p>
+      <p class="mb-1" style="max-width: 520px; margin-top: 16px"><%=@nft.description %></p>
+      <p style="margin-bottom:16px">£ <%=@nft.price %></p>
     </div>
   </div>
 
   <div class="d-flex justify-content-around my-4">
-    <div class="card bg-white p-3" style="width: 320px">
+    <div class="card bg-white p-3" style="width: 280px; border-radius: 5px">
       <p>Owned by</p>
     </div>
-    <div class="card bg-white p-3" style="width: 520px">
+    <div class="card bg-white p-3" style="width: 580px; border-radius: 5px">
       <% if @nft.comments.blank? %>
           Be the first to leave a comment for <strong><%= @nft.name %></strong>
       <% else %>
