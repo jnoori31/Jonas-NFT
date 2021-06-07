@@ -1,4 +1,4 @@
-require 'faker'
+ require 'faker'
 require 'uri'
 require 'net/http'
 require 'openssl'
@@ -11,7 +11,8 @@ Chatroom.destroy_all
 User.destroy_all
 puts "Creating user"
 
-url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20")
+
+url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=40")
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
 request = Net::HTTP::Get.new(url)
