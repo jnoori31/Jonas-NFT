@@ -10,9 +10,10 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = [ "output" ]
+  static targets = [ "catInput" ]
 
-  connect() {
-    this.outputTarget.textContent = 'Hello, Stimulus!'
+  catSelect() {
+    console.log("hye");
+    console.log(this.catInputTarget);
   }
 }

@@ -1,13 +1,18 @@
+<%= render 'shared/banner', message: "Upload new NFT" %>
+
 <div class="container">
     <h1>Create or upload a new nft to add to your ccollection!</h1>
     <p>If your're nft isn't already created</p>
     <%= link_to "Create NFT on mintable", "https://mintable.app/", target: "blank" %>
     <p>Otherwise</p>
-        <%# <form action="/nfts/new_nft" method="POST"> %>
-        <form action="/" method="GET">
+        <form action="/nfts/new_nft" method="POST">
             <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts="/>  
-            <input data-type="text" name="tokenNft" placeholder="Token id.." class="form-control"/>
+            <input type="text" name="tokenNft" placeholder="Token id.." class="form-control"/>
             <button type="submit" class="btn btn-primary">New NFT</button>
         </form>
+        <%#= simple_form_for(nfts_path) do |f| %>
+            <%#= text_field_tag :tokenNft, params[:tokenNft] %>
+            <%#= f.submit "New Nft", class:"btn btn-primary" %>
+        <%# end %>
     </div>
 </div>
