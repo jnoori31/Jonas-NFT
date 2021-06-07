@@ -2,6 +2,7 @@
 class NftsController < ApplicationController
   def show
     @nft = Nft.find(params[:id])
+    @user = User.find(@nft.user_id)
     @comment = Comment.new
   end
 

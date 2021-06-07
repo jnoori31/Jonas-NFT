@@ -24,9 +24,11 @@
     <div class="card bg-white p-3" style="min-width: 280px; border-radius: 5px">
       <p>Owned by</p>
       <div class="d-flex justify-content-around align-items-center">
-        <div>
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
-        </div>
+        <%= link_to user_path(@user), class:'text-decoration-none' do %>
+          <div>
+            <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+          </div>
+        <% end %>
         <div>
           <h4>name</h4>
           <div class="title-card-block px-3">
