@@ -11,7 +11,7 @@ Chatroom.destroy_all
 User.destroy_all
 puts "Creating user"
 
-url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=0")
+url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=20")
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
 request = Net::HTTP::Get.new(url)
