@@ -11,13 +11,10 @@ Chatroom.destroy_all
 User.destroy_all
 puts "Creating user"
 
-url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=10")
-
+url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=0")
 http = Net::HTTP.new(url.host, url.port)
 http.use_ssl = true
-
 request = Net::HTTP::Get.new(url)
-
 response = http.request(request)
 results = JSON.parse(response.read_body)
 
@@ -39,20 +36,27 @@ emails.each_with_index do |email, index|
 end
 puts "Creating 4 faker nfts"
 
+users = User.all
+users_id = users.map { |user| user.id }
+category_nft = %w(music art sport cinema)
+
+
 results["assets"].each do |result|
-    next if result["image_url"].empty?
+  next if result["image_url"].empty?
   Nft.create!(
     name: result["name"],
     # media_type: Faker::Address.street_address,
-    category: Faker::Fantasy::Tolkien.character,
+    category: category_nft.sample,
     price: rand(60..150),
     description: result["description"],
     image_url: result["image_url"],
-    user: User.first
+    user_id: users_id.sample
+    # user: User.find(users_id.sample)
+    # except 20 to be randomly allocated in between each user
   )
 end
 
-puts "It works"
+# puts "It works"
 
 #.map
 #if image exists push into new array then use array to create

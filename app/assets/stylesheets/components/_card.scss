@@ -24,3 +24,12 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+.card-suggestion {
+  padding: 10px 15px;
+  top: 80px;
+  position: sticky;
+}
+.card-horizontal {
+  display: flex;
+  flex-direction: column;
+}

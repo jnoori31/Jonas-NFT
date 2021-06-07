@@ -6,7 +6,17 @@
   width: 100%;
 }
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+h4 {
+  font-weight: 600;
+  color:#3A77BB;
+}
+#home-link a {
+  text-decoration: none;
+  font-weight: 600;
+  color: #2f6097;
+  font-size: 32px;
 }
 .link-friend-page {
     border: 1px solid #3A77BB;
@@ -59,6 +69,12 @@ a {
   position: sticky;
   top: 70px;
 }
+#new-btn {
+  color: white;
+  &:hover {
+    color: #3A77BB;
+  }
+}
 // Cards that belong to card-center
 .card-main{
   background: white;
@@ -66,6 +82,11 @@ a {
   width: 500px;
   // height: 600px;
   margin-bottom: 16px;
+  a {
+    text-decoration: none;
+    color: rgba(0,0,0,0.4);
+    font-weight: 600;
+  }
 }
 .title-card{
   display: flex;
@@ -77,5 +98,10 @@ a {
 .title-card-block p{
   color: grey;
   margin: 0;
+}
+.title-card-block a {
+  text-decoration: none;
+  color: #3A77BB;
+  font-weight: 600;
 }
 
