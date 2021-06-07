@@ -59,7 +59,7 @@
     <%# </select> %>
     <% @categories_nft.each do |category| %>
         <%= simple_form_for root_path, method: :get do |f| %>
-            <%= hidden_field_tag :nft_category, "#{category}" %>
+            <%= hidden_field_tag :nft_category, "#{category.capitalize}" %>
             <%= f.submit "#{category}", class: "btn btn-outline-success mx-2" %>
         <% end %>
     <% end %>
