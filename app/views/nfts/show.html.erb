@@ -21,8 +21,29 @@
   </div>
 
   <div class="d-flex justify-content-around my-4">
-    <div class="card bg-white p-3" style="width: 280px; border-radius: 5px">
+    <div class="card bg-white p-3" style="min-width: 280px; border-radius: 5px">
       <p>Owned by</p>
+      <div class="d-flex justify-content-around align-items-center">
+        <div>
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+        </div>
+        <div>
+          <h4>name</h4>
+          <div class="title-card-block px-3">
+              <% timeUTC = Time.now.utc - @nft.created_at  %>
+              <% time = (timeUTC / 60).to_i %>
+              <% if time < 119 %>
+                  <p style="margin-bottom: 0px;"> <%= time %> min</p>
+              <% else %>
+                  <% time = (time / 60).to_i %>
+                  <p style="margin-bottom: 0px;"> <%= time %> hours</p>
+              <% end %>
+          </div>
+        </div>
+        <div>
+          <%= link_to 'follow', "#", class:"btn btn-outline-dark" %>
+        </div>
+      </div>
     </div>
     <div class="card bg-white p-3" style="width: 580px; border-radius: 5px">
       <% if @nft.comments.blank? %>
