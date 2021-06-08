@@ -69,7 +69,6 @@
       </div>
       <div class="container mt-4">
           <% if current_user == @user %>
-              <h1 class="text-center">Your profile page</h1>
               <hr>
               <% if @chatrooms != []%>
                 <p>Here are all of your chats: </p>
@@ -87,8 +86,11 @@
                 </div>
               <% end %>
           <% else %>
-              <h1 class="text-center"><%= @user.first_name %> <%=  @user.last_name  %> profile page</h1>
-              <%= link_to "Chat", chatrooms_path(user_id: @user.id), method: :post %>
+            <dir class="row">
+              <div class="container col-12">
+                <%= link_to "Message", chatrooms_path(user_id: @user.id), method: :post, class: "btn btn-block btn-outline-secondary" %>
+              </div>
+            </dir>
           <% end %>
         <div class="nft-collection"></div>
       </div>
