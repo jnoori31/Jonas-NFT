@@ -70,7 +70,7 @@
 
       <%= simple_form_for([ @nft, @comment ], remote: true) do |f| %>
       <%= f.input :content %>
-      <%= f.submit %>
+      <%= f.submit "Create Comment", class:"btn follow-button my-2" %>
       <% end %>
     </div>
   </div>
