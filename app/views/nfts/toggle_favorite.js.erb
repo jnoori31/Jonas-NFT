@@ -1,0 +1,6 @@
+var nftId = '<%= @nft.id%>'
+function toggleLikeButton(nftId, innerHTML) {
+  let likeButton = document.querySelector(`.like-icon[data-id='${nftId}']`)
+  likeButton.classList.toggle('red');
+}
+toggleLikeButton(nftId);

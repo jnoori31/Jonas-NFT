@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
+  skip_before_action :authenticate_user!, only: [ :home, :toggle_favorite ]
 
   def home
     if params[:nft_category].present?
@@ -18,6 +18,13 @@ class PagesController < ApplicationController
         @user_suggestions << users[i]
       end
     end
+  end
+
+  def toggle_favorites
+    @nft = Nft.find(params[:id])
+    current_user.favorited?(@nft) ? current_user.unfavorite(@nft) : current_user.favorite(@nft)
+    redirect_to root_path(anchor: "nft-index-#{@nft.id}")
+    # in order to see the like appear we need to refresh
   end
 end
 

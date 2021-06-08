@@ -91,7 +91,7 @@
                 <% if nft.image_url %>
                     <div class="title-card d-flex align-items-center p-2">
                         <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
-                        <div class="title-card-block px-3">
+                        <div class="title-card-block px-3" id='nft-index-<%= nft.id %>'>
                             <%= link_to "#{user.first_name} #{user.last_name}", user_path(user)%>
                             <p><%= user.bio %></p>
                             <% timeUTC = Time.now.utc - nft.created_at  %>
@@ -111,8 +111,12 @@
                     <p class="p-2">Created <%= nft.name %></p>
                     <%= image_tag nft.image_url, height: 400, width: 500, crop: :fill %>
                 <% end %>
-                <div class="d-flex my-2 p-2"> 
-                    <i class="far fa-heart px-2" style="color:#E94A47;"></i>
+                <div class="d-flex my-2 p-2">
+                    <% if current_user.favorited?(nft) %>
+                      <%= render 'like_button', heartColor: "❤️", nft: nft %>
+                    <% else %>
+                      <%= render 'like_button', heartColor: "🤍", nft: nft %>
+                    <% end %>
                     <i class="far fa-comment" style="color:#E94A47;"></i>
                 </div>
             </div>
