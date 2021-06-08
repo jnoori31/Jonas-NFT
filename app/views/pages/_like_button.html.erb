@@ -1,3 +1,10 @@
-<%= link_to heartColor, toggle_favorites_path(nft, id: nft.id), remote: true, method: :post %>
+<%#= link_to heartColor, toggle_favorites_path(nft, id: nft.id), remote: true, method: :post %>
 
 <!-- parse to controller and nft found by id but it could have been anything else associated with an Nft (name: nft.name) -->
+<!-- use the link had we not used javascript - IE: HTML to controller directly -->
+
+
+<div class="like-icon mx-2 <%= 'red' if current_user.favorited?(nft) %>" data-id="<%= nft.id %>">
+  <i class="fas fa-heart"></i>
+</div>
+<!-- 'redcolor' is a class (cf stylesheet). Can be found is the css file _card.scss line 38  -->
