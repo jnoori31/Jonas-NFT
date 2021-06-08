@@ -1,7 +1,7 @@
 
 class NftsController < ApplicationController
 
-  before_action :authenticate_user!, only: :toggle_favorite
+  before_action :authenticate_user!, only: [:toggle_favorite, :new]
 
   def toggle_favorite
     @nft = Nft.find_by(id: params[:id])

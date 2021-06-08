@@ -61,19 +61,21 @@
     <% if current_user == @user %>
         <h1 class="text-center">Your profile page</h1>
         <hr>
-        <p>Here are all of your chats: </p>
-        <div class="dropend">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                View my chats
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <% if @chatrooms %>
+        <% if @chatrooms != []%>
+          <p>Here are all of your chats: </p>
+          <div class="dropdown">
+              <button class="btn follow-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  View my chats
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <div class="dropdown-chat">
                     <% @chatrooms.each do |chatroom| %>
-                        <li><%= link_to "Chat with #{chatroom.owner.first_name}", chatroom_path(chatroom) %></li>
+                        <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
                     <% end %>
-                <% end %>
-            </ul>
-        </div>
+                    </div>
+              </ul>
+          </div>
+        <% end %>
     <% else %>
         <h1 class="text-center"><%= @user.first_name %> <%=  @user.last_name  %> profile page</h1>
         <%= link_to "Chat", chatrooms_path(user_id: @user.id), method: :post %>

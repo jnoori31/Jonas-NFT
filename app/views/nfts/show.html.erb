@@ -11,6 +11,7 @@
     <div class="nft-name">
       <h2 class="mb-2"><%=@nft.name %></h2>
       <!-- <i class="far fa-heart" style="color:#E94A47; margin-right: 8px;"></i> -->
+
       <%# if current_user.favorited?(@nft) %>
         <%#= render 'like_button', heartColor: "❤️" %>
       <%# else %>
