@@ -9,6 +9,10 @@ Rails.application.routes.draw do
       # get 'discover', to: "nfts#discover"
       # get 'nfts/:id/discover', to: "nfts#discover"
     # end
+    member do
+      post 'toggle_favorite', to: "nfts#toggle_favorite"
+    end
+
     collection do
       get 'discover', to: "nfts#discover"
       post 'new_nft', to: "nfts#new_nft"

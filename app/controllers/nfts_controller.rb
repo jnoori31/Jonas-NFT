@@ -1,5 +1,15 @@
 
 class NftsController < ApplicationController
+
+  before_action :authenticate_user!, only: :toggle_favorite
+
+  def toggle_favorite
+    @nft = Nft.find_by(id: params[:id])
+    current_user.favorited?(@nft) ? current_user.unfavorite(@nft) : current_user.favorite(@nft)
+    redirect_to nft_path(@nft, anchor: "btn-like")
+    # in order to see the like appear we need to refresh
+  end
+
   def show
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
