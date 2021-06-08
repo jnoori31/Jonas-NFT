@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-8" >
       <%= image_tag "default_profile_picture.jpg", height: 100, width: 100, :crop=> 'fill', :class=> 'rounded-circle' %>
-      <h3><%= @user.first_name %> <%=  @user.last_name  %></h3>
+      <h3><%= @user.first_name %> <%=  @user.last_name  %> </h3>
       <h5>@<%= @user.first_name %><%=  @user.last_name  %></h5>
       <div class="col-7">
         <p>Alcohol evangelist. Tv specialist. Lifelong beer junkie. Passionate twitter geek.
@@ -32,19 +32,75 @@
 <div style="border-top: solid 1px ; border-color: #CCCCCC">
 </div>
 <div class="container mt-4">
-  <h1>Filtering button section</h1>
+  <h3>Filtering button section</h3>
 </div>
 <div class="container mt-4">
   <div class="row">
-    <div class="container col-4">
-      <h1>user filter and message button</h1>
+    <div class="container col-3">
+      <div class="card p-2">
+        <div class="row">
+          <div class="container col-2">
+            <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
+          </div>
+          <div class="container col-10">
+            <h5><%= @user.first_name %> <%=  @user.last_name  %></h5>
+          </div>
+        </div>
+        <div class="row p-2">
+          <div style="border-top: solid 1px ; border-color: #CCCCCC">
+          </div>
+        </div>
+        <div class="row">
+          <div class="container col-10">
+            <p><i class="fas fa-fingerprint px-2" style="color:#333333;"></i> Owned</p>
+          </div>
+          <div class="container col-2">
+            <p>12</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container col-10">
+              <p><i class="far fa-heart px-2" style="color:#333333;"></i> Liked</p>
+          </div>
+          <div class="container col-2">
+            <p>57</p>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-4">
+          <% if current_user == @user %>
+              <hr>
+              <% if @chatrooms != []%>
+                <p>Here are all of your chats: </p>
+                <div class="dropdown">
+                    <button class="btn follow-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        View my chats
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <div class="dropdown-chat">
+                          <% @chatrooms.each do |chatroom| %>
+                              <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
+                          <% end %>
+                          </div>
+                    </ul>
+                </div>
+              <% end %>
+          <% else %>
+            <dir class="row">
+              <div class="container col-12">
+                <%= link_to "Message", chatrooms_path(user_id: @user.id), method: :post, class: "btn btn-block btn-outline-secondary" %>
+              </div>
+            </dir>
+          <% end %>
+        <div class="nft-collection"></div>
+      </div>
     </div>
-    <div class="container col-8">
+    <div class="container col-9">
       <div class="row">
         <% @Nft.each do |nft| %>
           <div class="container col-4 mb-2">
             <div class="card" style="width: 18rem;">
-              <%= image_tag nft.image_url, :class=> "card-img-top" %>
+              <%= image_tag nft.image_url, height: 300, width: 150, :class=> "card-img-top" %>
               <div class="card-body">
                 <h5 class="card-title"><%= nft.name %></h5>
                 <p class="card-text"><%= nft.category %></p>
@@ -56,29 +112,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="container mt-4">
-    <% if current_user == @user %>
-        <h1 class="text-center">Your profile page</h1>
-        <hr>
-        <% if @chatrooms != []%>
-          <p>Here are all of your chats: </p>
-          <div class="dropdown">
-              <button class="btn follow-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  View my chats
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <div class="dropdown-chat">
-                    <% @chatrooms.each do |chatroom| %>
-                        <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
-                    <% end %>
-                    </div>
-              </ul>
-          </div>
-        <% end %>
-    <% else %>
-        <h1 class="text-center"><%= @user.first_name %> <%=  @user.last_name  %> profile page</h1>
-        <%= link_to "Chat", chatrooms_path(user_id: @user.id), method: :post %>
-    <% end %>
-  <div class="nft-collection"></div>
 </div>
