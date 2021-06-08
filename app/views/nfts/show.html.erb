@@ -11,14 +11,17 @@
     <div class="nft-name">
       <h2 class="mb-2"><%=@nft.name %></h2>
       <!-- <i class="far fa-heart" style="color:#E94A47; margin-right: 8px;"></i> -->
-      <% if current_user %>
-        <% if current_user.favorited?(@nft) %>
-          <%= render 'like_button', heartColor: "❤️" %>
-        <% else %>
-          <%= render 'like_button', heartColor: "🤍" %>
+
+      <%# if current_user.favorited?(@nft) %>
+        <%#= render 'like_button', heartColor: "❤️" %>
+      <%# else %>
+        <%#= render 'like_button', heartColor: "🤍" %>
+        <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;" do %>
+        <!-- the link default is black -->
+          <%= render 'nfts/like_button', nft: @nft %>
         <% end %>
-      <% end %>
-    
+      <%# end %>
+
       <i class="far fa-comment" style="color:#E94A47;"></i>
       <p>Liked by <strong>Jonas</strong> and <strong>43 others</strong> </p>
     </div>
