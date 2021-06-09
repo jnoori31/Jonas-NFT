@@ -18,13 +18,19 @@
         <%#= render 'like_button', heartColor: "❤️" %>
       <%# else %>
         <%#= render 'like_button', heartColor: "🤍" %>
-        <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;" do %>
-        <!-- the link default is black -->
-          <%= render 'nfts/like_button', nft: @nft %>
-        <% end %>
-      <%# end %>
+      <div class="d-flex align-items-center justify-content-start">
+        <div>
+          <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;" do %>
+          <!-- the link default is black -->
+            <%= render 'nfts/like_button', nft: @nft %>
+          <% end %>
+        </div>
+        <%# end %>
+        <div>
+          <i class="far fa-comment" style="color:#E94A47;"> <%= @nft.comments.count %> </i>
+        </div>
+      </div>
 
-      <i class="far fa-comment" style="color:#E94A47;"></i>
       <p>Liked by <strong>Jonas</strong> and <strong>43 others</strong> </p>
     </div>
     <div class="card-product-infos">
