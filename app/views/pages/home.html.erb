@@ -2,7 +2,7 @@
 <%= render 'shared/banner', message: "Find & Showcase" %>
 
 <!------ Searching for a friend --------------->
-<div class="container mt-4 d-flex justify-content-around w-100">
+<div class="container mt-4 d-flex justify-content-between align-items-start w-100">
     <div>
         <div class="search-friend" style="width: 500px;">
             <%= form_for root_path, method: :get do %>
@@ -24,9 +24,9 @@
                     <% if @users.length > 1 %>
                         <ul class="list-group">
                             <% @users.each do |user| %>
-                                <div class="d-flex justify-content-between">
+                                <div class="d-flex justify-content-between align-items-center">
                                     <div class="infos-user">
-                                        <p style="margin-bottom: 0px"><%= user.first_name %> <%= user.last_name %></p>
+                                        <p style="margin-bottom: 0px; font-weight: 600;"><%= user.first_name %> <%= user.last_name %></p>
                                     </div>
                                     <div class="link-user-page">
                                         <%= link_to "Profile", user_path(user), class: "link-friend-page" %>
@@ -36,9 +36,9 @@
                         </ul>
                     <% else %>
                         <li class="list-group-item mt-2">
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between align-items-center">
                                 <div class="infos-user">
-                                    <p style="margin-bottom: 0px"><%= @users.first.first_name %> <%= @users.first.last_name %></p>
+                                    <p style="margin-bottom: 0px; font-weight: 600;"><%= @users.first.first_name %> <%= @users.first.last_name %></p>
                                 </div>
                                 <div class="link-user-page">
                                     <%= link_to "Profile", user_path(@users.first), class: "link-friend-page" %>
@@ -60,6 +60,7 @@
                 <%# end %>
             <%# end %>
         <%# </select> %>
+        <h5 style="color: #3A77BB" class="mx-3">Select a category: </h5>
         <% @categories_nft.each do |category| %>
             <%= simple_form_for root_path, method: :get do |f| %>
                 <%= hidden_field_tag :nft_category, "#{category.capitalize}" %>
@@ -115,7 +116,7 @@
                     <p class="p-2">Created <%= nft.name %></p>
                     <%= image_tag nft.image_url, height: 400, width: 500, crop: :fill %>
                 <% end %>
-                <div class="d-flex my-2 p-2">
+                <div class="d-flex my-2 p-2 align-items-center">
                     <%# if current_user.favorited?(nft) %>
                       <%#= render 'like_button', heartColor: "❤️", nft: nft %>
                     <%#else %>

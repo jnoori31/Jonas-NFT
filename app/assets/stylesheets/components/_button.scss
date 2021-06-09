@@ -2,7 +2,7 @@
     border-radius: 20px;
     background-color: #3A77BB;
     color: white;
-    padding: 5px 10px;
+    padding: 10px 15px;
     font-weight: 500;
 }
 .new-nft-btn {
@@ -29,4 +29,10 @@
 .link-profile-chat a {
     text-decoration: none;
     font-weight: 500;
+}
+.btn-created-nft {
+    border: 1px solid rgba(0,0,0,0.3);
+}
+.background-grey {
+    background-color: rgba(0,0,0,0.2);
 }

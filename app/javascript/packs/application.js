@@ -30,6 +30,7 @@ import "bootstrap";
 import { initChatroomCable } from '../channels/chatroom_channel';
 import { initSelect2 } from '../plugins/select2';
 import { initScrollTop } from '../components/scrollTop'
+import { createdNft } from '../components/created_nft';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -37,6 +38,7 @@ document.addEventListener('turbolinks:load', () => {
   initChatroomCable();
   initSelect2();
   initScrollTop();
+  createdNft();
 });
 
 import "controllers"
