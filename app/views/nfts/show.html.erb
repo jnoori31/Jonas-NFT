@@ -70,34 +70,34 @@
     <!-----------------------Comments card ------------------------->
     <div class="card bg-white p-3" style="width: 580px; border-radius: 5px">
       <% if @nft.comments.blank? %>
-          Be the first to leave a comment for <strong><%= @nft.name %></strong>
+        Be the first to leave a comment for <strong><%= @nft.name %></strong>
       <% else %>
         <% @nft.comments.each do |comment|%>
 
-          <p><%= comment.user.email %></p>
+        <div class="comment-card-bio">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+          <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>
           <p id="comment-<%= comment.id %>"><%= comment.content %></p>
+        </div>
+        <div class="comment-card-delete-date">
           <% if comment.user.id == current_user.id %>
-          <%= link_to 'Delete', nft_comment_path(@nft, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-          <!--nft_comment_path(nft_id: @nft.id, id: comment.id) use the same as-->
+            <%= link_to 'Delete', nft_comment_path(@nft, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
+          <p>Date</p>
+        </div>
         <% end %>
       <% end %>
-
       <%= simple_form_for([ @nft, @comment ], remote: true) do |f| %>
-      <%= f.input :content %>
-      <%= f.submit "Create Comment", class:"btn follow-button my-2" %>
-      <!-- Iuser logged in show avatar, name and delete button
+        <%= f.text_field :content, label: false, placeholder:"Your comment...", class: "form-control" %>
+        <%= f.submit "Comment", class:"btn follow-button my-2" %>
+      <% end %>
+    </div>
+
+<!-- Iuser logged in show avatar, name and delete button
       comment @ delete display flex space between
       name = comment stack on top
       name = comment color
       placeholder for text box- outline grey -->
-      <% end %>
-
-    </div>
-    <!----------------------END---Comments---card ------------------------->
-  </div>
-  <!----------------------END-Main card Description2---------------->
-</div>
 
 
 <!-- #analogy for creating a link to destroy
@@ -106,11 +106,7 @@ when we get to end point we need to know who to kill by their id
 Nft -----foregin key path----comment--id/destroy
 Rais route path below
 nft_comment DELETE /nfts/:nft_id/comments/:id(.:format)---->
-
-
-
-
-
+ <!--nft_comment_path(nft_id: @nft.id, id: comment.id) use the same as-->
 
 
 
