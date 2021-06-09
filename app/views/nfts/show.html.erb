@@ -38,16 +38,16 @@
 <!-----------------------Main card Description2--------------------->
   <div class="d-flex justify-content-around my-4">
     <!-----------------------Owned card Description---------------->
-    <div class="card bg-white p-3" style="min-width: 280px; border-radius: 5px">
-      <p>Owned by</p>
-      <div class="d-flex justify-content-around align-items-center">
+    <div>
+      <h4>Owned by</h4>
+      <div class="d-flex justify-content-around align-items-center" style="min-width: 320px; border-style: solid; border-width: thin; border-radius: 5px; border-color: grey">
         <%= link_to user_path(@user), class:'text-decoration-none' do %>
-          <div>
+          <div class="p-2">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
           </div>
         <% end %>
         <div>
-          <h4>name</h4>
+          <p>name</p>
           <div class="title-card-block px-3">
               <% timeUTC = Time.now.utc - @nft.created_at  %>
               <% time = (timeUTC / 60).to_i %>
@@ -73,6 +73,7 @@
         Be the first to leave a comment for <strong><%= @nft.name %></strong>
       <% else %>
         <% @nft.comments.each do |comment|%>
+
         <div class="comment-card-bio">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
           <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>
@@ -97,6 +98,7 @@
       name = comment stack on top
       name = comment color
       placeholder for text box- outline grey -->
+
 
 <!-- #analogy for creating a link to destroy
 the path- start point nft- follow the road (foregin key) to end point (comment)
