@@ -23,6 +23,8 @@ class PagesController < ApplicationController
   def toggle_favorites
     p params
     @nft = Nft.find(params[:nft_id])
+    # @nft = Nft.find(params[:id]) links to like_button line 1
+
     current_user.favorited?(@nft) ? current_user.unfavorite(@nft) : current_user.favorite(@nft)
     # redirect_to root_path(anchor: "nft-index-#{@nft.id}")
     # in order to see the like appear we need to refresh

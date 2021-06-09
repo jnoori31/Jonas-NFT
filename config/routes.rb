@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post 'toggle_favorites', to: "pages#toggle_favorites"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :nfts, except: :index do
-    resources :comments, only: :create
+    resources :comments, only: [:create, :destroy]
     # member do
       # get 'discover', to: "nfts#discover"
       # get 'nfts/:id/discover', to: "nfts#discover"

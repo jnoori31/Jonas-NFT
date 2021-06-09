@@ -9,9 +9,20 @@ class CommentsController < ApplicationController
     end
   end
 
+def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    @nft = Nft.find(params[:nft_id])
+    redirect_to nft_path(@nft)
+end
+
   private
 
   def comment_params
     params.require(:comment).permit(:content)
   end
 end
+
+
+# @nft = Nft.find(params[:nft_id])
+# @comment = @nft.comments
