@@ -9,6 +9,17 @@ class NftsController < ApplicationController
     # in order to see the like appear we need to refresh
   end
 
+  def liked_nfts
+    # @nfts = Nft.where(current_user.favorited?(@nft) == true)
+    @liked_nfts1 = []
+    @nfts = Nft.all
+    @nfts.each do |nft|
+      if current_user.favorited?(nft)
+        @liked_nfts1 << nft
+      end
+    end
+  end
+
   def show
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
