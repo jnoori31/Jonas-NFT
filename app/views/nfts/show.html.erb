@@ -78,27 +78,34 @@
       <% if @nft.comments.blank? %>
         Be the first to leave a comment for <strong><%= @nft.name %></strong>
       <% else %>
-        <% @nft.comments.each do |comment|%>
 
-        <div class="comment-card-bio">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
-          <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>
-          <p id="comment-<%= comment.id %>"><%= comment.content %></p>
+        <% @nft.comments.each do |comment|%>
+        <div class="comment-card d-flex justify-content-between">
+          <div class="comment-card-bio d-flex">
+            <div class="comment-card-avatar">
+              <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+            </div>
+            <div class="comment-card-info">
+            <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>
+            <p id="comment-<%= comment.id %>"><%= comment.content %></p>
+          </div>
+          </div>
+          <div class="comment-card-delete-date d-flex">
+            <% if comment.user.id == current_user.id %>
+              <%= link_to 'Delete', nft_comment_path(@nft, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+            <p>Date</p>
+          </div>
         </div>
-        <div class="comment-card-delete-date">
-          <% if comment.user.id == current_user.id %>
-            <%= link_to 'Delete', nft_comment_path(@nft, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
-          <p>Date</p>
-        </div>
         <% end %>
-      <% end %>
-      <%= simple_form_for([ @nft, @comment ], remote: true) do |f| %>
-        <%= f.text_field :content, label: false, placeholder:"Your comment...", class: "form-control" %>
-        <%= f.submit "Comment", class:"btn follow-button my-2" %>
-      <% end %>
+        <%= simple_form_for([ @nft, @comment ], remote: true) do |f| %>
+          <%= f.text_field :content, label: false, placeholder:"Your comment...", class: "form-control" %>
+          <%= f.submit "Comment", class:"btn follow-button my-2" %>
+        <% end %>
     </div>
 
+<!-- align-items-center justify-content-center -->
 <!-- Iuser logged in show avatar, name and delete button
       comment @ delete display flex space between
       name = comment stack on top
