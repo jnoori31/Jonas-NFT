@@ -6,6 +6,8 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       redirect_to nft_path(@nft, anchor: "comment-#{@comment.id}")
+      #Using Ajax when the page updates/not reload, it will center where you updatred the comment whoes position is demarcated by its id
+      #Line 79 show.html.erb
     end
   end
 
