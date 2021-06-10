@@ -154,7 +154,7 @@
                     <%= link_to toggle_follows_path(user_id: user.id), remote: true, style: "color: #999999; border: 1px solid #999999; border-radius: 50px;", method: :post do %>
 
                     <!-- the link default is black -->
-                      <%= render 'follows_button', userFollow: user %>
+                      <%= render 'follows_button', user: user %>
                     <% end %>
 
                     <%#= link_to "Follow", user_path(user), class:"follow-button" %>

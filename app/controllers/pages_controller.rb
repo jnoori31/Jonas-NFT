@@ -31,7 +31,7 @@ class PagesController < ApplicationController
   end
 
   def toggle_follows
-    @user = User.find(params[:userFollow_id])
+    @user = User.find(params[:user_id])
     current_user.favorited?(@user) ? current_user.unfavorite(@user) : current_user.favorite(@user)
 
     # redirect_to root_path
