@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   acts_as_favoritor
+  acts_as_favoritable
+
   has_many :comments
   has_many :nfts
   include PgSearch::Model

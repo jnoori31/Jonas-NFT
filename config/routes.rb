@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, only: :show
   root to: 'pages#home'
+
   post 'toggle_favorites', to: "pages#toggle_favorites"
+  post 'toggle_follows', to: "pages#toggle_follows"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :nfts, except: :index do
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
     # end
     member do
       post 'toggle_favorite', to: "nfts#toggle_favorite"
+      post 'toggle_follow', to: "nfts#toggle_follow"
     end
 
     collection do

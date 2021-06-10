@@ -29,6 +29,25 @@ class PagesController < ApplicationController
     # redirect_to root_path(anchor: "nft-index-#{@nft.id}")
     # in order to see the like appear we need to refresh
   end
+
+  def toggle_follows
+    @user = User.find(params[:user_id])
+    current_user.favorited?(@user) ? current_user.unfavorite(@user) : current_user.favorite(@user)
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
