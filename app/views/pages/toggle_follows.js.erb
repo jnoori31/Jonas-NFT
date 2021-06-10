@@ -1,7 +1,7 @@
-var userId = '<%= @user.id%>'
+var userFollowId = '<%= @user.id%>'
 function toggleLikeButton(userId, innerHTML) {
-  let likeButton = document.querySelector(`.like-icon[data-id='${userId}']`)
-  likeButton.classList.toggle('red');
+  let likeButton = document.querySelector(`.like-icon[data-id='${userFollowId}']`)
+   // likeButton.classList.toggle('red');
   likeButton.addEventListener('click',(event) => {
      if (event.currentTarget.innerText === "Follow"){
        likeButton.innerText = "Following"
@@ -14,6 +14,6 @@ function toggleLikeButton(userId, innerHTML) {
   // likeButton.innerHTML.toggle("following");
   // and change inner text
 }
-toggleLikeButton(userId);
+toggleLikeButton(userFollowId);
 
 
