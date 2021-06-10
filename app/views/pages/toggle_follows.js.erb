@@ -1,3 +1,4 @@
+
 var userId = '<%= @user.id%>'
 function toggleLikeButton(userId) {
   let likeButton = document.querySelector(`.like-icon[data-id='${userId}']`)
@@ -12,9 +13,10 @@ function toggleLikeButton(userId) {
   //    }
   //  });
 
+
   // likeButton.innerHTML.toggle("following");
   // and change inner text
 }
-toggleLikeButton(userId);
+toggleLikeButton(userFollowId);
 
 
