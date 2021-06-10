@@ -8,12 +8,11 @@
       <h3><%= @user.first_name %> <%=  @user.last_name  %> </h3>
       <h5>@<%= @user.first_name %><%=  @user.last_name  %></h5>
       <div class="col-7">
-        <p>Alcohol evangelist. Tv specialist. Lifelong beer junkie. Passionate twitter geek.
-    Problem solver. Avid pop culture enthusiast. Web fanatic.</p>
+        <p><%= @user.bio %></p>
       </div>
     </div>
     <div class="col-4">
-      <div class="card p-2 mt-5">
+      <div class="card p-2 mt-5" style="border-radius: 10px">
         <div class="row">
           <div class="col-4 ">
             <p><b>348</b> Following</p>
@@ -32,12 +31,9 @@
 <div style="border-top: solid 1px ; border-color: #CCCCCC">
 </div>
 <div class="container mt-4">
-  <h3>Filtering button section</h3>
-</div>
-<div class="container mt-4">
   <div class="row">
     <div class="container col-3">
-      <div class="card p-2">
+      <div class="card p-2" style="border-radius: 10px">
         <div class="row">
           <div class="container col-2">
             <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
@@ -97,12 +93,10 @@
       </div>
       <div class="container mt-4">
           <% if current_user == @user %>
-              <hr>
               <% if @chatrooms != []%>
-                <p>Here are all of your chats: </p>
                 <div class="dropdown">
                     <button class="btn follow-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        View my chats
+                        My chatrooms
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <div class="dropdown-chat">
@@ -127,12 +121,29 @@
       <div class="row">
         <% @Nft.each do |nft| %>
           <div class="container col-4 mb-2">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem; border-radius: 10px">
               <%= image_tag nft.image_url, height: 300, width: 150, :class=> "card-img-top" %>
               <div class="card-body">
                 <h5 class="card-title"><%= nft.name %></h5>
                 <p class="card-text"><%= nft.category %></p>
-                <a href="#" class="btn btn-primary">Follow</a>
+                <%= link_to "View", nft_path(nft), class: "btn btn-block btn-outline-primary" %>
+
+                <div class="mt-2" style="border-top: solid 1px ; border-color: #CCCCCC">
+                </div>
+                <div class="row">
+                  <div class="mt-2">
+                    <p>Owned by</p>
+                  </div>
+                  <div class="container col-3">
+                    <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
+                  </div>
+                  <div class="container col-6">
+                    <p style="font-size: 12px" ><%= @user.first_name %> <%=  @user.last_name  %></p>
+                  </div>
+                  <div class="container col-3">
+                    <a href="#" style="font-size: 12px" >Follow</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

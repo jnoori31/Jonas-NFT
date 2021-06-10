@@ -11,7 +11,7 @@
                         <%= text_field_tag :name,
                         params[:name],
                         class: "form-control",
-                        placeholder: "Find a friend" 
+                        placeholder: "Find a friend"
                         %>
                     </div>
                     <div class="col-4">
@@ -107,7 +107,7 @@
                                 <% time = (time / 60).to_i %>
                                 <p style="margin-bottom: 0px;"> <%= time %> hours</p>
                             <% end %>
-                            
+
                         </div>
                     </div>
                 <% end %>
@@ -123,7 +123,7 @@
                       <%#= render 'like_button', heartColor: "🤍", nft: nft %>
                     <%# end %>
 
-                    <%= link_to toggle_favorites_path(nft_id: nft.id), remote: true, method: :post, style: "color: black;" do %>
+                    <%= link_to toggle_favorites_path(nft_id: nft.id), remote: true, style: "color: black;", method: :post do %>
                     <!-- the link default is black -->
                       <%= render 'like_button', nft: nft %>
                     <% end %>
@@ -150,9 +150,11 @@
                     <% end %>
                     <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
 
-                    <%= link_to toggle_follows_path(userFollow_id: user.id), remote: true, method: :post, style: "color: #999999; border: 1px solid #999999; border-radius: 50px;" do %>
+
+                    <%= link_to toggle_follows_path(user_id: user.id), remote: true, style: "color: #999999; border: 1px solid #999999; border-radius: 50px;", method: :post do %>
+
                     <!-- the link default is black -->
-                      <%= render 'follows_button', userFollow: user %>
+                      <%= render 'follows_button', user: user %>
                     <% end %>
 
                     <%#= link_to "Follow", user_path(user), class:"follow-button" %>
