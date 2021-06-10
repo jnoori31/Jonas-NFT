@@ -1,4 +1,7 @@
+<% if current_user %>
 <div class="like-icon mx-2 <%= 'red' if current_user.favorited?(nft) %>" data-id="<%= nft.id %>">
   <i class="fas fa-heart"></i>
 </div>
+<% end %>
+
 <!-- red is a class (cf stylesheet). Can be found is the css file _card.scss line 38  -->

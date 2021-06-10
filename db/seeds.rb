@@ -52,7 +52,8 @@ results["assets"].each do |result|
     description: result["description"],
     image_url: result["image_url"],
     user_id: users_id.sample,
-    creation: false
+    creation: false,
+    external_url: result["permalink"]
     # user: User.find(users_id.sample)
     # except 20 to be randomly allocated in between each user
   )

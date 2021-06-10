@@ -28,6 +28,7 @@
         <%# end %>
         <div>
           <i class="far fa-comment" style="color:#E94A47;"> <%= @nft.comments.count %> </i>
+          <%= link_to "Check it out", @nft.external_url  %>
         </div>
       </div>
 
@@ -85,16 +86,16 @@
             <div class="comment-card-avatar">
               <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
             </div>
-            <div class="comment-card-info">
-            <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>
-            <p id="comment-<%= comment.id %>"><%= comment.content %></p>
-          </div>
+            <div class="comment-card-info" style="margin-left: 20px;">
+              <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>
+              <p id="comment-<%= comment.id %>"><%= comment.content %></p>
+            </div>
           </div>
           <div class="comment-card-delete-date d-flex">
             <% if comment.user.id == current_user.id %>
               <%= link_to 'Delete', nft_comment_path(@nft, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>
-            <p>Date</p>
+            <p style="margin-left: 10px;"><%= comment.created_at.to_s[0..10] %></p>
           </div>
         </div>
           <% end %>
