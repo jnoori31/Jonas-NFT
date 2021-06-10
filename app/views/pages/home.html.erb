@@ -149,7 +149,14 @@
                     <% end %>
                     <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
 
-                    <%= link_to "Follow", user_path(user), class:"follow-button" %>
+
+                    <%= link_to toggle_follows_path(user_id: user.id), remote: true, method: :post, style: "color: #999999; border: 1px solid #999999; border-radius: 50px;" do %>
+                    <!-- the link default is black -->
+                      <%= render 'follows_button', user: user %>
+                    <% end %>
+
+
+                    <%#= link_to "Follow", user_path(user), class:"follow-button" %>
                 </div>
                 <div class="card-nfts d-flex justify-content-around mt-1">
                     <% if user.nfts %>
