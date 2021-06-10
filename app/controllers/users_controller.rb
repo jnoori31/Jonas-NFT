@@ -21,7 +21,4 @@ class UsersController < ApplicationController
         #     @Nft = nft.where(creation: false)
         # end
     end
-
-    def toggle_follow
-    end
 end
