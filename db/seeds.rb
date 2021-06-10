@@ -4,7 +4,7 @@ require 'net/http'
 require 'openssl'
 require 'json'
 
-puts "Cleaning Databse"
+puts "Cleaning Database"
 Nft.destroy_all 
 Message.destroy_all
 Chatroom.destroy_all
@@ -51,7 +51,8 @@ results["assets"].each do |result|
     price: rand(60..150),
     description: result["description"],
     image_url: result["image_url"],
-    user_id: users_id.sample
+    user_id: users_id.sample,
+    creation: false
     # user: User.find(users_id.sample)
     # except 20 to be randomly allocated in between each user
   )

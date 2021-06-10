@@ -52,7 +52,15 @@
         </div>
         <div class="row">
           <div class="container col-10">
-            <p><i class="fas fa-fingerprint px-2" style="color:#333333;"></i> Owned</p>
+          <%# Implemented the logic of showing specific cases of nfts %>
+            <%= simple_form_for user_path(@user), method: :get do |f| %>
+              <%= hidden_field_tag :category, "owned" %>
+              <div class="d-flex align-items-center">
+                <i class="fas fa-fingerprint px-2" style="color:#333333;"></i>
+                <%= f.submit "Owned", class:"btn" %>
+              </div>
+            <% end %>
+            <%# End %>
           </div>
           <div class="container col-2">
             <p>12</p>
@@ -60,10 +68,30 @@
         </div>
         <div class="row">
           <div class="container col-10">
-              <p><i class="far fa-heart px-2" style="color:#333333;"></i> Liked</p>
+            <%= simple_form_for user_path(@user), method: :get do |f| %>
+                <%= hidden_field_tag :category, "created" %>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-pen px-2" style="color:#333333;"></i>
+                  <%= f.submit "Created", class:"btn" %>
+                </div>
+              <% end %>
           </div>
           <div class="container col-2">
-            <p>57</p>
+            <p>5</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container col-10">
+              <%= simple_form_for user_path(@user), method: :get do |f| %>
+                <%= hidden_field_tag :category, "liked" %>
+                <div class="d-flex align-items-center">
+                  <i class="far fa-heart px-2" style="color:#333333;"></i>
+                  <%= f.submit "Liked", class:"btn" %>
+                </div>
+              <% end %>
+          </div>
+          <div class="container col-2">
+            <p>4</p>
           </div>
         </div>
       </div>
@@ -86,11 +114,11 @@
                 </div>
               <% end %>
           <% else %>
-            <dir class="row">
+            <div class="row">
               <div class="container col-12">
                 <%= link_to "Message", chatrooms_path(user_id: @user.id), method: :post, class: "btn btn-block btn-outline-secondary" %>
               </div>
-            </dir>
+            </div>
           <% end %>
         <div class="nft-collection"></div>
       </div>
