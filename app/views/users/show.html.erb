@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="col-4">
-      <div class="card p-2 mt-5">
+      <div class="card p-2 mt-5" style="border-radius: 10px">
         <div class="row">
           <div class="col-4 ">
             <p><b>348</b> Following</p>
@@ -36,7 +36,7 @@
 <div class="container mt-4">
   <div class="row">
     <div class="container col-3">
-      <div class="card p-2">
+      <div class="card p-2" style="border-radius: 10px">
         <div class="row">
           <div class="container col-2">
             <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
@@ -124,12 +124,12 @@
       <div class="row">
         <% @Nft.each do |nft| %>
           <div class="container col-4 mb-2">
-            <div class="card" style="width: 18rem;">
+            <div class="card" style="width: 18rem; border-radius: 10px">
               <%= image_tag nft.image_url, height: 300, width: 150, :class=> "card-img-top" %>
               <div class="card-body">
                 <h5 class="card-title"><%= nft.name %></h5>
                 <p class="card-text"><%= nft.category %></p>
-                <%= link_to "View", nft_path(nft), class: "btn btn-block btn-outline-secondary" %>
+                <%= link_to "View", nft_path(nft), class: "btn btn-block btn-outline-primary" %>
 
                 <div class="mt-2" style="border-top: solid 1px ; border-color: #CCCCCC">
                 </div>
