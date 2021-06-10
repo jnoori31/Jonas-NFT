@@ -1,0 +1,6 @@
+var userFollowedId = '<%= @userFollowed.id%>'
+function toggleLikeButton(userFollowedId, innerHTML) {
+  let likeButton = document.querySelector(`.like-icon[data-id='${userFollowedId}']`)
+  likeButton.classList.toggle('red');
+}
+toggleLikeButton(userFollowedId);

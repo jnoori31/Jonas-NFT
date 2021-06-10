@@ -144,8 +144,11 @@
         <% @user_suggestions.each do |user| %>
             <div class="card-horizontal mb-5">
                 <div class="card-follow d-flex justify-content-around align-items-center">
-                    <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+                    <%= link_to user_path(user), class:'text-decoration-none' do %>
+                      <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+                    <% end %>
                     <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
+
                     <%= link_to "Follow", user_path(user), class:"follow-button" %>
                 </div>
                 <div class="card-nfts d-flex justify-content-around mt-1">

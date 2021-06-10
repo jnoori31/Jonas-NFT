@@ -6,4 +6,7 @@ class UsersController < ApplicationController
         # ==> Nft.where(user_id: @user.id)
         # ==> @Nft = @user.nfts
     end
+
+    def toggle_follow
+    end
 end

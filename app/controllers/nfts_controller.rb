@@ -9,6 +9,9 @@ class NftsController < ApplicationController
     # in order to see the like appear we need to refresh
   end
 
+  def toggle_follow
+  end
+
   def liked_nfts
     # @nfts = Nft.where(current_user.favorited?(@nft) == true)
     @liked_nfts1 = []
