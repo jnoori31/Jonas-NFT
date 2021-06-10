@@ -1,4 +1,3 @@
-
 class NftsController < ApplicationController
 
   before_action :authenticate_user!, only: [:toggle_favorite, :new]
