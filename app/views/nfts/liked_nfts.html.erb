@@ -1,3 +1,14 @@
-<% @liked_nfts1.each do |nft| %>
-<%= nft.name %>
-<% end %>
+<div class="card-center">
+  <% @liked_nfts1.each do |nft| %>
+    <div>
+      <%= link_to nft_path(nft), class:'text-decoration-none' do %>
+          <p class="p-2">Created <%= nft.name %></p>
+          <%= image_tag nft.image_url, height: 400, width: 500, crop: :fill %>
+          <p class="p-2"> ❤️ <%= nft.favorited.count %></p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+
+
