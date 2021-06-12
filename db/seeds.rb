@@ -5,7 +5,7 @@ require 'openssl'
 require 'json'
 
 puts "Cleaning Database"
-Nft.destroy_all 
+Nft.destroy_all
 Message.destroy_all
 Chatroom.destroy_all
 User.destroy_all
@@ -26,7 +26,7 @@ last_names = ['Ntiruhungwa', 'Høgh-Noori', 'Morey', 'Habert']
 
 puts "Creating 4 users"
 emails.each_with_index do |email, index|
-  User.create!(
+  u = User.create!(
     email: email,
     first_name: first_names[index],
     last_name: last_names[index],
@@ -34,6 +34,7 @@ emails.each_with_index do |email, index|
     nickname: 'bluerooster',
     password: passwords[index]
   )
+  u.avatar.attach(io: File.open(File.join(Rails.root,'app/assets/images/default_profile_picture.jpg')), filename: 'default_profile_picture.jpg')
 end
 puts "Creating 4 faker nfts"
 
