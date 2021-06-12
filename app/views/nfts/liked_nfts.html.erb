@@ -28,11 +28,6 @@
                  <%= image_tag nft.image_url, height: 400, width: 500, crop: :fill %>
              <% end %>
              <div class="d-flex my-2 p-2 align-items-center">
-                 <%# if current_user.favorited?(nft) %>
-                   <%#= render 'like_button', heartColor: "❤️", nft: nft %>
-                 <%#else %>
-                   <%#= render 'like_button', heartColor: "🤍", nft: nft %>
-                 <%# end %>
 
                  <%= link_to toggle_favorites_path(nft_id: nft.id), remote: true, style: "color: black;", method: :post do %>
                  <!-- the link default is black -->
