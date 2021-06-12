@@ -16,7 +16,7 @@
         <div class="card card-user p-2 mt-5">
           <div class="row">
             <div class="col-4 ">
-              <p><b>348</b> Following</p>
+              <p><b><%= @user.favorites.where(favoritable_type: "User").count %></b> Following</p>
             </div>
             <div class="col-4 ">
               <p><b><%= @user.favorited.count %></b> Followers</p>

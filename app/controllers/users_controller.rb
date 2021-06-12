@@ -21,4 +21,5 @@ class UsersController < ApplicationController
             @Nft = nft.where(creation: false)
         end
     end
+
 end
