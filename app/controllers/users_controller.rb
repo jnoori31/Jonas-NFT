@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         # allows to show by default the owned nfts but not the liked or the created without clicking on the button
         # on the user page profile
         if params[:category] == "liked"
-            nft_favorite = @user.all_favorites
+            nft_favorite = @user.all_favorites.where(favoritable_type: "Nft")
             # nft_favorite returns a table of favorite item not the instances of nft directly
             nft_ids = nft_favorite.map { |nft| nft.favoritable_id }
             # find all ids of the nft liked by the user
@@ -21,5 +21,4 @@ class UsersController < ApplicationController
             @Nft = nft.where(creation: false)
         end
     end
-
 end

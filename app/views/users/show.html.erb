@@ -61,7 +61,7 @@
               <%# End %>
             </div>
             <div class="container col-2">
-              <p>12</p>
+              <p><%= Nft.where(user: @user).count %></p>
             </div>
           </div>
           <div class="row">
@@ -75,7 +75,7 @@
                 <% end %>
             </div>
             <div class="container col-2">
-              <p>5</p>
+              <p><%= Nft.where(user: @user).where(creation: true).count %></p>
             </div>
           </div>
           <div class="row">
@@ -89,7 +89,7 @@
                 <% end %>
             </div>
             <div class="container col-2">
-              <p>4</p>
+              <p><%= @user.favorites.where(favoritable_type: "Nft").count %></p>
             </div>
           </div>
         </div>
