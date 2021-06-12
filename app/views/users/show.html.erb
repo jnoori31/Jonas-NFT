@@ -1,153 +1,156 @@
 <div class="row">
   <img class='img-fluid w-100'> <%= image_tag "default_profile_header_2.png" %> </img>
 </div>
-<div class="container mt-4">
-  <div class="row">
-    <div class="col-8" >
-      <%= image_tag "default_profile_picture.jpg", height: 100, width: 100, :crop=> 'fill', :class=> 'rounded-circle' %>
-      <h3><%= @user.first_name %> <%=  @user.last_name  %> </h3>
-      <h5>@<%= @user.first_name %><%=  @user.last_name  %></h5>
-      <div class="col-7">
-        <p><%= @user.bio %></p>
+<div class="main-container">
+  <div class="user-info-container">
+    <!-- <div class="row"> -->
+      <div class="col-8" >
+        <%= image_tag "default_profile_picture.jpg", height: 100, width: 100, :crop=> 'fill', :class=> 'rounded-circle' %>
+        <h3><%= @user.first_name %> <%=  @user.last_name  %> </h3>
+        <h5>@<%= @user.first_name %><%=  @user.last_name  %></h5>
+        <div class="col-7">
+          <p><%= @user.bio %></p>
+        </div>
       </div>
-    </div>
-    <div class="col-4">
-      <div class="card card-user p-2 mt-5">
-        <div class="row">
-          <div class="col-4 ">
-            <p><b>348</b> Following</p>
-          </div>
-          <div class="col-4 ">
-            <p><b>751</b> Followers</p>
-          </div>
-          <div class="col-4">
-            <button type="button" class="btn btn-dark">Follow</button>
+      <div class="col-4">
+        <div class="card card-user p-2 mt-5">
+          <div class="row">
+            <div class="col-4 ">
+              <p><b>348</b> Following</p>
+            </div>
+            <div class="col-4 ">
+              <p><b>751</b> Followers</p>
+            </div>
+            <div class="col-4">
+              <button type="button" class="btn btn-dark">Follow</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 </div>
-<div style="border-top: solid 1px ; border-color: #CCCCCC">
-</div>
-<div class="container mt-4">
-  <div class="row">
-    <div class="container col-3">
-      <div class="card card-user p-2">
-        <div class="row">
-          <div class="container col-2">
-            <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
+  <div style="border-top: solid 1px ; border-color: #CCCCCC">
+  </div>
+  <div class="container mt-4">
+    <div class="row">
+      <div class="container col-3">
+        <div class="card card-user p-2">
+          <div class="row">
+            <div class="container col-2">
+              <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
+            </div>
+            <div class="container col-10">
+              <h5><%= @user.first_name %> <%=  @user.last_name  %></h5>
+            </div>
           </div>
-          <div class="container col-10">
-            <h5><%= @user.first_name %> <%=  @user.last_name  %></h5>
+          <div class="row p-2">
+            <div style="border-top: solid 1px ; border-color: #CCCCCC">
+            </div>
+          </div>
+          <div class="row">
+            <div class="container col-10">
+            <%# Implemented the logic of showing specific cases of nfts %>
+              <%= simple_form_for user_path(@user), method: :get do |f| %>
+                <%= hidden_field_tag :category, "owned" %>
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-fingerprint px-2" style="color:#333333;"></i>
+                  <%= f.submit "Owned", class:"btn" %>
+                </div>
+              <% end %>
+              <%# End %>
+            </div>
+            <div class="container col-2">
+              <p>12</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container col-10">
+              <%= simple_form_for user_path(@user), method: :get do |f| %>
+                  <%= hidden_field_tag :category, "created" %>
+                  <div class="d-flex align-items-center">
+                    <i class="fas fa-pen px-2" style="color:#333333;"></i>
+                    <%= f.submit "Created", class:"btn" %>
+                  </div>
+                <% end %>
+            </div>
+            <div class="container col-2">
+              <p>5</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="container col-10">
+                <%= simple_form_for user_path(@user), method: :get do |f| %>
+                  <%= hidden_field_tag :category, "liked" %>
+                  <div class="d-flex align-items-center">
+                    <i class="far fa-heart px-2" style="color:#333333;"></i>
+                    <%= f.submit "Liked", class:"btn" %>
+                  </div>
+                <% end %>
+            </div>
+            <div class="container col-2">
+              <p>4</p>
+            </div>
           </div>
         </div>
-        <div class="row p-2">
-          <div style="border-top: solid 1px ; border-color: #CCCCCC">
-          </div>
-        </div>
-        <div class="row">
-          <div class="container col-10">
-          <%# Implemented the logic of showing specific cases of nfts %>
-            <%= simple_form_for user_path(@user), method: :get do |f| %>
-              <%= hidden_field_tag :category, "owned" %>
-              <div class="d-flex align-items-center">
-                <i class="fas fa-fingerprint px-2" style="color:#333333;"></i>
-                <%= f.submit "Owned", class:"btn" %>
+        <div class="container mt-4">
+            <% if current_user == @user %>
+                <% if @chatrooms != []%>
+                  <div class="dropdown">
+                      <button class="btn follow-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          My chatrooms
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <div class="dropdown-chat">
+                            <% @chatrooms.each do |chatroom| %>
+                                <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
+                            <% end %>
+                            </div>
+                      </ul>
+                  </div>
+                <% end %>
+            <% else %>
+              <div class="row">
+                <div class="container col-12">
+                  <%= link_to "Message", chatrooms_path(user_id: @user.id), method: :post, class: "btn btn-block btn-outline-secondary" %>
+                </div>
               </div>
             <% end %>
-            <%# End %>
-          </div>
-          <div class="container col-2">
-            <p>12</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="container col-10">
-            <%= simple_form_for user_path(@user), method: :get do |f| %>
-                <%= hidden_field_tag :category, "created" %>
-                <div class="d-flex align-items-center">
-                  <i class="fas fa-pen px-2" style="color:#333333;"></i>
-                  <%= f.submit "Created", class:"btn" %>
-                </div>
-              <% end %>
-          </div>
-          <div class="container col-2">
-            <p>5</p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="container col-10">
-              <%= simple_form_for user_path(@user), method: :get do |f| %>
-                <%= hidden_field_tag :category, "liked" %>
-                <div class="d-flex align-items-center">
-                  <i class="far fa-heart px-2" style="color:#333333;"></i>
-                  <%= f.submit "Liked", class:"btn" %>
-                </div>
-              <% end %>
-          </div>
-          <div class="container col-2">
-            <p>4</p>
-          </div>
+          <div class="nft-collection"></div>
         </div>
       </div>
-      <div class="container mt-4">
-          <% if current_user == @user %>
-              <% if @chatrooms != []%>
-                <div class="dropdown">
-                    <button class="btn follow-button dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        My chatrooms
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <div class="dropdown-chat">
-                          <% @chatrooms.each do |chatroom| %>
-                              <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
-                          <% end %>
-                          </div>
-                    </ul>
+      <div class="container col-9">
+        <div class="row">
+          <% @Nft.each do |nft| %>
+            <div class="container col-4 mb-2">
+              <div class="card card-user" style="width: 18rem; border-radius: 10px">
+                <%= image_tag nft.image_url, height: 300, width: 150, :class=> "card-img-top img-rounded-corner" %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= nft.name %></h5>
+                  <p class="card-text"><%= nft.category %></p>
+                  <%= link_to "View", nft_path(nft), class: "btn btn-block btn-outline-primary" %>
+
+                  <div class="mt-2" style="border-top: solid 1px ; border-color: #CCCCCC">
+                  </div>
+                  <div class="row">
+                    <div class="mt-2">
+                      <p>Owned by</p>
+                    </div>
+                    <div class="container col-3">
+                      <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
+                    </div>
+                    <div class="container col-6">
+                      <p style="font-size: 12px" ><%= @user.first_name %> <%=  @user.last_name  %></p>
+                    </div>
+                    <div class="container col-3">
+                      <a href="#" style="font-size: 12px" >Follow</a>
+                    </div>
+                  </div>
                 </div>
-              <% end %>
-          <% else %>
-            <div class="row">
-              <div class="container col-12">
-                <%= link_to "Message", chatrooms_path(user_id: @user.id), method: :post, class: "btn btn-block btn-outline-secondary" %>
               </div>
             </div>
           <% end %>
-        <div class="nft-collection"></div>
-      </div>
-    </div>
-    <div class="container col-9">
-      <div class="row">
-        <% @Nft.each do |nft| %>
-          <div class="container col-4 mb-2">
-            <div class="card card-user" style="width: 18rem; border-radius: 10px">
-              <%= image_tag nft.image_url, height: 300, width: 150, :class=> "card-img-top img-rounded-corner" %>
-              <div class="card-body">
-                <h5 class="card-title"><%= nft.name %></h5>
-                <p class="card-text"><%= nft.category %></p>
-                <%= link_to "View", nft_path(nft), class: "btn btn-block btn-outline-primary" %>
-
-                <div class="mt-2" style="border-top: solid 1px ; border-color: #CCCCCC">
-                </div>
-                <div class="row">
-                  <div class="mt-2">
-                    <p>Owned by</p>
-                  </div>
-                  <div class="container col-3">
-                    <%= image_tag "default_profile_picture.jpg", height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
-                  </div>
-                  <div class="container col-6">
-                    <p style="font-size: 12px" ><%= @user.first_name %> <%=  @user.last_name  %></p>
-                  </div>
-                  <div class="container col-3">
-                    <a href="#" style="font-size: 12px" >Follow</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
