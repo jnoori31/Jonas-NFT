@@ -1,5 +1,5 @@
 <div class="row">
-  <img class='img-fluid w-100'> <%= image_tag "default_profile_header_2.png" %> </img>
+  <img class='img-fluid w-100'> <%= image_tag "default_profile_header_2.png" %>
 </div>
 <div class="main-container">
   <div class="user-info-container">
@@ -15,14 +15,62 @@
       <div class="col-4">
         <div class="card card-user p-2 mt-5">
           <div class="row">
-            <div class="col-4 ">
-              <p><b><%= @user.favorites.where(favoritable_type: "User").count %></b> Following</p>
+            <div class="col-4 column-items">
+              <p class="m-0"><strong><%= @following_users.count %></strong></p>
+              <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#following-users">
+                Following
+              </button>
+              <div class="modal fade" id="following-users" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="following-label">Following users</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <% @following_users.each do |follower| %>
+                        <div class="d-flex align-items-center justify-content-around">
+                          <%= image_tag current_user.avatar, class:"avatar", style:"margin-right: 20px;"  %>
+                          <p class="m-0"> <%= follower.first_name.capitalize %> <%= follower.last_name.capitalize %> </p>
+                          <%= link_to "Profile", user_path(follower), class:"btn", style:"font-weight: 600;" %>
+                        </div>
+                        <hr>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col-4 ">
-              <p><b><%= @user.favorited.count %></b> Followers</p>
+            <div class="col-4 column-items">
+              <p class="m-0"><strong><%= @follower_users.count %></strong></p>
+              <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#follower-users">
+                Follower
+              </button>
+              <div class="modal fade" id="follower-users" tabindex="-1" aria-labelledby="follower-label" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="follower-label">Following users</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <% @follower_users.each do |follower| %>
+                        <div class="d-flex align-items-center justify-content-around">
+                          <%= image_tag current_user.avatar, class:"avatar", style:"margin-right: 20px;"  %>
+                          <p class="m-0"> <%= follower.first_name.capitalize %> <%= follower.last_name.capitalize %> </p>
+                          <%= link_to "Profile", user_path(follower), class:"btn", style:"font-weight: 600;" %>
+                        </div>
+                        <hr>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="col-4">
-              <button type="button" class="btn btn-dark">Follow</button>
+              <% if current_user != @user %>
+                <button type="button" class="btn btn-dark">Follow</button>
+              <% end %>
             </div>
           </div>
         </div>
@@ -61,7 +109,7 @@
               <%# End %>
             </div>
             <div class="container col-2">
-              <p><%= Nft.where(user: @user).count %></p>
+              <p><%= @owned_count %></p>
             </div>
           </div>
           <div class="row">
@@ -75,7 +123,7 @@
                 <% end %>
             </div>
             <div class="container col-2">
-              <p><%= Nft.where(user: @user).where(creation: true).count %></p>
+              <p><%= @created_count %></p>
             </div>
           </div>
           <div class="row">
@@ -89,7 +137,7 @@
                 <% end %>
             </div>
             <div class="container col-2">
-              <p><%= @user.favorites.where(favoritable_type: "Nft").count %></p>
+              <p><%= @liked_count %></p>
             </div>
           </div>
         </div>
@@ -103,9 +151,13 @@
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                           <div class="dropdown-chat">
                             <% @chatrooms.each do |chatroom| %>
-                                <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
+                                <% if chatroom.owner == @user %>
+                                  <li><%= link_to "Chat with #{chatroom.client.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
+                                <% else %>
+                                  <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
+                                <% end %>
                             <% end %>
-                            </div>
+                          </div>
                       </ul>
                   </div>
                 <% end %>
@@ -140,10 +192,10 @@
                       <%= image_tag @user.avatar, height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
                     </div>
                     <div class="container col-6">
-                      <p style="font-size: 12px" ><%= @user.first_name %> <%=  @user.last_name  %></p>
+                      <p class="m-0"><%= @user.first_name %> <%=  @user.last_name  %></p>
                     </div>
                     <div class="container col-3">
-                      <a href="#" style="font-size: 12px" >Follow</a>
+                      <a href="#" style="font-size: 15px" >Follow</a>
                     </div>
                   </div>
                 </div>

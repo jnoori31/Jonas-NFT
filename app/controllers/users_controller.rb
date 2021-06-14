@@ -1,8 +1,19 @@
 class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
-        @chatrooms = Chatroom.where(client_id: current_user.id)
+        @chatrooms = Chatroom.where(client_id: current_user.id).or(Chatroom.where(owner_id: current_user.id))
         nft = Nft.where(user: @user)
+        @owned_count = Nft.where(user: @user).count
+        @created_count = Nft.where(user: @user).where(creation: true).count
+        @liked_count = @user.favorites.where(favoritable_type: "Nft").count
+
+        following_fav = @user.all_favorites.where(favoritable_type: "User")
+        following_ids = following_fav.map { |following| following.favoritable_id }
+        @following_users = following_ids.map {|following_id| User.find(following_id)}
+
+        follower_fav = @user.favorited
+        follower_ids = follower_fav.map { |follower| follower.favoritable_id }
+        @follower_users = follower_ids.map {|follower_id| User.find(follower_id)}
         # ==> Nft.where(user_id: @user.id)
         # ==> @Nft = @user.nfts
 

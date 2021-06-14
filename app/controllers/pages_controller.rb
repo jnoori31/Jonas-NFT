@@ -21,7 +21,6 @@ class PagesController < ApplicationController
   end
 
   def toggle_favorites
-    p params
     @nft = Nft.find(params[:nft_id])
     # @nft = Nft.find(params[:id]) links to like_button line 1
 

@@ -113,7 +113,7 @@
                 <% end %>
                 <hr>
                 <%= link_to nft_path(nft), class:'text-decoration-none' do %>
-                    <p class="p-2">Created <%= nft.name %></p>
+                    <p class="p-2"><%= nft.name %></p>
                     <%= image_tag nft.image_url, height: 400, width: 500, crop: :fill %>
                 <% end %>
                 <div class="d-flex my-2 p-2 align-items-center">
@@ -128,7 +128,8 @@
                       <%= render 'like_button', nft: nft %>
                     <% end %>
 
-                    <i class="far fa-comment" style="color:#E94A47;"><%= nft.comments.count %></i>
+                    <i class="far fa-comment commentLogo" style="color:#E94A47;"><%= nft.comments.count %></i>
+                    <div id="comment-home"></div>
                 </div>
                 <div class="padding-avatar d-flex align-items-center justify-content-start pl-2 pb-2">
                    <% nft.favoritors.first(2).each_with_index  do |favoritor, index| %>
@@ -156,34 +157,36 @@
             <h4>Suggested for you</h4>
         </div>
         <hr>
-        <% @user_suggestions.each do |user| %>
-            <div class="card-horizontal mb-5">
-                <div class="card-follow d-flex justify-content-around align-items-center">
-                    <%= link_to user_path(user), class:'text-decoration-none' do %>
-                      <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
-                    <% end %>
-                    <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
-
-
-                    <%= link_to toggle_follows_path(user_id: user.id), remote: true, style: "color: #999999; border: 1px solid #999999; border-radius: 50px;", method: :post do %>
-
-                    <!-- the link default is black -->
-                      <%= render 'follows_button', user: user %>
-                    <% end %>
-
-                    <%#= link_to "Follow", user_path(user), class:"follow-button" %>
-                </div>
-
-                <div class="card-nfts d-flex justify-content-around mt-1">
-                    <% if user.nfts %>
-                        <% user.nfts[0..2].each do |nft| %>
-                            <%= image_tag nft.image_url, class: "avatar-square", alt: "avatar" %>
+        <div class="cards-suggestion">
+            <% @user_suggestions.each do |user| %>
+                <div class="card-horizontal mb-5">
+                    <div class="card-follow d-flex justify-content-around align-items-center">
+                        <%= link_to user_path(user), class:'text-decoration-none' do %>
+                        <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
                         <% end %>
-                    <% end %>
+                        <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
+
+
+                        <%= link_to toggle_follows_path(user_id: user.id), class:"link-suggestion", style:"color: grey;", remote: true, method: :post do %>
+
+                        <!-- the link default is black -->
+                            <%= render 'follows_button', user: user %>
+                        <% end %>
+
+                        <%#= link_to "Follow", user_path(user), class:"follow-button" %>
+                    </div>
+
+                    <div class="card-nfts d-flex justify-content-around mt-1">
+                        <% if user.nfts %>
+                            <% user.nfts[0..2].each do |nft| %>
+                                <%= image_tag nft.image_url, class: "avatar-square", alt: "avatar" %>
+                            <% end %>
+                        <% end %>
+                    </div>
                 </div>
-            </div>
-            <hr>
-        <% end %>
+                <hr>
+            <% end %>
+        </div>
     </div>
 </div>
 <!------------End Main Container------------------->

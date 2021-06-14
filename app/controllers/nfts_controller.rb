@@ -3,7 +3,7 @@ class NftsController < ApplicationController
   before_action :authenticate_user!, only: [:toggle_favorite, :new]
 
   def toggle_favorite
-    @nft = Nft.find_by(id: params[:id])
+    @nft = Nft.find(params[:id])
     current_user.favorited?(@nft) ? current_user.unfavorite(@nft) : current_user.favorite(@nft)
     # in order to see the like appear we need to refresh
   end
