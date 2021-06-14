@@ -172,9 +172,9 @@
         </div>
       </div>
       <div class="container col-9">
-        <div class="row">
+        <div class="nfts-container">
           <% @Nft.each do |nft| %>
-            <div class="container col-4 mb-2">
+            <div class="container">
               <div class="card card-user" style="width: 18rem; border-radius: 10px">
                 <%= image_tag nft.image_url, height: 300, width: 150, :class=> "card-img-top img-rounded-corner" %>
                 <div class="card-body">
