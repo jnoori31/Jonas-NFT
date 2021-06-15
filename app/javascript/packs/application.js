@@ -32,6 +32,7 @@ import { initSelect2 } from '../plugins/select2';
 import { initScrollTop } from '../components/scrollTop'
 import { createdNft } from '../components/created_nft';
 // import { initFollowBtn } from '../components/follow_btn';
+import { initStickyNav} from '../components/stickyNav';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
