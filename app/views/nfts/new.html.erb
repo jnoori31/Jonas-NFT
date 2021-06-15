@@ -1,26 +1,24 @@
 <%= render 'shared/banner', message: "Upload new NFT" %>
 
 <div class="container mt-4">
-    <h3 class="my-3">To upload or create an NFT, follow this link: </h3>
-    <i class="fas fa-arrow-right"></i> <%= link_to "Create NFT on mintable", "https://mintable.app/", target: "blank" %>
-    <h3 class="my-3">Is the new NFT one of your creation ?</h3>
-    <div class="d-flex">
-        <button class="btn btn-created-nft" style="margin-right: 20px;" id="created-nft-yes-btn">Yes</button>
-        <button class="btn btn-created-nft background-grey" id="created-nft-no-btn">No</button>
-    </div>
-    <h5 class="mt-4">Give us the informations 😉</h5>
-    <form action="/nfts/new_nft" method="POST">
-        <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts="/> 
-        <input name="created" id="hidden-created" type="hidden" value="false"/>
-        <input type="text" name="tokenNft" placeholder="Token id.." class="form-control"/>
-        <div class="d-flex justify-content-center">
-            <button type="submit" id="submit-new-nft-btn" class="btn follow-button mt-5">New NFT</button>
+    <div class="card card-new-nft">
+        <h3 class="my-3 card-title">To upload or create an NFT, follow this link: </h3>
+        <p><i class="fas fa-arrow-right"></i> <%= link_to "Create NFT on mintable", "https://mintable.app/", target: "blank" %></p>
+        <h3 class="my-3">Is the new NFT one of your creation ?</h3>
+        <div class="d-flex">
+            <button class="btn btn-created-nft" style="margin-right: 20px;" id="created-nft-yes-btn">Yes</button>
+            <button class="btn btn-created-nft background-grey" id="created-nft-no-btn">No</button>
         </div>
-    </form>
-        <%#= simple_form_for(nfts_path) do |f| %>
-            <%#= text_field_tag :tokenNft, params[:tokenNft] %>
-            <%#= f.submit "New Nft", class:"btn btn-primary" %>
-        <%# end %>
-        <%# action="/nfts/new_nft" %>
+        <h5 class="mt-4 card-text">Give us the informations 😉</h5>
+        <form action="/nfts/new_nft" method="POST">
+            <input name="authenticity_token" type="hidden" value="J7CBxfHalt49OSHp27hblqK20c9PgwJ108nDHX/8Cts="/> 
+            <input name="created" id="hidden-created" type="hidden" value="false"/>
+            <input type="text" name="tokenNft" placeholder="Token id.." class="form-control"/>
+            <div class="d-flex justify-content-center">
+                <button type="submit" id="submit-new-nft-btn" class="btn follow-button mt-5">New NFT</button>
+            </div>
+        </form>
+        <%= link_to "Back", root_path %>
+        </div>
     </div>
 </div>

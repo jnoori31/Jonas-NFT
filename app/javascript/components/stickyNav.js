@@ -10,7 +10,7 @@ const initStickyNav = () => {
 
   const observer = new IntersectionObserver(function (entries, observer) {
     entries.forEach(entry => {
-      console.log(entry);
+      // console.log(entry);
 
       if (entry.isIntersecting == false) {
         mainNavbar.classList.add('navbar-alternate');

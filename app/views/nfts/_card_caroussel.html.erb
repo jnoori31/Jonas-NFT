@@ -1,0 +1,63 @@
+
+<%# <div class="container" style="text-align: center;">
+ <div id="carouselnft" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <% @liked_nfts1.each_with_index do |nft, index| %>
+    <%# <div class="carousel-item <%= 'active' if index == 0 %>
+      <div class="d-flex justify-content-center align-items-center">
+       <div class="card-main mt-5 pb-2 pl-2">
+             <% user = User.find(nft.user_id) %>
+             <% if nft.image_url %>
+                 <div class="title-card d-flex align-items-center p-2">
+                     <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+                     <div class="title-card-block px-3" id='nft-index-<%= nft.id %>'>
+                         <%= link_to "#{user.first_name} #{user.last_name}", user_path(user)%>
+                         <p><%= user.bio %></p>
+                         <% timeUTC = Time.now.utc - nft.created_at  %>
+                         <% time = (timeUTC / 60).to_i %>
+                         <% if time < 119 %>
+                             <p style="margin-bottom: 0px;"> <%= time %> min</p>
+                         <% else %>
+                             <% time = (time / 60).to_i %>
+                             <p style="margin-bottom: 0px;"> <%= time %> hours</p>
+                         <% end %>
+
+                     </div>
+                 </div>
+             <% end %>
+             <hr>
+             <%= link_to nft_path(nft), class:'text-decoration-none' do %>
+                 <p class="p-2"><%= nft.name %></p>
+                 <%= image_tag nft.image_url, height: 400, width: 500, crop: :fill %>
+             <% end %>
+             <div class="d-flex my-2 p-2 align-items-center">
+
+                 <%= link_to toggle_favorites_path(nft_id: nft.id), remote: true, style: "color: black;", method: :post do %>
+                 <!-- the link default is black -->
+                   <%= render 'like_button', nft: nft %>
+                 <% end %>
+                 <i class="far fa-comment" style="color:#E94A47;"> <%= nft.comments.count %> </i>
+             </div>
+             <div class="padding-avatar d-flex align-items-center justify-content-start pl-2">
+                <% nft.favoritors.first(2).each_with_index  do |favoritor, index| %>
+                  <%= image_tag "default_profile_picture.jpg", class:"avatar #{'ml-20' if index > 0}" %>
+                  <%# Index greater than 1 create spacing between avatar %>
+                <% end %>
+               <p class="m-0" style="padding-left: 8px">liked by
+                  <% nft.favoritors.first(2).each  do |favoritor| %>
+                    <strong><%= favoritor.first_name %></strong>
+                  <% end %>
+                  <% if nft.favorited.count > 2 %>
+                    and <strong><%= nft.favorited.count - 2  %></strong>
+                    <strong><%= 'other'.pluralize(nft.favorited.count - 2)  %></strong>
+                 <% end %>
+                </p>
+             </div>
+         </div>
+      </div>
+    <%# </div>
+    <% end %>
+  <%# </div> %>
+  <%# </div> %>
+  <%# <hr> %>
+<%# </div> %> 
