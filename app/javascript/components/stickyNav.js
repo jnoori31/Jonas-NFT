@@ -20,7 +20,9 @@ const observer = new IntersectionObserver(function (entries, observer) {
   });
 }, observerOptions);
 
-observer.observe(banner)
+if (banner) {
+  observer.observe(banner);
+}
 
 // To understand more about intersectionObservable API watch
 // https://www.youtube.com/watch?v=T8EYosX4NOo&t=772s
