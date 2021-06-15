@@ -7,7 +7,7 @@ const initChatroomCable = () => {
     consumer.subscriptions.create({channel: "ChatroomChannel", id: id }, {
       received(data) {
         const messageUserId = messageContainer.dataset.userId;
-        const regex = /data-message-user-id="\d"/;
+        const regex = /data-message-user-id="\w+"/;
         const userIDString = data.match(regex)[0];
         let userID = "";
         for (let i = 0; i < userIDString.length; i++) {
@@ -17,11 +17,14 @@ const initChatroomCable = () => {
         }
         if (messageUserId === userID) {
           const container = document.querySelector('.content-message-right');
-          container.insertAdjacentHTML('beforeend', data);
-          console.log("hey");
+          if (container) {
+            container.insertAdjacentHTML('beforeend', data);
+          }
         } else {
           const container = document.querySelector('.content-message-left');
-          container.insertAdjacentHTML('beforeend', data);
+          if (container) {
+            container.insertAdjacentHTML('beforeend', data);
+          }
         }
       }
     })

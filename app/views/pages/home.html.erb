@@ -166,9 +166,7 @@
                         <% end %>
                         <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
 
-
                         <%= link_to toggle_follows_path(user_id: user.id), class:"link-suggestion", style:"color: grey;", remote: true, method: :post do %>
-
                         <!-- the link default is black -->
                             <%= render 'follows_button', user: user %>
                         <% end %>

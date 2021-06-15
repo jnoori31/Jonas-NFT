@@ -10,7 +10,7 @@ const initFollowBtn = () => {
                 //         alert("hello");
                 //     }
                 // }
-                // varHTTP.open("GET", "");
+                // varHTTP.open("GET", "/api");
                 // varHTTP.send();
                 link.childNodes[3].innerText = "hey";
             })
