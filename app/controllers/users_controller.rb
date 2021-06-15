@@ -12,6 +12,7 @@ class UsersController < ApplicationController
         @following_users = following_ids.map {|following_id| User.find(following_id)}
 
         follower_fav = Favorite.where(favoritable_type: "User").where(favoritable_id: @user.id)
+        # favoritable_id = id of the one being followed
         follower_ids = follower_fav.map { |follower| follower.favoritor_id }
         @follower_users = follower_ids.map {|follower_id| User.find(follower_id)}
         # ==> Nft.where(user_id: @user.id)
