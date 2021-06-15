@@ -75,10 +75,12 @@
 <div class="main-container">
   <div class="card-left">
     <div class="social-media-card">
-      <div class="social-media-links d-flex align-items-center my-2">
-        <i class="far fa-heart mr-5"></i>
-        <%= link_to "Creations", "#" %>
-      </div>
+        <% if current_user %>
+            <div class="social-media-links d-flex align-items-center my-2">
+                <i class="far fa-heart mr-5"></i>
+                <%= link_to "Creations", user_path(current_user, category: "created") %>
+            </div>
+        <% end %>
       <div class="social-media-links d-flex align-items-center my-2">
         <i class="far fa-heart mr-5"></i>
         <%= link_to "Most Liked", liked_nfts_nfts_path %>

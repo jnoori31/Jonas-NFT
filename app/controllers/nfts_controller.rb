@@ -13,13 +13,19 @@ class NftsController < ApplicationController
 
   def liked_nfts
     # @nfts = Nft.where(current_user.favorited?(@nft) == true)
-    @liked_nfts1 = []
-    @nfts = Nft.all
-    @nfts.each do |nft|
-      if current_user.favorited?(nft)
-        @liked_nfts1 << nft
+    liked_nfts = {}
+    favorites = Favorite.where(favoritable_type: "Nft")
+    favorites.each do |favorite|
+      key = favorite.favoritable_id
+      if liked_nfts.key?(key)
+        amount = liked_nfts[key]
+        liked_nfts[key] = amount + 1
+      else
+        liked_nfts[key] = 1
       end
     end
+    liked_nfts_ordered = liked_nfts.sort_by { |k, v| -v}
+    @liked_nfts1 = liked_nfts_ordered.map { |liked_nft| Nft.find(liked_nft[0])}
   end
 
   def show
