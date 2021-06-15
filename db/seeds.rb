@@ -1,8 +1,9 @@
- require 'faker'
+require 'faker'
 require 'uri'
 require 'net/http'
 require 'openssl'
 require 'json'
+require 'nokogiri'
 
 puts "Cleaning Database"
 Nft.destroy_all
@@ -45,7 +46,7 @@ category_nft = %w(Music Art Sport Cinema)
 
 results["assets"].each do |result|
   next if result["image_url"].empty?
-  Nft.create!(
+  nft = Nft.create!(
     name: result["name"],
     # media_type: Faker::Address.street_address,
     category: category_nft.sample,
@@ -58,6 +59,13 @@ results["assets"].each do |result|
     # user: User.find(users_id.sample)
     # except 20 to be randomly allocated in between each user
   )
+  # html = URI.open(nft.external_url).read
+  # data = Nokogiri::HTML(html)
+  # price_nft = data.search('Overflowreact__OverflowContainer-sc-10mm0lu-0.fqMVjm.Price--fiat-amount.Price--fiat-amount-secondary').text.strip[1..-2].to_f
+  # if price_nft
+  #   nft.price = price_nft
+  #   nft.save!
+  # end
 end
 
 # puts "It works"

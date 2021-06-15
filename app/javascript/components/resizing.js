@@ -6,7 +6,7 @@ const initResizingLeft = () => {
         entries.forEach(entry => {
             // console.log(entry);
 
-            if (entry.contentBoxSize[0].inlineSize < 800 ) {
+            if (entry.contentBoxSize[0].inlineSize < 900 ) {
                 container.setAttribute('hidden', true);
             } else {
                 container.removeAttribute('hidden');
