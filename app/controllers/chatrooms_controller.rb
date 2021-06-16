@@ -28,6 +28,10 @@ class ChatroomsController < ApplicationController
         @owner = User.find(@chatroom.owner_id)
         @client = User.find(@chatroom.client_id)
         @message = Message.new()
-        @nfts = Nft.where(user: @owner)
+        if @chatroom.owner != current_user  
+            @nfts = Nft.where(user: @owner)
+        else
+            @nfts = Nft.where(user: @client)
+        end
     end
 end

@@ -29,20 +29,30 @@
                 <div class="my-3">
                  <label class="btn upload-file"> 
                     <p style="margin-bottom: 0px;">Upload new image</p> 
-                    <span style="display: none;"> 
-                        <%= f.input :image, as: :file %>
-                    </span>
+                        <span style="display: none;"> 
+                            <%= f.input :image, as: :file %>
+                        </span>
                     </label> 
                 </div>
                 <div class="mx-3">
                     <button type="button" class="btn upload-file" data-bs-toggle="modal" data-bs-target="#nft-user">
-                        Choose from Pierre Nfts
+                        <% if @chatroom.owner_id != current_user.id %>
+                            <p style="margin-bottom: 0px;"> Choose from <%= @owner.first_name %> Nfts</p>
+                        <% else %>
+                            <p style="margin-bottom: 0px;">Choose from <%= @client.first_name %> Nfts</p>
+                        <% end %>
                     </button>
                     <div class="modal fade" id="nft-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="nftUserLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="nftUserLabel">Here's <%= @owner.first_name %> Nfts</h5>
+                                <h5 class="modal-title" id="nftUserLabel">
+                                    <% if @chatroom.owner_id != current_user.id %>
+                                        <p style="margin-bottom: 0px;"> Here's <%= @owner.first_name %> Nfts</p>
+                                    <% else %>
+                                        <p style="margin-bottom: 0px;"> Here's <%= @client.first_name %> Nfts</p>
+                                    <% end %>
+                                </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body nft-chatroom">
@@ -58,6 +68,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <p style="margin-bottom: 0px;">Choose either option 😉</p>
                 </div>
             </div>
             <%= hidden_field_tag :image_nft, "", id:"hidden-field-chatroom" %>
