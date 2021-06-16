@@ -31,7 +31,7 @@ import { initChatroomCable } from '../channels/chatroom_channel';
 import { initSelect2 } from '../plugins/select2';
 import { initScrollTop } from '../components/scrollTop'
 import { createdNft } from '../components/created_nft';
-// import { initFollowBtn } from '../components/follow_btn';
+import { nftChatroom } from '../components/nft_chatroom';
 import { initStickyNav } from '../components/stickyNav';
 import { initResizingLeft } from '../components/resizing';
 
@@ -44,7 +44,7 @@ document.addEventListener('turbolinks:load', () => {
   createdNft();
   initStickyNav();
   initResizingLeft();
-  // initFollowBtn();
+  nftChatroom();
 });
 
 import "controllers"

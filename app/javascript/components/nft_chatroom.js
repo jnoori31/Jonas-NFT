@@ -1,7 +1,8 @@
-const initFollowBtn = () => {
-    const divBtn = document.querySelector('.cards-suggestion');
+const nftChatroom = () => {
+    const divBtn = document.querySelector('.nft-chatroom');
+    const hiddenField = document.getElementById('hidden-field-chatroom');
     if (divBtn) {
-        const links = divBtn.querySelectorAll('.link-suggestion');
+        const links = divBtn.querySelectorAll('.img-over');
         links.forEach((link) => {
             link.addEventListener('click', (event) => {
                 // let varHTTP = new XMLHttpRequest();
@@ -12,10 +13,10 @@ const initFollowBtn = () => {
                 // }
                 // varHTTP.open("GET", "/api");
                 // varHTTP.send();
-                link.childNodes[3].innerText = "hey";
+                hiddenField.value = link.dataset.nftUrl;
             })
         })
     }
 }
 
-export { initFollowBtn };
+export { nftChatroom };

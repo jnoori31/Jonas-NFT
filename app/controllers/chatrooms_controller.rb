@@ -28,5 +28,6 @@ class ChatroomsController < ApplicationController
         @owner = User.find(@chatroom.owner_id)
         @client = User.find(@chatroom.client_id)
         @message = Message.new()
+        @nfts = Nft.where(user: @owner)
     end
 end

@@ -87,7 +87,9 @@
       </div>
        <%= link_to "New NFT", new_nft_path, class:"btn new-nft-btn mt-4", id:"new-btn"  %>
         <hr>
-        <%= link_to "My profile", user_path(current_user), class:"btn new-nft-btn mt-4", id:"my-profile-btn" %>
+        <% if current_user %>
+            <%= link_to "My profile", user_path(current_user), class:"btn new-nft-btn mt-4", id:"my-profile-btn" %>
+        <% end %>
     </div>
   </div>
 
@@ -125,7 +127,6 @@
                     <%#else %>
                       <%#= render 'like_button', heartColor: "🤍", nft: nft %>
                     <%# end %>
-
                     <%= link_to toggle_favorites_path(nft_id: nft.id), remote: true, style: "color: black;", method: :post do %>
                     <!-- the link default is black -->
                       <%= render 'like_button', nft: nft %>

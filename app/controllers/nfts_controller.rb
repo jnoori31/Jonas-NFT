@@ -25,7 +25,12 @@ class NftsController < ApplicationController
       end
     end
     liked_nfts_ordered = @liked_nfts.sort_by { |k, v| -v} 
-    @liked_nfts1 = liked_nfts_ordered.map { |liked_nft| Nft.find(liked_nft[0])}
+    liked_nfts_total = liked_nfts_ordered.map { |liked_nft| Nft.find(liked_nft[0])}
+    if liked_nfts_total.length > 5
+      @liked_nfts1 = liked_nfts_total[0..5]
+    else
+      @liked_nfts1 = liked_nfts_total
+    end
   end
 
   def show

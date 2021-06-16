@@ -70,7 +70,10 @@
             </div>
             <div class="col-4">
               <% if current_user != @user %>
-                <button type="button" class="btn btn-dark">Follow</button>
+                <%= link_to toggle_follows_path(user_id: @user.id), class:"link-suggestion", style:"color: grey;", remote: true, method: :post do %>
+              <!-- the link default is black -->
+                  <%= render 'pages/follows_button', user: @user %>
+                <% end %>
               <% end %>
             </div>
           </div>
