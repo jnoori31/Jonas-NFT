@@ -14,7 +14,6 @@ class NftsController < ApplicationController
   def liked_nfts
     # Purpose to find all NFTS liked by current_user AND others!!!!!
     # Favorite.all in console to see variables/sql
-
   end
 
   def show

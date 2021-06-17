@@ -6,6 +6,7 @@ const initChatroomCable = () => {
     const id = messageContainer.dataset.chatroomId;
     consumer.subscriptions.create({channel: "ChatroomChannel", id: id }, {
       received(data) {
+        console.log(data);
         const messageUserId = messageContainer.dataset.userId;
         const regex = /data-message-user-id="\w+"/;
         const userIDString = data.match(regex)[0];
