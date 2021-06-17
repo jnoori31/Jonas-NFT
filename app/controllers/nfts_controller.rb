@@ -41,6 +41,7 @@ class NftsController < ApplicationController
       format.html
       format.json { render json: { nft: @nft.favorited.count } }
     end
+    @nft.mark_notifications_as_seen
   end
 
   def new
@@ -78,6 +79,7 @@ class NftsController < ApplicationController
       end
     end
   end
+
 end
 
 # previous liked method
