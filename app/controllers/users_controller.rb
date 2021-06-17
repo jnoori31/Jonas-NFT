@@ -31,6 +31,7 @@ class UsersController < ApplicationController
             @Nft = nft.where(creation: true)
         else
             @Nft = nft.where(creation: false)
+            # by default we show the owned ones
         end
     end
 end
