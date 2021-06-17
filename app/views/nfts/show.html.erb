@@ -102,6 +102,7 @@
           <div class="comment-card-delete-date d-flex">
             <% if comment.user.id == current_user.id %>
               <%= link_to 'Delete', nft_comment_path(@nft, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <!-- nft_comment DELETE /nfts/:nft_id/comments/:id(.:format)? Where is NFT_id? -->
             <% end %>
             <p style="margin-left: 10px;"><%= comment.created_at.to_s[0..10] %></p>
           </div>
