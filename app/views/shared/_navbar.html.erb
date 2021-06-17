@@ -10,12 +10,13 @@
 
       <div class="dropdown">
         <li class="nav-item active" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= current_user.incoming_notifications.count %>
+
+          <%= current_user.incoming_notifications.unseen_notifications.count %>
           <i class="far fa-bell"></i>
         </li>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <% current_user.incoming_notifications.each do |n| %>
-            <%= link_to "#{n.user.first_name} commented on #{n.comment.nft.name}", nft_path(n.comment.nft) %>
+          <% current_user.incoming_notifications.unseen_notifications.each do |n| %>
+            <li class="border-bottom nav-item2"><%= link_to "#{n.user.first_name} commented on #{n.comment.nft.name}", nft_path(n.comment.nft) %></li>
           <% end %>
         </div>
       </div>
