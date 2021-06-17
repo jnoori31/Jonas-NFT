@@ -1,19 +1,19 @@
 <div id="carouselExampleCaptions" class="carousel slide background-black" data-bs-ride="carousel" >
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <% for i in 1...@liked_nfts1.length %>
+    <% for i in 1...@liked_nfts_instances.length %>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="<%=i%>" aria-label="Slide <%= i %>"></button>
     <% end %>
   </div>
   <div class="carousel-inner">
-    <% @liked_nfts1.each_with_index do |liked_nft, index| %>        
+    <% @liked_nfts_instances.each_with_index do |liked_nft, index| %>        
         <div class="carousel-item <%= 'active' if index == 0 %>">
 
         <%= render 'card_caroussel', nft: liked_nft %>
 
         <div class="d-none d-md-block" style="text-align: center; margin-top: 150px;">
             <h5 style="color: black; "><%= liked_nft.name.upcase %></h5>
-            <p style="color: black;">This nft has a total of <%=  @liked_nfts[liked_nft.id] %> <%= 'like'.pluralize(@liked_nfts[liked_nft.id]) %> </p>
+            <p style="color: black;">This nft has a total of <%=  @liked_nfts_hash[liked_nft.id] %> <%= 'like'.pluralize(@liked_nfts_hash[liked_nft.id]) %> </p>
         </div>
         </div>
     <% end %>

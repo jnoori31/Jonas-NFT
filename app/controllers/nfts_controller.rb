@@ -12,24 +12,16 @@ class NftsController < ApplicationController
   end
 
   def liked_nfts
-    # @nfts = Nft.where(current_user.favorited?(@nft) == true)
-    @liked_nfts = {}
-    favorites = Favorite.where(favoritable_type: "Nft")
-    favorites.each do |favorite|
-      key = favorite.favoritable_id
-      if @liked_nfts.key?(key)
-        amount = @liked_nfts[key]
-        @liked_nfts[key] = amount + 1
-      else
-        @liked_nfts[key] = 1
-      end
+    favorites_array = Favorite.where(favoritable_type: "Nft").select(:favoritable_id).distinct
+    nfts_instances = favorites_array.map { |favorite| Nft.find(favorite.favoritable_id) }
+    @liked_nfts_hash = {}
+    nfts_instances.each do |nft|
+      @liked_nfts_hash[nft.id] = nft.favorited.count
     end
-    liked_nfts_ordered = @liked_nfts.sort_by { |k, v| -v} 
-    liked_nfts_total = liked_nfts_ordered.map { |liked_nft| Nft.find(liked_nft[0])}
-    if liked_nfts_total.length > 5
-      @liked_nfts1 = liked_nfts_total[0..5]
-    else
-      @liked_nfts1 = liked_nfts_total
+    liked_nfts_ordered_array = @liked_nfts_hash.sort_by { |k, v| -v} 
+    @liked_nfts_instances = liked_nfts_ordered_array.map { |liked_nft| Nft.find(liked_nft[0])}
+    if @liked_nfts_instances.length > 4
+      @liked_nfts_instances = @liked_nfts_instances[0..3]
     end
   end
 
