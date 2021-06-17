@@ -76,3 +76,23 @@ end
 #create
 #edit(commnet)
 
+# #NFT can be liked by people.
+# A NFT can be liked many times and record an ID-
+# So How many ID's are there?
+
+# NFT is tracked is every time it is liked and favoritable_id is recorded
+
+# Logically:
+# Alex: favoritable_id
+# Jonas: favoritable_id
+# Felix: favoritable_id
+# Total/Count: F-ID = 3
+# But:
+# is not an intger that you can call count on.
+
+# Every time favoritable_id is seen we will add + 1 to the key/value pair favoritable_id = + 1
+# favoritable_id = + 1
+# favoritable_id = + 1
+# favoritable_id = + 1
+# Total = + 1 x 3
+
