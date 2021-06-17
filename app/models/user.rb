@@ -22,4 +22,10 @@ class User < ApplicationRecord
   using: {
     tsearch: { prefix: true }
   }
+
+  def mark_notications_as_seen_for_nft(nft_id)
+    Comment.where(nft_id: nft_id, user_id: self.id).each do |comment|
+      comment.notification.update(seen: true)
+    end
+  end
 end

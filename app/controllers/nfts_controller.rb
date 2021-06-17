@@ -31,7 +31,7 @@ class NftsController < ApplicationController
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
     @comment = Comment.new
-    @nft.mark_notifications_as_seen
+    current_user.mark_notications_as_seen_for_nft(@nft.id)
   end
 
   def new
