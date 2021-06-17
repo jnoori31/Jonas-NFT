@@ -12,25 +12,8 @@ class NftsController < ApplicationController
   end
 
   def liked_nfts
-    # @nfts = Nft.where(current_user.favorited?(@nft) == true)
-    @liked_nfts = {}
-    favorites = Favorite.where(favoritable_type: "Nft")
-    favorites.each do |favorite|
-      key = favorite.favoritable_id
-      if @liked_nfts.key?(key)
-        amount = @liked_nfts[key]
-        @liked_nfts[key] = amount + 1
-      else
-        @liked_nfts[key] = 1
-      end
-    end
-    liked_nfts_ordered = @liked_nfts.sort_by { |k, v| -v} 
-    liked_nfts_total = liked_nfts_ordered.map { |liked_nft| Nft.find(liked_nft[0])}
-    if liked_nfts_total.length > 5
-      @liked_nfts1 = liked_nfts_total[0..5]
-    else
-      @liked_nfts1 = liked_nfts_total
-    end
+    # Purpose to find all NFTS liked by current_user AND others!!!!!
+    # Favorite.all in console to see variables/sql
   end
 
   def show
@@ -71,28 +54,32 @@ class NftsController < ApplicationController
   end
 end
 
-#destroy(comment)
-#favourites gem
-#create
-#edit(commnet)
+# previous liked method
+# # @liked_nfts = {}
+#     # # key= favoritable_id: value = amount
+#     # favorites = Favorite.where(favoritable_type: "Nft")
+#     # # Looking for NFT tha thave been favorited by user ONLY
+#     # favorites.each do |favorite|
+#     #   key = favorite.favoritable_id
+#     #   # favoritable_id is the ID of the specific category type in this case a NFT = NFT.id
+#     #   # It is not the ID of the Favorite instance that you create when you like an NFT (rails c Favortie.all)
+#     #   if @liked_nfts.key?(key)
+#     #     amount = @liked_nfts[key]
+#     #     @liked_nfts[key] = amount + 1
+#     #     # Example - A,J,A: like the same NFT. 3 new insntaces of Favorites are created with 3 different favoritor_id but 3 of the same favoritable_id(nft we liked)
+#     #     #@liked to be accessed in the HTML
+#     #   else
+#     #     @liked_nfts[key] = 1
+#     #   end
+#     # end
+#     # liked_nfts_ordered = @liked_nfts.sort_by { |k, v| -v}
+#     # # An Array of Arrays [[key,value], [key,value]] Favoritable_id and amount
 
-# #NFT can be liked by people.
-# A NFT can be liked many times and record an ID-
-# So How many ID's are there?
+#     # @liked_nfts1 = liked_nfts_ordered.map { |liked_nft| Nft.find(liked_nft[0])}
+#     # #[NFT1, NFT2, NFT3] that have been liked and ordered by accending.
+#     # # So we have an array where we store the instances of NFT
+#     # # In the HTML we will iterate over the array liked_nfts1 and the hash @liked_nfts allows us to acess the number of likes.
+#     # #@liked_nfts1.each
+#     # # @liked_nfts[nft.id] = likes.
 
-# NFT is tracked is every time it is liked and favoritable_id is recorded
-
-# Logically:
-# Alex: favoritable_id
-# Jonas: favoritable_id
-# Felix: favoritable_id
-# Total/Count: F-ID = 3
-# But:
-# is not an intger that you can call count on.
-
-# Every time favoritable_id is seen we will add + 1 to the key/value pair favoritable_id = + 1
-# favoritable_id = + 1
-# favoritable_id = + 1
-# favoritable_id = + 1
-# Total = + 1 x 3
 
