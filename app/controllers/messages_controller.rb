@@ -1,9 +1,15 @@
 class MessagesController < ApplicationController
+    require 'open-uri'
+
     def create
         @message = Message.new(message_params)
         @chatroom = Chatroom.find(params[:chatroom_id])
         @message.user = current_user
         @message.chatroom = @chatroom
+        if params[:image_nft] != "" 
+            downloaded_image = open(params[:image_nft])
+            @message.image.attach(io: downloaded_image, filename: "image.jpg")
+        end
         if @message.save
             ChatroomChannel.broadcast_to(
                 @chatroom,
@@ -18,6 +24,6 @@ class MessagesController < ApplicationController
     private
 
     def message_params
-        params.require(:message).permit(:content)
+        params.require(:message).permit(:content, :image)
     end
 end

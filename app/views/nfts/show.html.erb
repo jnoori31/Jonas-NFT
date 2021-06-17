@@ -54,16 +54,17 @@
     <!-----------------------Owned card Description---------------->
     <div>
       <h4>Owned by</h4>
-      <div class="d-flex justify-content-around align-items-center" style="min-width: 320px; border-style: solid; border-width: thin; border-radius: 5px; border-color: grey">
+      <div class="card-follow-show d-flex justify-content-around align-items-center">
+      <%# style="min-width: 320px; border-style: solid; border-width: thin; border-radius: 5px; border-color: grey" %>
         <%= link_to user_path(@user), class:'text-decoration-none' do %>
-          <div class="p-2">
+          <div class="px-3">
             <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
           </div>
         <% end %>
-        <div>
+        <div style="margin-right: 50px;">
           <% user = User.find(@nft.user_id) %>
-          <p><%= user.first_name %> <%= user.last_name %></p>
-          <div class="title-card-block px-3">
+          <p style="margin-bottom: 0px;"><%= user.first_name %> <%= user.last_name %></p>
+          <div class="title-card-block">
               <% timeUTC = Time.now.utc - @nft.created_at  %>
               <% time = (timeUTC / 60).to_i %>
               <% if time < 119 %>
@@ -74,8 +75,14 @@
               <% end %>
           </div>
         </div>
-        <div>
-          <%= link_to 'follow', user_path(@nft.user), class:"btn btn-outline-dark" %>
+        <div class="follow-nft-show">
+          <% if current_user != user %>
+              <%= link_to toggle_follows_path(user_id: user.id), class:"link-suggestion", style:"color: grey;", remote: true, method: :post do %>
+            <!-- the link default is black -->
+                <%= render 'pages/follows_button', user: user %>
+              <% end %>
+          <% end %>
+          <%= link_to 'Check profile', user_path(@nft.user), class:"btn follow-button", id:"btn-follow-show" %>
         </div>
       </div>
     </div>
@@ -109,10 +116,12 @@
         </div>
           <% end %>
         <% end %>
-        <%= simple_form_for([ @nft, @comment ], remote: true) do |f| %>
-          <%= f.text_field :content, label: false, placeholder:"Your comment...", class: "form-control" %>
-          <%= f.submit "Comment", class:"btn follow-button my-2" %>
-        <% end %>
+        <div class="my-3">
+          <%= simple_form_for([ @nft, @comment ], remote: true) do |f| %>
+            <%= f.text_field :content, label: false, placeholder:"Your comment...", class: "form-control" %>
+            <%= f.submit "Comment", class:"btn follow-button my-2" %>
+          <% end %>
+        </div>
     </div>
 
 <!-- align-items-center justify-content-center -->

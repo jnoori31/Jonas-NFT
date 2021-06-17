@@ -36,3 +36,21 @@
 .background-grey {
     background-color: rgba(0,0,0,0.2);
 }
+#btn-follow-show {
+    font-weight: 600;
+    color: white;
+    border: 1px solid transparent;
+    &:hover {
+        background-color: white;
+        color: #3A77BB;
+        border: 1px solid #3A77BB;
+    }
+}
+.upload-file {
+    border-radius: 20px;
+    border: 2px solid #3A77BB;
+    color: #3A77BB;
+    &:hover {
+        color: #7daee6;
+    }
+}

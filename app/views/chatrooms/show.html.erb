@@ -1,8 +1,8 @@
-<div class="container mt-4">
+<div class="container card-chatroom">
     <% if @chatroom.owner_id != current_user.id %>
-        <h1 style="text-align: center;">Hello <%= current_user.first_name.capitalize %> here is your chat with <%= @owner.first_name.capitalize %> </h1>
+        <h1 class="mt-2" style="text-align: center; color:#3A77BB;">Hello <%= current_user.first_name.capitalize %> here is your chat with <%= @owner.first_name.capitalize %> </h1>
     <% else %>
-        <h1 style="text-align: center;">Hello <%= current_user.first_name.capitalize %> here is your chat with <%= @client.first_name.capitalize %> </h1>
+        <h1 class="mt-2" style="text-align: center; color:#3A77BB;">Hello <%= current_user.first_name.capitalize %> here is your chat with <%= @client.first_name.capitalize %> </h1>
     <% end %>
     <div class="container-messages" id="messages" data-chatroom-id="<%= @chatroom.id%>" data-user-id="<%= current_user.id %>">
         <% if @chatroom.messages %>
@@ -25,8 +25,60 @@
     </div>
     <div class="message-input">
         <%= simple_form_for([@chatroom, @message]) do |f| %>
+            <div class="d-flex align-items-center justify-content-start">
+                <%# Upload file from desktop %>
+                <div class="my-3">
+                 <label class="btn upload-file" id="upload-nft-desk"> 
+                    <p style="margin-bottom: 0px;">Upload new image</p> 
+                        <span style="display: none;"> 
+                            <%= f.input :image, as: :file %>
+                        </span>
+                    </label> 
+                </div>
+                <%# Upload image from the Nfts of the other person %>
+                <div class="mx-3">
+                    <button type="button" class="btn upload-file" data-bs-toggle="modal" data-bs-target="#nft-user">
+                        <% if @chatroom.owner != current_user %>
+                            <p style="margin-bottom: 0px;">Choose from <%= @owner.first_name %> Nfts</p>
+                        <% else %>
+                            <p style="margin-bottom: 0px;">Choose from <%= @client.first_name %> Nfts</p>
+                        <% end %>
+                    </button>
+                    <div class="modal fade" id="nft-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="nftUserLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="nftUserLabel">
+                                    <% if @chatroom.owner != current_user %>
+                                        <p style="margin-bottom: 0px;"> Here's <%= @owner.first_name %> Nfts</p>
+                                    <% else %>
+                                        <p style="margin-bottom: 0px;"> Here's <%= @client.first_name %> Nfts</p>
+                                    <% end %>
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body nft-chatroom">
+                                <% @nfts.each do |nft| %>
+                                    <label class="btn" data-bs-dismiss="modal"> 
+                                        <%= image_tag nft.image_url, height: 250, width: 190, crop: :fill, class:"img-over", data: { nft_url: nft.image_url } %>
+                                    </label>
+                                <% end %>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn upload-file" data-bs-dismiss="modal">Close</button>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <%# can't upload more than one image %>
+                <div>
+                    <p style="margin-bottom: 0px;">Choose either option 😉</p>
+                </div>
+            </div>
+            <%= hidden_field_tag :image_nft, "", id:"hidden-field-chatroom" %>
             <div class="row">
-                <div class="col-8">
+                <div class="col-9">
                     <%= f.text_field :content, label: false, placeholer:'Message..', class: "form-control" %>
                 </div>
                 <div class="col-3">
