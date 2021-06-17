@@ -18,10 +18,10 @@
       <%# else %>
         <%#= render 'like_button', heartColor: "🤍" %>
       <div class="d-flex align-items-center justify-content-start">
-        <div>
-          <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;" do %>
+        <div data-controller="likedButton">
+          <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;", data: { action: "click->likedButton#refresh" } do %>
           <!-- the link default is black -->
-            <%= render 'nfts/like_button', nft: @nft %>
+            <%= render 'like_button', nft: @nft %>
           <% end %>
         </div>
         <%# end %>
@@ -58,7 +58,7 @@
       <%# style="min-width: 320px; border-style: solid; border-width: thin; border-radius: 5px; border-color: grey" %>
         <%= link_to user_path(@user), class:'text-decoration-none' do %>
           <div class="px-3">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+            <%= image_tag @user.avatar, class: "avatar-large", alt: "avatar" %>
           </div>
         <% end %>
         <div style="margin-right: 50px;">
@@ -99,7 +99,8 @@
         <div class="comment-card d-flex justify-content-between">
           <div class="comment-card-bio d-flex">
             <div class="comment-card-avatar">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/cveneziani", class: "avatar-large", alt: "avatar" %>
+              <% user = User.find(comment.user_id) %>
+              <%= image_tag user.avatar, class: "avatar-large", alt: "avatar" %>
             </div>
             <div class="comment-card-info" style="margin-left: 20px;">
               <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>

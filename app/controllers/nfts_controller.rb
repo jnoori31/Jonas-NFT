@@ -4,7 +4,13 @@ class NftsController < ApplicationController
 
   def toggle_favorite
     @nft = Nft.find(params[:id])
-    current_user.favorited?(@nft) ? current_user.unfavorite(@nft) : current_user.favorite(@nft)
+    if current_user.favorited?(@nft)
+      current_user.unfavorite(@nft) 
+    else
+      current_user.favorite(@nft)
+    end
+    
+    # redirect_to nft_path(@nft, anchor: "heart-btn")
     # in order to see the like appear we need to refresh
   end
 
@@ -31,6 +37,10 @@ class NftsController < ApplicationController
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
     @comment = Comment.new
+    respond_to do |format|
+      format.html
+      format.json { render json: { nft: @nft.favorited.count } }
+    end
     @nft.mark_notifications_as_seen
   end
 
@@ -48,20 +58,25 @@ class NftsController < ApplicationController
     url = "https://metadata.mintable.app/mintable_gasless/#{idToken}"
     response = RestClient.get(url)
     response_json = JSON.parse(response.body)
-    nft = Nft.new(
-      name: response_json["name"],
-      image_url: response_json["image"],
-      description: response_json["subtitle"],
-      category: response_json["category"],
-      user: current_user,
-      media_type: "image",
-      price: 100,
-      creation: create_bool
-    )
-    if nft.save
-      redirect_to user_path(current_user)
-    else
+    if response_json["error"]
+      flash.now[:alert] = 'Error not a valid Token Id'
       render :new
+    else
+      nft = Nft.new(
+        name: response_json["name"],
+        image_url: response_json["image"],
+        description: response_json["subtitle"],
+        category: response_json["category"],
+        user: current_user,
+        media_type: "image",
+        price: 100,
+        creation: create_bool
+      )
+      if nft.save
+        redirect_to user_path(current_user)
+      else
+        render :new
+      end
     end
   end
 
