@@ -17,7 +17,7 @@ const initResizingLeft = () => {
     // if (main_container) {
     //     resizeObserver.observe(main_container);
     // }
-    if (main_container) {
+    if (main_container && container) {
         window.addEventListener('resize', (event) => {
             if (window.innerWidth < 900) {
                 container.setAttribute('hidden', true);

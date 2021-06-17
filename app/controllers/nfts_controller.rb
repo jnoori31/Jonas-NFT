@@ -5,6 +5,7 @@ class NftsController < ApplicationController
   def toggle_favorite
     @nft = Nft.find(params[:id])
     current_user.favorited?(@nft) ? current_user.unfavorite(@nft) : current_user.favorite(@nft)
+    # redirect_to nft_path(@nft, anchor: "heart-btn")
     # in order to see the like appear we need to refresh
   end
 
@@ -31,6 +32,10 @@ class NftsController < ApplicationController
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
     @comment = Comment.new
+    respond_to do |format|
+      format.html
+      format.json { render json: { nft: @nft.favorited.count } }
+    end
   end
 
   def new

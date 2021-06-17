@@ -18,8 +18,8 @@
       <%# else %>
         <%#= render 'like_button', heartColor: "🤍" %>
       <div class="d-flex align-items-center justify-content-start">
-        <div>
-          <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;" do %>
+        <div data-controller="likedButton">
+          <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;", data: { action: "click->likedButton#refresh" } do %>
           <!-- the link default is black -->
             <%= render 'nfts/like_button', nft: @nft %>
           <% end %>
@@ -30,7 +30,6 @@
           <%= link_to "Check it out", @nft.external_url  %>
         </div>
       </div>
-
       <p class="m-0" style="padding-left: 8px; font-size: 18px;">liked by
         <% @nft.favoritors.first(2).each  do |favoritor| %>
           <strong><%= favoritor.first_name %></strong>
@@ -108,7 +107,7 @@
           </div>
           <div class="comment-card-delete-date d-flex">
             <% if comment.user.id == current_user.id %>
-              <%= link_to 'Delete', nft_comment_path(@nft, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to 'Delete', nft_comment_path(@nft, comment), remote: true, method: :delete, data: { confirm: 'Are you sure?' } %>
               <!-- nft_comment DELETE /nfts/:nft_id/comments/:id(.:format)? Where is NFT_id? -->
             <% end %>
             <p style="margin-left: 10px;"><%= comment.created_at.to_s[0..10] %></p>
