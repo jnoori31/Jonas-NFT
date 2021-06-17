@@ -27,7 +27,7 @@
         <%= simple_form_for([@chatroom, @message]) do |f| %>
             <div class="d-flex align-items-center justify-content-start">
                 <div class="my-3">
-                 <label class="btn upload-file"> 
+                 <label class="btn upload-file" id="upload-nft-desk"> 
                     <p style="margin-bottom: 0px;">Upload new image</p> 
                         <span style="display: none;"> 
                             <%= f.input :image, as: :file %>

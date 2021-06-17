@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
         @chatroom = Chatroom.find(params[:chatroom_id])
         @message.user = current_user
         @message.chatroom = @chatroom
-        if params[:image_nft] != "" && !@message.image.attached?
+        if params[:image_nft] != "" 
             downloaded_image = open(params[:image_nft])
             @message.image.attach(io: downloaded_image, filename: "image.jpg")
         end
