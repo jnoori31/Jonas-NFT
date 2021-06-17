@@ -26,6 +26,7 @@
     <div class="message-input">
         <%= simple_form_for([@chatroom, @message]) do |f| %>
             <div class="d-flex align-items-center justify-content-start">
+                <%# Upload file from desktop %>
                 <div class="my-3">
                  <label class="btn upload-file" id="upload-nft-desk"> 
                     <p style="margin-bottom: 0px;">Upload new image</p> 
@@ -34,10 +35,11 @@
                         </span>
                     </label> 
                 </div>
+                <%# Upload image from the Nfts of the other person %>
                 <div class="mx-3">
                     <button type="button" class="btn upload-file" data-bs-toggle="modal" data-bs-target="#nft-user">
-                        <% if @chatroom.owner_id != current_user.id %>
-                            <p style="margin-bottom: 0px;"> Choose from <%= @owner.first_name %> Nfts</p>
+                        <% if @chatroom.owner != current_user %>
+                            <p style="margin-bottom: 0px;">Choose from <%= @owner.first_name %> Nfts</p>
                         <% else %>
                             <p style="margin-bottom: 0px;">Choose from <%= @client.first_name %> Nfts</p>
                         <% end %>
@@ -47,7 +49,7 @@
                             <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="nftUserLabel">
-                                    <% if @chatroom.owner_id != current_user.id %>
+                                    <% if @chatroom.owner != current_user %>
                                         <p style="margin-bottom: 0px;"> Here's <%= @owner.first_name %> Nfts</p>
                                     <% else %>
                                         <p style="margin-bottom: 0px;"> Here's <%= @client.first_name %> Nfts</p>
@@ -59,7 +61,7 @@
                                 <% @nfts.each do |nft| %>
                                     <label class="btn" data-bs-dismiss="modal"> 
                                         <%= image_tag nft.image_url, height: 250, width: 190, crop: :fill, class:"img-over", data: { nft_url: nft.image_url } %>
-                                    </label> 
+                                    </label>
                                 <% end %>
                             </div>
                             <div class="modal-footer">
@@ -69,6 +71,7 @@
                         </div>
                     </div>
                 </div>
+                <%# can't upload more than one image %>
                 <div>
                     <p style="margin-bottom: 0px;">Choose either option 😉</p>
                 </div>
