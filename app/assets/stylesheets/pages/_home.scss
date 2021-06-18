@@ -41,7 +41,8 @@ h4 {
  }
  .card-left {
   width: 25%;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
   height: 350px;
   position: sticky;
   top: 80px;
@@ -51,10 +52,12 @@ h4 {
   width: 50%;
   padding: 0px 16px;
 
+
 }
 .card-right{
   width: 25%;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
 }
 //  Cards that belong to card-left
 .social-media-card{
@@ -83,7 +86,8 @@ h4 {
 // Cards that belong to card-center
 .card-main{
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
   width: 500px;
   // height: 600px;
   margin-bottom: 16px;
