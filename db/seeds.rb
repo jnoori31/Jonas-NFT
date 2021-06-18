@@ -24,6 +24,8 @@ emails = ['p@gmail.com', 'j@gmail.com', 'a@gmail.com', 'f@gmail.com']
 passwords = ['p12345', 'j12345', 'a12345', 'f12345']
 first_names = ['Pierre', 'Jonas', 'Alex', 'Felix']
 last_names = ['Ntiruhungwa', 'Høgh-Noori', 'Morey', 'Habert']
+base_path = "app/assets/images/"
+avatars = ["#{base_path}/default_profile_picture.jpg", "#{base_path}/jonas_pic.jpg", "#{base_path}/avatar_default_4.jpg", "#{base_path}/photo_felix.jpg"]
 
 puts "Creating 4 users"
 emails.each_with_index do |email, index|
@@ -35,7 +37,7 @@ emails.each_with_index do |email, index|
     nickname: 'bluerooster',
     password: passwords[index]
   )
-  u.avatar.attach(io: File.open(File.join(Rails.root,'app/assets/images/default_profile_picture.jpg')), filename: 'default_profile_picture.jpg')
+  u.avatar.attach(io: File.open(File.join(Rails.root, avatars[index])), filename: 'default_profile_picture.jpg')
 end
 puts "Creating 4 faker nfts"
 

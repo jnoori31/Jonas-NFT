@@ -4,8 +4,8 @@
 <!-- use the link had we not used javascript - IE: HTML to controller directly -->
 
 <% if current_user %>
-  <div class="like-icon mx-2 <%= 'red' if current_user.favorited?(nft) %>" data-id="<%= nft.id %>">
-    <i class="fas fa-heart"><%= nft.favorited.count %></i>
+  <div class="like-icon mx-2" data-id="<%= nft.id %>">
+    <i class="fas fa-heart <%= 'red' if current_user.favorited?(nft) %>" data-homeLike-target="likeCount" data-nftid="<%= nft.id %>"><%= nft.favorited.count %></i>
   </div>
 <% end %>
 

@@ -14,8 +14,9 @@ class CommentsController < ApplicationController
     # And the user is linked by the foreign_key User_id (Comment table)
     if @comment.save
       redirect_to nft_path(@nft, anchor: "comment-#{@comment.id}")
-      # Anchor is Using Ajax when the page updates/not reload, it will go to the new instance commnet (@comment.id) we just created in the HTML show page.
+      # Anchor is Using Ajax when the page reloads because of redirect to, it will go to the new instance commnet (@comment.id) we just created in the HTML show page.
       # This can be found by ancoring to the comment.id
+      # https://medium.com/@codenode/how-to-use-remote-true-to-make-ajax-calls-in-rails-3ecbed40869b ajax article
       # Around Line 80 show.html.erb
     end
   end
