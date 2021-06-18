@@ -55,7 +55,7 @@ class NftsController < ApplicationController
     else
       create_bool = false
     end
-    # checking if the nft is a creation or not
+    # checking if the nft is a creation or not// slection made in view
     url = "https://metadata.mintable.app/mintable_gasless/#{idToken}"
     response = RestClient.get(url)
     response_json = JSON.parse(response.body)
@@ -80,7 +80,8 @@ class NftsController < ApplicationController
       end
     end
   end
-
+# If create_bool is false the default path is to user owned
+# Line 33 User_controller
 end
 
 # previous liked method
