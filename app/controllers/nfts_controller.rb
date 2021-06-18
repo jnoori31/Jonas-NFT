@@ -37,6 +37,7 @@ class NftsController < ApplicationController
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
     @comment = Comment.new
+    current_user.mark_notications_as_seen_for_nft(@nft.id)
     respond_to do |format|
       format.html
       format.json { render json: { nft: @nft.favorited.count } }
