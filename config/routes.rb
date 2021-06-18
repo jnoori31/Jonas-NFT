@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   post 'toggle_favorites', to: "pages#toggle_favorites"
   post 'toggle_follows', to: "pages#toggle_follows"
+  # post 'update_notif', to: "pages#update_notif"
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :nfts, except: :index do
