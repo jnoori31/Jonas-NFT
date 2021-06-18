@@ -26,7 +26,7 @@ class NftsController < ApplicationController
     nfts_instances.each do |nft|
       @liked_nfts_hash[nft.id] = nft.favorited.count
     end
-    liked_nfts_ordered_array = @liked_nfts_hash.sort_by { |k, v| -v} 
+    liked_nfts_ordered_array = @liked_nfts_hash.sort_by { |k, v| -v}
     @liked_nfts_instances = liked_nfts_ordered_array.map { |liked_nft| Nft.find(liked_nft[0])}
     if @liked_nfts_instances.length > 4
       @liked_nfts_instances = @liked_nfts_instances[0..3]
