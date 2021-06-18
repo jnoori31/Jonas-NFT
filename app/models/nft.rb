@@ -8,9 +8,8 @@ class Nft < ApplicationRecord
     comments = self.comments
     comments.each do |comment|
       comment.notification.update(seen: true)
-    end
+    end 
   end
-
 end
 
 # we want users to return users NFT's

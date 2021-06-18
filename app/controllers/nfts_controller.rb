@@ -9,7 +9,6 @@ class NftsController < ApplicationController
     else
       current_user.favorite(@nft)
     end
-    
     # redirect_to nft_path(@nft, anchor: "heart-btn")
     # in order to see the like appear we need to refresh
   end
@@ -37,11 +36,9 @@ class NftsController < ApplicationController
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
     @comment = Comment.new
-    respond_to do |format|
-      format.html
-      format.json { render json: { nft: @nft.favorited.count } }
+    if current_user == @user
+      @nft.mark_notifications_as_seen
     end
-    @nft.mark_notifications_as_seen
   end
 
   def new
