@@ -6,6 +6,8 @@ require 'json'
 require 'nokogiri'
 
 puts "Cleaning Database"
+Notification.destroy_all
+Comment.destroy_all
 Nft.destroy_all
 Message.destroy_all
 Chatroom.destroy_all
@@ -25,7 +27,11 @@ passwords = ['p12345', 'j12345', 'a12345', 'f12345']
 first_names = ['Pierre', 'Jonas', 'Alex', 'Felix']
 last_names = ['Ntiruhungwa', 'Høgh-Noori', 'Morey', 'Habert']
 base_path = "app/assets/images/"
-avatars = ["#{base_path}/default_profile_picture.jpg", "#{base_path}/jonas_pic.jpg", "#{base_path}/avatar_default_4.jpg", "#{base_path}/photo_felix.jpg"]
+avatars = [ "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097103/default_profile_picture_l2jb9e.jpg", 
+            "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097003/jonas_pic_o8dy2p.jpg", 
+            "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097136/alex_pic_ksi57n.png", 
+            "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097025/photo_felix_ifdkol.png"
+          ]
 
 puts "Creating 4 users"
 emails.each_with_index do |email, index|
@@ -37,7 +43,11 @@ emails.each_with_index do |email, index|
     nickname: 'bluerooster',
     password: passwords[index]
   )
-  u.avatar.attach(io: File.open(File.join(Rails.root, avatars[index])), filename: 'default_profile_picture.jpg')
+  file = URI.open(avatars[index])
+  regex = /\/(\w+\.\w+)$/
+  fileName = regex.match(avatars[index])[1]
+  u.avatar.attach(io: file, filename: fileName)
+  # u.avatar.attach(io: File.open(File.join(Rails.root, avatars[index])), filename: 'default_profile_picture.jpg')
 end
 puts "Creating 4 faker nfts"
 

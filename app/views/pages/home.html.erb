@@ -66,7 +66,7 @@
                 <% user = User.find(nft.user_id) %>
                 <% if nft.image_url %>
                     <div class="title-card d-flex align-items-center p-2">
-                        <%= image_tag user.avatar, class: "avatar-large", alt: "avatar" %>
+                        <%= cl_image_tag user.avatar.key, class: "avatar-large", alt: "avatar" %>
                         <div class="title-card-block px-3" id='nft-index-<%= nft.id %>'>
                             <%= link_to "#{user.first_name} #{user.last_name}", user_path(user)%>
                             <p><%= user.bio %></p>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="padding-avatar d-flex align-items-center justify-content-start pl-2 pb-2">
                    <% nft.favoritors.first(2).each_with_index  do |favoritor, index| %>
-                     <%= image_tag "default_profile_picture.jpg", class:"avatar #{'ml-20' if index > 0}" %>
+                     <%= cl_image_tag favoritor.avatar.key, class:"avatar #{'ml-20' if index > 0}" %>
                    <% end %>
                   <p class="m-0" style="padding-left: 8px">liked by
                      <% nft.favoritors.first(2).each  do |favoritor| %>
@@ -127,7 +127,7 @@
                 <div class="card-horizontal mb-5">
                     <div class="card-follow d-flex justify-content-around align-items-center">
                         <%= link_to user_path(user), class:'text-decoration-none' do %>
-                        <%= image_tag user.avatar, class: "avatar-large", alt: "avatar" %>
+                        <%= cl_image_tag user.avatar.key, class: "avatar-large", alt: "avatar" %>
                         <% end %>
                         <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
 
