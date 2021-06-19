@@ -1,8 +1,8 @@
-// .main-container {
-//   display: flex;
-//   flex-direction: colum;
-//   justify-content: center;
-// }
+.user-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 
 .dropdown-chat {
@@ -40,12 +40,13 @@
 }
 
 .user-info-container {
-  margin-top:-100px;
+  margin-top:-70px;
   max-width: 1200px;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  place-self: center;
 }
 .column-items {
   display: flex;
@@ -53,7 +54,7 @@
 }
 .nfts-container {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 20px 5px;
   grid-template-columns: 1fr 1fr 1fr;
 }
 
