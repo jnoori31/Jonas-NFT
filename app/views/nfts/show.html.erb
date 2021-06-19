@@ -2,7 +2,12 @@
   <div class="bg-white">
     <div class="card-category d-flex align-items-center justify-content-center" style="background-color: black;">
       <div style="padding: 40px; object-fit: cover;">
-        <%= image_tag @nft.image_url%>
+      <% regex = /cloudfront/ %>
+        <% if @nft.image_url.match(regex) %>
+          <%= image_tag @nft.image_url, height: 500, width: 400 %>
+        <% else %>
+          <%= image_tag @nft.image_url %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -11,12 +16,6 @@
 <!-----------------------Main card description---------------->
   <div class="card-product d-flex align-items-center justify-content-around">
     <div class="nft-name">
-      <!-- <i class="far fa-heart" style="color:#E94A47; margin-right: 8px;"></i> -->
-
-      <%# if current_user.favorited?(@nft) %>
-        <%#= render 'like_button', heartColor: "❤️" %>
-      <%# else %>
-        <%#= render 'like_button', heartColor: "🤍" %>
       <div class="d-flex align-items-center justify-content-start">
         <div data-controller="likedButton">
           <%= link_to toggle_favorite_nft_path(@nft), remote: true, method: :post, style: "color: black;", data: { action: "click->likedButton#refresh" } do %>
