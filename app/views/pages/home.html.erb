@@ -61,8 +61,8 @@
 
   <div class="card-center">
     <% @nfts.each do |nft| %>
-        <div class="d-flex justify-content-center">
-            <div class="card-main mt-5">
+        <!-- <div class="d-flex justify-content-center"> -->
+            <div class="card-main">
                 <% user = User.find(nft.user_id) %>
                 <% if nft.image_url %>
                     <div class="title-card d-flex align-items-center p-2">
@@ -85,7 +85,7 @@
                 <hr>
                 <%= link_to nft_path(nft), class:'text-decoration-none' do %>
                     <p class="p-2"><%= nft.name %></p>
-                    <%= image_tag nft.image_url, height: 400, width: 500, crop: :fill %>
+                    <%= image_tag nft.image_url, crop: :fill, :class=> "home-nft-img" %>
                 <% end %>
                 <div class="d-flex my-2 p-2 align-items-center" data-controller="homeLike">
                     <%= link_to toggle_favorites_path(nft_id: nft.id), remote: true, style: "color: black;", method: :post, data: { action: "click->homeLike#likeUpdate"} do %>
@@ -111,7 +111,7 @@
                    </p>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     <% end %>
  </div>
 

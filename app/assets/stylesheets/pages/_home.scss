@@ -34,34 +34,45 @@ h4 {
 
 .main-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   width: 95%;
   margin: auto;
   margin-top: 40px;
+  // grid-column-gap: 50px;
  }
  .card-left {
-  width: 25%;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-  height: 350px;
+  width: 28%;
+  // flex-grow: 1;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
+  height: 290px;
   position: sticky;
   top: 80px;
   border-radius: 20px;
   margin-bottom: 50px;
+  background-color: white;
 }
 .card-center {
-  width: 50%;
+  width: 44%;
+  // flex-grow: 1;
   padding: 0px 16px;
+
 
 }
 .card-right{
-  width: 25%;
-  box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+  width: 28%;
+  // flex-grow: 1;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
+  height: 650px;
+  background-color: white;
 }
 //  Cards that belong to card-left
 .social-media-card{
   width: 100%;
   background-color: white;
   padding: 15px;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   a {
@@ -84,10 +95,11 @@ h4 {
 // Cards that belong to card-center
 .card-main{
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
+  // width: 500px;
   // height: 600px;
-  margin-bottom: 16px;
+  margin-bottom: 25px;
   a {
     text-decoration: none;
     color: rgba(0,0,0,0.4);
@@ -120,9 +132,18 @@ h4 {
   background-color: #3A77BB;
   color: white;
   font-weight: 500;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .infos-user {
   padding: 5px 5px;
 }
+.home-nft-img {
+  height: 400px;
+  width: 100%;
+}
+
+.search-friend {
+  width: 100% !important;
+}
+
 

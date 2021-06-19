@@ -1,4 +1,5 @@
-<div class="container" style="background-color: white;">
+<div class="container nft-image">
+  <div class="nft-image-card">
   <div class="bg-white">
     <div class="card-category d-flex align-items-center justify-content-center" style="background-color: black;">
       <div style="padding: 40px; object-fit: cover;">
@@ -45,11 +46,12 @@
       <p style="font-size: 18px; font-weight: 600;">£ <%=@nft.price %></p>
     </div>
   </div>
+</div>
 <!----------------------END-Main card Description---------------->
 
 
 <!-----------------------Main card Description2--------------------->
-  <div class="d-flex justify-content-around my-4">
+  <div class="d-flex justify-content-between my-4">
     <!-----------------------Owned card Description---------------->
     <div>
       <h4>Owned by</h4>
@@ -89,7 +91,7 @@
 
 
     <!-----------------------Comments card ------------------------->
-    <div class="card bg-white p-3" style="width: 580px; border-radius: 5px">
+    <div class="card bg-white p-3" style="width: 580px; border-radius: 10px">
       <% if @nft.comments.blank? %>
         Be the first to leave a comment for <strong><%= @nft.name %></strong>
       <% else %>
