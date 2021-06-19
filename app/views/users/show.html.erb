@@ -5,7 +5,7 @@
   <div class="user-info-container">
     <!-- <div class="row"> -->
       <div class="col-8" >
-        <%= image_tag @user.avatar, height: 100, width: 100, :crop=> 'fill', :class=> 'rounded-circle' %>
+        <%= cl_image_tag @user.avatar.key, height: 100, width: 100, :crop=> 'fill', :class=> 'rounded-circle' %>
         <h3><%= @user.first_name %> <%=  @user.last_name  %> </h3>
         <h5>@<%= @user.first_name %><%=  @user.last_name  %></h5>
         <div class="col-7">
@@ -31,7 +31,7 @@
                     <div class="modal-body">
                       <% @following_users.each do |follower| %>
                         <div class="d-flex align-items-center justify-content-around">
-                          <%= image_tag follower.avatar, class:"avatar", style:"margin-right: 20px;"  %>
+                          <%= cl_image_tag follower.avatar.key, class:"avatar", style:"margin-right: 20px;"  %>
                           <p class="m-0"> <%= follower.first_name.capitalize %> <%= follower.last_name.capitalize %> </p>
                           <%= link_to "Profile", user_path(follower), class:"btn", style:"font-weight: 600;" %>
                         </div>
@@ -90,7 +90,7 @@
         <div class="card card-user p-2">
           <div class="row">
             <div class="container col-2">
-              <%= image_tag @user.avatar, height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
+              <%= cl_image_tag @user.avatar.key, height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
             </div>
             <div class="container col-10">
               <h5><%= @user.first_name %> <%=  @user.last_name  %></h5>
@@ -194,7 +194,7 @@
                         <p>Owned by</p>
                       </div>
                       <div class="container col-3">
-                        <%= image_tag @user.avatar, height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
+                        <%= cl_image_tag @user.avatar.key, height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
                       </div>
                       <div class="container col-6">
                         <p class="m-0"><%= @user.first_name %> <%=  @user.last_name  %></p>
