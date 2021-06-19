@@ -3,6 +3,13 @@ class Nft < ApplicationRecord
   has_many :comments, dependent: :destroy
   validates :category, presence: true, inclusion: { in: %w(Music Art Sport Cinema) }
   acts_as_favoritable
+
+  def mark_notifications_as_seen
+    comments = self.comments
+    comments.each do |comment|
+      comment.notification.update(seen: true)
+    end 
+  end
 end
 
 # we want users to return users NFT's

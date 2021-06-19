@@ -4,7 +4,12 @@ class NftsController < ApplicationController
 
   def toggle_favorite
     @nft = Nft.find(params[:id])
-    current_user.favorited?(@nft) ? current_user.unfavorite(@nft) : current_user.favorite(@nft)
+    if current_user.favorited?(@nft)
+      current_user.unfavorite(@nft) 
+    else
+      current_user.favorite(@nft)
+    end
+    # redirect_to nft_path(@nft, anchor: "heart-btn")
     # in order to see the like appear we need to refresh
   end
 
@@ -20,7 +25,7 @@ class NftsController < ApplicationController
     nfts_instances.each do |nft|
       @liked_nfts_hash[nft.id] = nft.favorited.count
     end
-    liked_nfts_ordered_array = @liked_nfts_hash.sort_by { |k, v| -v} 
+    liked_nfts_ordered_array = @liked_nfts_hash.sort_by { |k, v| -v}
     @liked_nfts_instances = liked_nfts_ordered_array.map { |liked_nft| Nft.find(liked_nft[0])}
     if @liked_nfts_instances.length > 4
       @liked_nfts_instances = @liked_nfts_instances[0..3]
@@ -31,6 +36,9 @@ class NftsController < ApplicationController
     @nft = Nft.find(params[:id])
     @user = User.find(@nft.user_id)
     @comment = Comment.new
+    if current_user == @user
+      @nft.mark_notifications_as_seen
+    end
   end
 
   def new
@@ -47,22 +55,28 @@ class NftsController < ApplicationController
     url = "https://metadata.mintable.app/mintable_gasless/#{idToken}"
     response = RestClient.get(url)
     response_json = JSON.parse(response.body)
-    nft = Nft.new(
-      name: response_json["name"],
-      image_url: response_json["image"],
-      description: response_json["subtitle"],
-      category: response_json["category"],
-      user: current_user,
-      media_type: "image",
-      price: 100,
-      creation: create_bool
-    )
-    if nft.save
-      redirect_to user_path(current_user)
-    else
+    if response_json["error"]
+      flash.now[:alert] = 'Error not a valid Token Id'
       render :new
+    else
+      nft = Nft.new(
+        name: response_json["name"],
+        image_url: response_json["image"],
+        description: response_json["subtitle"],
+        category: response_json["category"],
+        user: current_user,
+        media_type: "image",
+        price: 100,
+        creation: create_bool
+      )
+      if nft.save
+        redirect_to user_path(current_user)
+      else
+        render :new
+      end
     end
   end
+
 end
 
 # previous liked method

@@ -17,11 +17,15 @@ const initStickyNav = () => {
       if (entry.isIntersecting == false) {
         mainNavbar.classList.add('navbar-alternate');
         home_title.style.color = "#ffffff";
-        new_nft_link.style.color = "#ffffff";
+        if (new_nft_link) {
+          new_nft_link.style.color = "#ffffff";
+        }
       } else {
         mainNavbar.classList.remove('navbar-alternate');
         home_title.style.color = "#2f6097";
-        new_nft_link.style.color = "#2f6097";
+        if (new_nft_link) {
+          new_nft_link.style.color = "#2f6097";
+        }
       }
 
     });

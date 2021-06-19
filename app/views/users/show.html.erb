@@ -31,7 +31,7 @@
                     <div class="modal-body">
                       <% @following_users.each do |follower| %>
                         <div class="d-flex align-items-center justify-content-around">
-                          <%= image_tag current_user.avatar, class:"avatar", style:"margin-right: 20px;"  %>
+                          <%= image_tag follower.avatar, class:"avatar", style:"margin-right: 20px;"  %>
                           <p class="m-0"> <%= follower.first_name.capitalize %> <%= follower.last_name.capitalize %> </p>
                           <%= link_to "Profile", user_path(follower), class:"btn", style:"font-weight: 600;" %>
                         </div>

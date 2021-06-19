@@ -7,10 +7,26 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
+
+      <div class="dropdown" id="dropDownBell">
+        <li class="nav-item active" type="button" id="bellDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+          <%= current_user.incoming_notifications.unseen_notifications.count %>
+          <i class="far fa-bell"></i>
+        </li>
+        <div class="dropdown-menu" aria-labelledby="bellDropdown">
+          <% current_user.incoming_notifications.unseen_notifications.each do |n| %>
+            <li class="border-bottom nav-item2">
+              <% comment = Comment.find(n.comment_id) %>
+              <% user = User.find(comment.user_id) %>
+              <%= link_to "#{user.first_name} commented on #{n.comment.nft.name}", nft_path(n.comment.nft) %>
+            </li>
+          <% end %>
+        </div>
+      </div>
         <li class="nav-item active">
           <%= link_to "New NFT", new_nft_path, class: "nav-link", id: "new-nft-navlink" %>
         </li>
-
         <div class="dropstart">
           <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
            <% if current_user.avatar.attached? %>
