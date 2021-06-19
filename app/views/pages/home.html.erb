@@ -62,7 +62,7 @@
   <div class="card-center">
     <% @nfts.each do |nft| %>
         <!-- <div class="d-flex justify-content-center"> -->
-            <div class="card-main mt-5">
+            <div class="card-main">
                 <% user = User.find(nft.user_id) %>
                 <% if nft.image_url %>
                     <div class="title-card d-flex align-items-center p-2">
