@@ -3,7 +3,14 @@ class PagesController < ApplicationController
 
   def home
     if params[:nft_category].present?
-      @nfts = Nft.where(category: params[:nft_category])
+      array_categories = params[:nft_category].split(" ")
+      @nfts = []
+      array_categories.each do |category|
+        nfts = Nft.where(category: category)
+        nfts.each do |nft|
+          @nfts << nft
+        end
+      end
     else 
       @nfts = Nft.all
     end
