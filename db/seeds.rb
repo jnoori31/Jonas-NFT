@@ -41,7 +41,8 @@ emails.each_with_index do |email, index|
     last_name: last_names[index],
     bio: 'LondonBoi',
     nickname: 'bluerooster',
-    password: passwords[index]
+    password: passwords[index],
+    admin: true
   )
   file = URI.open(avatars[index])
   regex = /\/(\w+\.\w+)$/
