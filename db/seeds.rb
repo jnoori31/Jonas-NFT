@@ -54,7 +54,7 @@ puts "Creating 4 faker nfts"
 
 users = User.all
 users_id = users.map { |user| user.id }
-category_nft = %w(Music Art Sport Cinema)
+category_nft = %w(music art sport cinema)
 
 
 results["assets"].each do |result|

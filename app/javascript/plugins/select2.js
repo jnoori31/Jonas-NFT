@@ -3,12 +3,24 @@ import $ from 'jquery';
 
 const initSelect2 = () => {
     $('select.select2-category').select2({
-        placeholder: 'Select a category',
-        width: '40%',
-        height: '20px'
+        allowClear: true,
+        closeOnSelect: true
     });
-    // const value = $('select.select2-category').find(':selected')[0].innerText;
-    // console.log(value);
+    const submitCat = document.getElementById('submit-category');
+    const btnSubmit = document.getElementById('btn-submit-category');
+    if (btnSubmit) {
+        btnSubmit.addEventListener('click', (event) => {
+            const ulCategories = document.querySelector('.select2-selection__rendered');
+            const elements = ulCategories.querySelectorAll('.select2-selection__choice__display')
+            if (ulCategories) {
+                let categories = "";
+                elements.forEach((el) => {
+                    categories += `${el.innerText.toLowerCase()} `;
+                })
+                submitCat.value = categories;
+            }
+        })
+    }
 }
 
 export { initSelect2 };
