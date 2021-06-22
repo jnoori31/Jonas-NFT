@@ -14,12 +14,12 @@
       </div>
       <div class="col-4">
         <div class="card card-user p-2 mt-5">
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="col-4 column-items">
-              <p class="m-0"><strong><%= @following_users.count %></strong></p>
-              <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#following-users">
-                Following
-              </button>
+              <!-- <p class="m-0"><strong><%= @following_users.count %></strong></p> -->
+              <strong><%= @following_users.count %> <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#following-users">
+                 Following
+              </button></strong>
               <!---target of bttn needs to be refrecned in the modal below--->
               <div class="modal fade" id="following-users" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
                 <div class="modal-dialog">
@@ -43,10 +43,10 @@
               </div>
             </div>
             <div class="col-4 column-items">
-              <p class="m-0"><strong><%= @follower_users.count %></strong></p>
+              <p class="m-0"><strong><%= @follower_users.count %>
               <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#follower-users">
-                Follower
-              </button>
+                 Follower
+              </button></strong></p>
               <div class="modal fade" id="follower-users" tabindex="-1" aria-labelledby="follower-label" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
