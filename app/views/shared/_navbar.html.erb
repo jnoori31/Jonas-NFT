@@ -14,7 +14,7 @@
             <%= current_user.incoming_notifications.unseen_notifications.count %>
             <i class="far fa-bell"></i>
           </li>
-          <div class="dropdown-menu" aria-labelledby="bellDropdown">
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="bellDropdown">
             <% current_user.incoming_notifications.unseen_notifications.each do |n| %>
               <li class="border-bottom nav-item2">
                 <% comment = Comment.find(n.comment_id) %>
@@ -29,7 +29,7 @@
             <%= link_to "New NFT", new_nft_path, class: "nav-link", id: "new-nft-navlink" %>
           </div>
         </div>
-        <div class="dropstart">
+        <div class="dropdown">
           <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
            <% if current_user.avatar.attached? %>
               <%= cl_image_tag current_user.avatar.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -37,7 +37,7 @@
               <%= image_tag 'default_profile_picture.jpg', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <% end %>
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
             <li class="nav-item"><%= link_to "My profile", user_path(current_user), class: "nav-link dropdown-item" %></li>
             <li class="nav-item"><%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item nav-link" %></li>
           </ul>
