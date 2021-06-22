@@ -1,5 +1,10 @@
 <% if current_user %>
-    <div class="like-icon mx-2 <%= 'blue' if current_user.favorited?(user) %>" data-id="<%= user.id %>">
-      <i class="fas fa-user-friends"></i>
-    </div>
+    <%# <div class="like-icon mx-2 <%= 'blue' if current_user.favorited?(user)" data-id="<%= user.id %>
+      <%# <i class="fas fa-user-friends"></i> %>
+    <%# </div> %>
+    <% if current_user.favorited?(user) %>
+      <i data-followUser-target="followBtn" class="fas fa-user-friends">Following</i>
+    <% else %>
+      <i data-followUser-target="followBtn" class="fas fa-user-friends">Follow</i>
+    <% end %>
 <% end %>

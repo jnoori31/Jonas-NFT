@@ -82,9 +82,8 @@
     <!-- </div> -->
   </div>
 </div>
-  <div style="border-top: solid 1px ; border-color: #CCCCCC">
-  </div>
-  <div class="container mt-4">
+  <hr>
+  <div class="mt-4 mx-5">
     <div class="row">
       <div class="container col-3">
         <div class="card card-user p-2">
@@ -100,7 +99,7 @@
             <div style="border-top: solid 1px ; border-color: #CCCCCC">
             </div>
           </div>
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="container col-10">
             <%# Implemented the logic of showing specific cases of nfts %>
               <%= simple_form_for user_path(@user), method: :get do |f| %>
@@ -112,11 +111,11 @@
               <% end %>
               <%# End %>
             </div>
-            <div class="container col-2">
-              <p><%= @owned_count %></p>
+            <div class="container col-2" style="margin-bottom: 0px;">
+              <p style="margin-bottom: 0px;"><%= @owned_count %></p>
             </div>
           </div>
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="container col-10">
               <%= simple_form_for user_path(@user), method: :get do |f| %>
                   <%= hidden_field_tag :category, "created" %>
@@ -126,11 +125,11 @@
                   </div>
                 <% end %>
             </div>
-            <div class="container col-2">
-              <p><%= @created_count %></p>
+            <div class="container col-2 py-0" style="margin-bottom: 0px;">
+              <p style="margin-bottom: 0px;"><%= @created_count %></p>
             </div>
           </div>
-          <div class="row">
+          <div class="row d-flex align-items-center">
             <div class="container col-10">
                 <%= simple_form_for user_path(@user), method: :get do |f| %>
                   <%= hidden_field_tag :category, "liked" %>
@@ -140,38 +139,38 @@
                   </div>
                 <% end %>
             </div>
-            <div class="container col-2">
-              <p><%= @liked_count %></p>
+            <div class="container col-2"  style="margin-bottom: 0px;">
+              <p style="margin-bottom: 0px;"><%= @liked_count %></p>
             </div>
           </div>
-        </div>
-        <div class="container mt-4">
-            <% if current_user == @user %>
-                <% if @chatrooms != []%>
-                  <div class="dropdown">
-                      <button class="btn follow-button dropdown-toggle chat-button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                          My chatrooms
-                      </button>
-                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <div class="dropdown-chat">
-                            <% @chatrooms.each do |chatroom| %>
-                                <% if chatroom.owner == @user %>
-                                  <li><%= link_to "Chat with #{chatroom.client.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
-                                <% else %>
-                                  <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
-                                <% end %>
-                            <% end %>
-                          </div>
-                      </ul>
+          <div class="container mt-4">
+              <% if current_user == @user %>
+                  <% if @chatrooms != []%>
+                    <div class="dropdown">
+                        <button class="btn follow-button dropdown-toggle chat-button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            My chatrooms
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <div class="dropdown-chat">
+                              <% @chatrooms.each do |chatroom| %>
+                                  <% if chatroom.owner == @user %>
+                                    <li><%= link_to "Chat with #{chatroom.client.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
+                                  <% else %>
+                                    <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
+                                  <% end %>
+                              <% end %>
+                            </div>
+                        </ul>
+                    </div>
+                  <% end %>
+              <% else %>
+                <div class="row">
+                  <div class="container col-12">
+                    <%= link_to "Message", chatrooms_path(user_id: @user.id), method: :post, class: "btn btn-block btn-outline-secondary chat-button rounded-corner" %>
                   </div>
-                <% end %>
-            <% else %>
-              <div class="row">
-                <div class="container col-12">
-                  <%= link_to "Message", chatrooms_path(user_id: @user.id), method: :post, class: "btn btn-block btn-outline-secondary chat-button rounded-corner" %>
                 </div>
-              </div>
-            <% end %>
+              <% end %>
+          </div>
           <div class="nft-collection"></div>
         </div>
       </div>
