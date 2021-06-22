@@ -3,8 +3,8 @@
       <%# <i class="fas fa-user-friends"></i> %>
     <%# </div> %>
     <% if current_user.favorited?(user) %>
-      <i data-followUser-target="followBtn" class="fas fa-user-friends">Following</i>
+      <i class="fas fa-user-friends"></i><p data-followUser-target="followBtn">Following</p>
     <% else %>
-      <i data-followUser-target="followBtn" class="fas fa-user-friends">Follow</i>
+      <i class="fas fa-user-friends"></i><p data-followUser-target="followBtn">Follow</p>
     <% end %>
 <% end %>

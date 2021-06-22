@@ -3,14 +3,11 @@
   flex-direction: column;
   justify-content: center;
 }
-
-
 .dropdown-chat {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-
 .card-user {
   border-radius: 10px;
   box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
@@ -20,27 +17,22 @@
   position: sticky;
   top: 90px;
 }
-
 .card-user-text {
   // align-self: flex-end;
 }
-
 .img-rounded-corner {
   border-radius: 20px;
 }
-
 .card-img-top {
   padding: 10px;
 }
 .dropdown {
   width: 100%;
 }
-
 .chat-button {
   width: 100%;
   border-radius: 10px;
 }
-
 .user-info-container {
   margin-top:-70px;
   max-width: 1200px;
