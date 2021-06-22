@@ -41,7 +41,8 @@ emails.each_with_index do |email, index|
     last_name: last_names[index],
     bio: 'LondonBoi',
     nickname: 'bluerooster',
-    password: passwords[index]
+    password: passwords[index],
+    admin: true
   )
   file = URI.open(avatars[index])
   regex = /\/(\w+\.\w+)$/
@@ -53,7 +54,7 @@ puts "Creating 4 faker nfts"
 
 users = User.all
 users_id = users.map { |user| user.id }
-category_nft = %w(Music Art Sport Cinema)
+category_nft = %w(music art sport cinema)
 
 
 results["assets"].each do |result|

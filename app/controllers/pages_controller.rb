@@ -3,9 +3,20 @@ class PagesController < ApplicationController
 
   def home
     if params[:nft_category].present?
-      @nfts = Nft.where(category: params[:nft_category])
-    else 
+      array_categories = params[:nft_category].split(" ")
+      # :nft_category comes from the hidden field tag in home page
+      # view goes to js which render to view which then goes to the controller which goes to the view
+      # ["music", "art"]
+      @nfts = []
+      array_categories.each do |category|
+        nfts = Nft.where(category: category)
+        nfts.each do |nft|
+          @nfts << nft
+        end
+      end
+    else
       @nfts = Nft.all
+      # specific nfts based on category otherwise all
     end
     if params[:name].present?
       @users = User.search_by_first_and_last_name(params[:name])

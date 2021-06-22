@@ -1,6 +1,6 @@
 <% if current_user %>
 <div id="heart-btn" class="like-icon mx-2 " data-id="<%= nft.id %>">
-  <i data-likedButton-target="like_count" class="fas fa-heart <%= 'red' if current_user.favorited?(nft) %>"><%= nft.favorited.count %></i>
+  <i data-likedButton-target="like_count" class="fas fa-heart <%= 'red' if current_user.favorited?(nft) %>">    <%= nft.favorited.count %></i>
 </div>
 <% end %>
 
