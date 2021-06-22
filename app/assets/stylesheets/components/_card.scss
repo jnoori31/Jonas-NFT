@@ -76,10 +76,26 @@
 }
 .card-follow-category {
   // height: 200px;
+  display:flex;
+  justify-content: center;
   width: 100%;
   box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
   border-radius: 10px;
   padding: 15px 15px;
-  margin: 100px auto;
+  margin-top: 100px;
   background-color: white;
+}
+.card-search-user {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
+  padding: 5px 10px;
+  margin-top: 10px;
+}
+.card-nfts-chatroom {
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
+  padding: 5px 10px;
+  width: 370px;
 }

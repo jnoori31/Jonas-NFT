@@ -1,10 +1,10 @@
 <%= render 'shared/banner', message: "Upload new NFT" %>
-<div class="home_video">
-    <video width="320" height="240" controls="controls">
-        <source src="assets/videos/video_sky.mp4"/>
+<%# <div class="home_video">
+    <video width="500" height="300" controls="controls" style="margin:auto;">
+        <source src="app/assets/videos/video_sky.mp4"/>
     Your browser does not support the video tag.
     </video>
-</div>
+</div> %>
 <div class="container mt-4">
     <div class="card card-new-nft">
         <h3 class="my-3 card-title">To upload or create an NFT, follow this link: </h3>
@@ -20,7 +20,7 @@
             <input name="created" id="hidden-created" type="hidden" value="false"/>
             <input type="text" name="tokenNft" placeholder="Token id.." class="form-control"/>
             <div class="d-flex justify-content-center">
-                <button type="submit" id="submit-new-nft-btn" class="btn follow-button mt-5">New NFT</button>
+                <button type="submit" id="submit-new-nft-btn" class="btn new-nft-btn mt-5">New NFT</button>
             </div>
         </form>
         <%= link_to "Back", root_path %>
