@@ -2,10 +2,10 @@
 <%= render 'shared/banner', message: "Find & Showcase" %>
 
 <!------ Searching for a friend --------------->
-<div class="container mt-4 d-flex justify-content-between align-items-start w-100">
+<div class="container d-flex justify-content-between align-items-start w-100" style="margin-bottom: 80px; margin-top: 80px;">
     <%= render 'search_users', users: @users %>
     <div class="d-flex align-items-center">
-        <%# <select class="select2-category" name="categories_nft" data-controller="nftFilter"> %>
+        <%# <select  data-controller="nftFilter"> %>
             <%# <option value=""></option> %>
             <%# @categories_nft.each do |category| %>
                 <%#= simple_form_for root_path do |f| %>
@@ -13,13 +13,23 @@
                 <%# end %>
             <%# end %>
         <%# </select> %>
-        <h5 style="color: #3A77BB" class="mx-3">Select a category: </h5>
-        <% @categories_nft.each do |category| %>
-            <%= simple_form_for root_path, method: :get do |f| %>
-                <%= hidden_field_tag :nft_category, "#{category.capitalize}" %>
-                <%= f.submit "#{category}", class: "btn btn-outline-success mx-2" %>
+        <h5 style="color: #3A77BB; font-weight: 600;" class="mx-3">Category: </h5>
+        <%#= simple_form_for root_path, method: :get do |f| %>
+            <%#= f.select :category, @categories_nft, class: 'select2-category' %>
+        <%# end %>
+        <select class="select2-category" multiple="multiple" style="width: 350px;" name="categories_nft" id="my-select" >
+            <% @categories_nft.each do |category| %>
+                <option class="option-select2" value="<%= category.upcase[0..2]%>" >
+                    <%= category.upcase %>
+                </option> 
             <% end %>
+        </select>
+        <%= simple_form_for root_path, method: :get do |f| %>
+            <%= hidden_field_tag :nft_category, "", id:"submit-category" %>
+            <%= f.submit "Confirm", class: "btn follow-button mx-2", id:"btn-submit-category"  %>
         <% end %>
+        <%# <input type="text" hidden id="submit-category" value=""> %>
+        <%# <button id="btn-submit-category" class="btn follow-button mx-2 ">Confirm</button> %>
     </div>
 </div>
 <!--------------------------------END Searching for a friend------------------------->
@@ -46,12 +56,12 @@
     </div>
     <div class="card-follow-category" data-aos="fadein">
         <div class="mt-3">
-            <%= render 'search_users', users: @users %>
-            <div class="d-flex align-items-center mt-4 justify-content-center">
-                <% @categories_nft.each do |category| %>
+            <%# <%= render 'search_users', users: @users %> 
+            <div class="d-flex align-items-center justify-content-center">
+                <% @categories_nft.each_with_index do |category, index| %>
                     <%= simple_form_for root_path, method: :get do |f| %>
-                        <%= hidden_field_tag :nft_category, "#{category.capitalize}" %>
-                        <%= f.submit "#{category}", class: "btn btn-outline-success mx-2" %>
+                        <%= hidden_field_tag :nft_category, "#{category}", id:"nft_category#{index}" %>
+                        <%= f.submit "#{category}", class: "btn upload-file mx-2" %>
                     <% end %>
                 <% end %>
             </div>
