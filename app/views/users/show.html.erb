@@ -150,14 +150,22 @@
                         <button class="btn follow-button dropdown-toggle chat-button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             My chatrooms
                         </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <ul class="dropdown-menu" style="background-color: transparent; border: none;" aria-labelledby="dropdownMenuButton1">
                             <div class="dropdown-chat">
                               <% @chatrooms.each do |chatroom| %>
-                                  <% if chatroom.owner == @user %>
-                                    <li><%= link_to "Chat with #{chatroom.client.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
-                                  <% else %>
-                                    <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn mt-2 link-profile-chat" %></li>
-                                  <% end %>
+                                  <div class="d-flex align-items-center card-search-user">
+                                    <% if chatroom.owner == @user %>
+                                      <% if chatroom.client.avatar.attached? %>
+                                        <%= cl_image_tag chatroom.client.avatar.key, crop: :fill, class:"avatar" %>
+                                      <% end %>
+                                      <li><%= link_to "Chat with #{chatroom.client.first_name.upcase} #{chatroom.client.last_name}", chatroom_path(chatroom), class:"btn dropdown-item" %></li>
+                                    <% else %>
+                                      <% if chatroom.client.avatar.attached? %>
+                                        <%= cl_image_tag chatroom.owner.avatar.key, crop: :fill, class:"avatar" %>
+                                      <% end %>
+                                      <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase} #{chatroom.owner.last_name}", chatroom_path(chatroom), class:"btn dropdown-item" %></li>
+                                    <% end %>
+                                  </div>
                               <% end %>
                             </div>
                         </ul>
@@ -191,7 +199,7 @@
                       <div class="mt-2">
                         <p>Owned by</p>
                       </div>
-                      <div class="container col-3">
+                      <div class="container col-2">
 
                         <%= cl_image_tag @user.avatar.key, height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
 
@@ -199,9 +207,11 @@
                       <div class="container col-6">
                         <p class="m-0"><%= nft.user.first_name %> <%=  nft.user.last_name  %></p>
                       </div>
-                      <div class="container col-3">
-                        <a href="#" style="font-size: 15px" >Follow</a>
-                      </div>
+                        <div class="container col-4">
+                          <% if nft.user != @user %>
+                            <%= link_to "Profile", user_path(nft.user), class:"btn upload-file"  %>
+                          <% end %>
+                        </div>
                     </div>
                 </div>
               </div>

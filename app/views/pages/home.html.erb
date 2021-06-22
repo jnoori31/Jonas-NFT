@@ -49,22 +49,19 @@
       </div>
        <%= link_to "New NFT", new_nft_path, class:"btn new-nft-btn mt-4", id:"new-btn"  %>
         <hr>
-        <% if current_user %>
-            <%= link_to "My profile", user_path(current_user), class:"btn new-nft-btn mt-4", id:"my-profile-btn" %>
-        <% end %>
+        <%# if current_user %>
+            <%#= link_to "My profile", user_path(current_user), class:"btn new-nft-btn mt-4", id:"my-profile-btn" %>
+        <%# end %>
     </div>
     <div class="card-follow-category" data-aos="fadein">
-        <div class="mt-3">
-            <%# <%= render 'search_users', users: @users %> 
-            <div class="d-flex align-items-center justify-content-center">
-                <% @categories_nft.each_with_index do |category, index| %>
-                    <%= simple_form_for root_path, method: :get do |f| %>
-                        <%= hidden_field_tag :nft_category, "#{category}", id:"nft_category#{index}" %>
-                        <%= f.submit "#{category}", class: "btn upload-file mx-2" %>
-                    <% end %>
-                <% end %>
-            </div>
-        </div>
+        <%# <h5 style="color: #3A77BB; font-weight: 600;" class="mx-3">Categories: </h5> %>
+        <%# <%= render 'search_users', users: @users %> 
+        <% @categories_nft.each_with_index do |category, index| %>
+            <%= simple_form_for root_path, method: :get do |f| %>
+                <%= hidden_field_tag :nft_category, "#{category}", id:"nft_category#{index}" %>
+                <%= f.submit "#{category}", class: "btn upload-file mx-2" %>
+            <% end %>
+        <% end %>
     </div>
   </div>
 
@@ -101,8 +98,9 @@
                     <!-- the link default is black -->
                       <%= render 'like_button', nft: nft %>
                     <% end %>
-
-                    <i class="far fa-comment commentLogo" style="color:#E94A47;">   <%= nft.comments.count %></i>
+                    <%= link_to nft_path(nft) do  %>
+                        <i class="far fa-comment commentLogo" style="color:#E94A47;">   <%= nft.comments.count %></i>
+                    <% end %>
                     <div id="comment-home"></div>
                 </div>
                 <div class="padding-avatar d-flex align-items-center justify-content-start pl-2 pb-2">
@@ -133,7 +131,7 @@
         <hr>
         <div class="cards-suggestion">
             <% @user_suggestions.each do |user| %>
-                <div class="card-horizontal mb-5">
+                <div class="card-horizontal mb-2">
                     <div class="card-follow d-flex justify-content-around align-items-center">
                         <%= link_to user_path(user), class:'text-decoration-none' do %>
                         <%= cl_image_tag user.avatar.key, class: "avatar-large", alt: "avatar" %>
@@ -141,6 +139,7 @@
                         <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
                         <div data-controller="followUser">
                             <%= link_to toggle_follows_path(user_id: user.id), class:"link-suggestion", remote: true, method: :post, data: { action: "click->followUser#refresh" }, style:"color: grey;" do %>
+                            <%# followUser is the js controller and refresh the method found in it %>
                             <!-- the link default is black -->
                                 <%= render 'follows_button', user: user %>
                             <% end %>
