@@ -42,8 +42,11 @@
       </p>
     </div>
     <div class="card-product-infos">
-      <p class="mb-1" style="font-size: 18px; margin-top: 20px"><%=@nft.description %></p>
-      <p style="font-size: 18px; font-weight: 600;">£ <%=@nft.price %></p>
+      <% if @nft.description %>
+        <% array_phrase = @nft.description.split(".") %>
+        <p class="mb-1" style="font-size: 18px; margin-top: 16px; max-width: 660px;"><%=array_phrase[0] %>.</p>
+      <% end %>
+        <p style="font-size: 18px; font-weight: 600;">£ <%=@nft.price %></p>
     </div>
   </div>
 </div>

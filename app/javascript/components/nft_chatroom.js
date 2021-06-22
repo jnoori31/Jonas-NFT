@@ -1,7 +1,11 @@
+// import $ from 'jquery';
+
 const nftChatroom = () => {
     const divBtn = document.querySelector('.nft-chatroom');
     const hiddenField = document.getElementById('hidden-field-chatroom');
     const uploadNft = document.getElementById('upload-nft-desk');
+    // $('.js-tilt').tilt();
+    // https://github.com/gijsroge/tilt.js
     if (divBtn) {
         const links = divBtn.querySelectorAll('.img-over');
         links.forEach((link) => {
@@ -14,7 +18,7 @@ const nftChatroom = () => {
                 // }
                 // varHTTP.open("GET", "/api");
                 // varHTTP.send();
-                hiddenField.value = link.dataset.nftUrl;
+                hiddenField.value = link.src;
             })
         });
         uploadNft.addEventListener('click', (event) => {

@@ -29,7 +29,6 @@ import 'aos/dist/aos.css'; // You can also use  for styles
 // ..
 AOS.init();
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
 import { initChatroomCable } from '../channels/chatroom_channel';
 import { initSelect2 } from '../plugins/select2';
 import { initScrollTop } from '../components/scrollTop'
@@ -40,7 +39,7 @@ import { initResizingLeft } from '../components/resizing';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
-  // initSelect2();
+  initSelect2();
   initChatroomCable();
   initSelect2();
   initScrollTop();

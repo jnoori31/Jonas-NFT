@@ -45,8 +45,8 @@
                         <% end %>
                     </button>
                     <div class="modal fade" id="nft-user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="nftUserLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content" style="background-color: #F7F9FB;">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="nftUserLabel">
                                     <% if @chatroom.owner != current_user %>
@@ -59,9 +59,13 @@
                             </div>
                             <div class="modal-body nft-chatroom">
                                 <% @nfts.each do |nft| %>
-                                    <label class="btn" data-bs-dismiss="modal"> 
-                                        <%= image_tag nft.image_url, height: 250, width: 190, crop: :fill, class:"img-over", data: { nft_url: nft.image_url } %>
-                                    </label>
+                                    <div class="card-nfts-chatroom">
+                                        <label class="btn" data-bs-dismiss="modal" data-tilt> 
+                                        <%#  tilt js %>
+                                            <%= image_tag nft.image_url, height: 400, width: 300, crop: :fill, class:"img-over" %>
+                                        </label>
+                                        <p class="text-center"><%= nft.name %></p>
+                                    </div>
                                 <% end %>
                             </div>
                             <div class="modal-footer">
@@ -74,6 +78,8 @@
                 <%# can't upload more than one image %>
                 <div>
                     <p style="margin-bottom: 0px;">Choose either option 😉</p>
+                </div>
+                <div class="picture-message">
                 </div>
             </div>
             <%= hidden_field_tag :image_nft, "", id:"hidden-field-chatroom" %>
@@ -88,4 +94,3 @@
         <% end %>
     </div>
 </div>
-

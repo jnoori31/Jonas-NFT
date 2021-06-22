@@ -24,9 +24,11 @@
             <% end %>
           </div>
         </div>
-        <li class="nav-item active">
-          <%= link_to "New NFT", new_nft_path, class: "nav-link", id: "new-nft-navlink" %>
-        </li>
+        <div class="nav-item active">
+          <div style="width: 130px; margin-left: 14px">
+            <%= link_to "New NFT", new_nft_path, class: "nav-link", id: "new-nft-navlink" %>
+          </div>
+        </div>
         <div class="dropstart">
           <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
            <% if current_user.avatar.attached? %>
