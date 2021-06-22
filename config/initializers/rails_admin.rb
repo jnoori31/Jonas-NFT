@@ -3,6 +3,7 @@ RailsAdmin.config do |config|
   config.authorize_with do |controller|
     redirect_to main_app.root_path unless current_user && current_user.admin
   end
+  # https://kitt.lewagon.com/knowledge/tutorials/rails_admin used rails admin
   config.model 'User' do
     list do
       field :id
