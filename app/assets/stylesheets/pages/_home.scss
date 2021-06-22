@@ -66,6 +66,8 @@ h4 {
   box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
   height: 650px;
   background-color: white;
+  position: sticky;
+  top: 100px;
 }
 //  Cards that belong to card-left
 .social-media-card{
@@ -98,7 +100,6 @@ h4 {
   border-radius: 10px;
   box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
   // width: 500px;
-  // height: 600px;
   margin-bottom: 25px;
   a {
     text-decoration: none;
@@ -138,12 +139,11 @@ h4 {
   padding: 5px 5px;
 }
 .home-nft-img {
-  height: 400px;
+  height: 600px;
   width: 100%;
 }
 
 .search-friend {
   width: 100% !important;
 }
-
 
