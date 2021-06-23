@@ -49,12 +49,8 @@
       </div>
        <%= link_to "New NFT", new_nft_path, class:"btn new-nft-btn mt-4", id:"new-btn"  %>
         <hr>
-        <%# if current_user %>
-            <%#= link_to "My profile", user_path(current_user), class:"btn new-nft-btn mt-4", id:"my-profile-btn" %>
-        <%# end %>
     </div>
     <div class="card-follow-category" data-aos="fadein">
-        <%# <h5 style="color: #3A77BB; font-weight: 600;" class="mx-3">Categories: </h5> %>
         <%# <%= render 'search_users', users: @users %> 
         <% @categories_nft.each_with_index do |category, index| %>
             <%= simple_form_for root_path, method: :get do |f| %>
@@ -130,13 +126,13 @@
         </div>
         <hr>
         <div class="cards-suggestion">
-            <% @user_suggestions.each do |user| %>
+            <% @user_suggestions.each_with_index do |user, index| %>
                 <div class="card-horizontal mb-2">
                     <div class="card-follow d-flex justify-content-around align-items-center">
                         <%= link_to user_path(user), class:'text-decoration-none' do %>
                         <%= cl_image_tag user.avatar.key, class: "avatar-large", alt: "avatar" %>
                         <% end %>
-                        <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
+                        <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %> <%= user.last_name %></h5>
                         <div data-controller="followUser">
                             <%= link_to toggle_follows_path(user_id: user.id), class:"link-suggestion", remote: true, method: :post, data: { action: "click->followUser#refresh" }, style:"color: grey;" do %>
                             <!-- this is a post request to the back end to toggle, cf controller. The front end is the data action refresh fonctions which will change the innerText (followUser#refresh) -->
@@ -158,7 +154,9 @@
                         <% end %>
                     </div>
                 </div>
-                <hr>
+                <% if index != @user_suggestions.length - 1 %>
+                    <hr>
+                <% end %>
             <% end %>
         </div>
     </div>

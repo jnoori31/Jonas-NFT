@@ -3,6 +3,8 @@ const initStickyNav = () => {
   const mainNavbar = document.querySelector("#navbar");
   const home_title = document.getElementById('home-link');
   const new_nft_link = document.getElementById('new-nft-navlink');
+  const loginNavbar = document.getElementById('login-navbar');
+  const bell = document.getElementById('bellDropdown');
 
   const observerOptions = {
     root: null,
@@ -17,14 +19,22 @@ const initStickyNav = () => {
       if (entry.isIntersecting == false) {
         mainNavbar.classList.add('navbar-alternate');
         home_title.style.color = "#ffffff";
+        if (loginNavbar) {
+          loginNavbar.style.color = "#ffffff";
+        };
         if (new_nft_link) {
           new_nft_link.style.color = "#ffffff";
+          bell.style.color = "#ffffff";
         }
       } else {
         mainNavbar.classList.remove('navbar-alternate');
         home_title.style.color = "#2f6097";
+        if (loginNavbar) {
+          loginNavbar.style.color = "#2f6097";
+        };
         if (new_nft_link) {
           new_nft_link.style.color = "#2f6097";
+          bell.style.color = "#2f6097";
         }
       }
 
