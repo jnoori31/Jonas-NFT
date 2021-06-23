@@ -21,7 +21,7 @@ class PagesController < ApplicationController
     if params[:name].present?
       @users = User.search_by_first_and_last_name(params[:name])
     end
-    @categories_nft = %w(music art sport cinema)
+    @categories_nft = %w(music art sport collectibles)
     users = User.all
     @user_suggestions = []
     for i in 0...users.length

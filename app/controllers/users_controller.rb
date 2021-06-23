@@ -2,6 +2,9 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @chatrooms = Chatroom.where(client_id: current_user.id).or(Chatroom.where(owner_id: current_user.id))
+        if @chatrooms.length > 3
+            @chatrooms = @chatrooms[0..4]
+        end
         nft = Nft.where(user: @user)
         @owned_count = Nft.where(user: @user).count
         @created_count = Nft.where(user: @user).where(creation: true).count
