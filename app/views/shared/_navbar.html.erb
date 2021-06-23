@@ -16,10 +16,19 @@
           </li>
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="bellDropdown">
             <% current_user.incoming_notifications.unseen_notifications.each do |n| %>
-              <li class="border-bottom nav-item2">
+              <li class="nav-item2">
                 <% comment = Comment.find(n.comment_id) %>
                 <% user = User.find(comment.user_id) %>
-                <%= link_to "#{user.first_name} commented on #{n.comment.nft.name}", nft_path(n.comment.nft) %>
+                <div class="notification">
+                  <%= cl_image_tag user.avatar.key, class: "avatar-large", style: "margin-left: 6px", alt: "avatar" %>
+                  <div class="notification-content">
+                    <p><small><%= comment.created_at %> </small></p>
+                    <p><%= link_to "#{user.first_name} commented on #{n.comment.nft.name}", nft_path(n.comment.nft), style: "color: black" %></p>
+                  </div>
+                </div>
+
+
+
               </li>
             <% end %>
           </div>
