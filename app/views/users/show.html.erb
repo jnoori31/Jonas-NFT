@@ -21,9 +21,9 @@
                  Following
               </button></strong>
               <!---target of bttn needs to be refrecned in the modal below--->
-              <div class="modal fade" id="following-users" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
+              <div class="modal fade" id="following-users" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
                 <div class="modal-dialog">
-                  <div class="modal-content">
+                  <div class="modal-content" style="background-color: #F7F9FB;">
                     <div class="modal-header">
                       <h5 class="modal-title" id="following-label">Following users</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -52,7 +52,7 @@
                   Follower
                 </button></strong>
               </p>
-              <div class="modal fade" id="follower-users" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="follower-label" aria-hidden="true">
+              <div class="modal fade" id="follower-users" tabindex="-1" aria-labelledby="follower-label" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content" style="background-color: #F7F9FB;">
                     <div class="modal-header">
@@ -62,7 +62,7 @@
                     <div class="modal-body">
                       <% @follower_users.each_with_index do |follower, index| %>
                         <div class="d-flex align-items-center justify-content-around">
-                          <%= image_tag current_user.avatar, class:"avatar", style:"margin-right: 20px;"  %>
+                          <%= cl_image_tag follower.avatar.key, class:"avatar", style:"margin-right: 20px;"  %>
                           <p class="m-0"> <%= follower.first_name.capitalize %> <%= follower.last_name.capitalize %> </p>
                           <%= link_to "Profile", user_path(follower), class:"btn" %>
                         </div>
