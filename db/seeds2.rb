@@ -1,70 +1,36 @@
-require 'open-uri'
-require 'net/http'
-require 'openssl'
-require 'json'
-require 'nokogiri'
+# url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=40")
+# http = Net::HTTP.new(url.host, url.port)
+# http.use_ssl = true
+# request = Net::HTTP::Get.new(url)
+# response = http.request(request)
+# results = JSON.parse(response.read_body)
 
-token_ids = {
-    sport: [
-        "83482203227207004258116515608822157876105372608066845131859076394532468686849",
-        "83482203227207004258116515608822157876105372608066845131859076396731491942569",
-        "43501763087413471426380241813653176882978549760074607726200007142926037549057",
-        "96254753689029411797189434505172625076422660210821919923654833601265537122305",
-        "88911938985659528703687097449551160995892807271053097495448520706286390607873"
-    ],
-    art: [
-        "15112367901627216218205065827521268270470157825664407247069103470070527426561",
-        "60471567281376696376611034245875074544551562148615752380742119952763305590785",
-        "60471567281376696376611034245875074544551562148615752380742119951663793963009",
-        "67596398333738267971727378646761013756170830733454327583377386146830789640193",
-        "60471567281376696376611034245875074544551562148615752380742119948365259079681"
-    ],
-    music: [
-        "29357274863954818552610094837351531520396379897167104189577589337551122989057",
-        "20963594112118743937521916859001169698929410270096408362391334603496408219649",
-        "79305120463500971131002132865045426626661515072001708844338310151016722464769",
-        "20963594112118743937521916859001169698929410270096408362391334602396896591873",
-        "79305120463500971131002132865045426626661515072001708844338310134524048048129"
-    ],
-    collectibles: [
-        "52737835343860599013055050671894361787765153638326334914649709299807851380737",
-        "32683046835590650748529297309586757746249021653440172538420017230641463558145",
-        "2828487457027846642038799962727664059097231626088266993890374432809218473985",
-        "26069505368974828872905627611543659651502035895096402323141481531337905012737",
-        "57449853829712793780774176081059519408294867822560651636062476716342901735425"
-    ]
-}
+# results["assets"].each do |result|
+#   next if result["image_url"].empty?
+  # nft = Nft.create!(
+  #   name: result["name"],
+  #   media_type: Faker::Address.street_address,
+  #   category: category_nft.sample,
+  #   price: rand(60..150),
+  #   description: result["description"],
+  #   image_url: result["image_url"],
+  #   user_id: users_id.sample,
+  #   creation: false,
+  #   external_url: result["permalink"]
+  # user: User.find(users_id.sample)
+  #   except 20 to be randomly allocated in between each user
+  # )
+  # html = URI.open(nft.external_url).read
+  # data = Nokogiri::HTML(html)
+  # price_nft = data.search('Overflowreact__OverflowContainer-sc-10mm0lu-0.fqMVjm.Price--fiat-amount.Price--fiat-amount-secondary').text.strip[1..-2].to_f
+  # if price_nft
+  #   nft.price = price_nft
+  #   nft.save!
+  # end
+# end
 
-nfts = []
-token_ids.each do |key, value|
-    value.each do |token_id|
-        url = URI("https://api.opensea.io/api/v1/assets?token_ids=#{token_id}")
-        http = Net::HTTP.new(url.host, url.port)
-        http.use_ssl = true
-        request = Net::HTTP::Get.new(url)
-        response = http.request(request)
-        json_res = JSON.parse(response.read_body)
-        result = json_res["assets"][0]
-        
-        url_price = URI("https://opensea.io/assets/#{result["asset_contract"]["address"]}/#{token_id}")
-        doc = Nokogiri::HTML(open(url_price).read)
-        regex = /\d+\.?(\d+)?/
-        price_text = doc.search('.Overflowreact__OverflowContainer-sc-10mm0lu-0.fqMVjm.Price--fiat-amount.Price--fiat-amount-secondary').text
-        if price_text != ""
-            price = regex.match(price_text)[0].to_f
-        else
-            price = rand(0..10)
-        end
+# puts "It works"
 
-        nft = {
-            name: result["name"],
-            category: key.to_s,
-            price: price,
-            description: result["description"],
-            image_url: result["image_url"],
-            creation: false,
-            external_url: result["permalink"]
-        }
-        nfts << nft
-    end
-end
+#.map
+#if image exists push into new array then use array to create
+# u.avatar.attach(io: File.open(File.join(Rails.root, avatars[index])), filename: 'default_profile_picture.jpg')
