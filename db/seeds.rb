@@ -122,5 +122,6 @@ token_ids.each_with_index do |(key, value), index|
           creation: false,
           external_url: result["permalink"]
       )
+      puts nft.name
   end
 end
