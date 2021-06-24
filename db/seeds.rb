@@ -97,12 +97,10 @@ token_ids.each_with_index do |(key, value), index|
       url_price = URI("https://opensea.io/assets/#{result["asset_contract"]["address"]}/#{token_id}")
       # Parse the nft asset/result enter 0 in the array and find asset_contract and addresss (you need that in the url to find the nft)
       doc = Nokogiri::HTML(open(url_price).read)
-<<<<<<< HEAD
+
       # nokogiri to open the URI and then read, regex will find the price for us.
       regex = /\d+\.?(\d+)?/  
-=======
-      regex = /\d+\.?(\d+)?/
->>>>>>> 80a1fc3163b876267d962c26b87986502b32f32d
+
       price_text = doc.search('.Overflowreact__OverflowContainer-sc-10mm0lu-0.fqMVjm.Price--fiat-amount.Price--fiat-amount-secondary').text
       # .text == in javascript innerText
       # price_text = "($190,15)"   == 190,15
