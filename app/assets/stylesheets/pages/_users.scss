@@ -3,6 +3,12 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.bottom-user-container {
+  max-width: 1440px;
+  margin: auto;
+}
+
 .dropdown-chat {
     display: flex;
     flex-direction: column;
@@ -20,6 +26,17 @@
 .card-user-text {
   // align-self: flex-end;
 }
+
+.card-nft {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
 .img-rounded-corner {
   border-radius: 20px;
 }
@@ -48,8 +65,10 @@
 }
 .nfts-container {
   display: grid;
-  grid-gap: 20px 5px;
+  grid-gap: 20px 30px;
   grid-template-columns: 1fr 1fr 1fr;
+  // max-width: 1200px;
+  place-self: center;
 }
 
 @media screen and (max-width: 1700px) {

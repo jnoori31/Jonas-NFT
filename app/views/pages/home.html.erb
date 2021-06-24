@@ -139,6 +139,8 @@
                         <h5 style="font-weight: 500; color:#3A77BB;"><%= user.first_name %></h5>
                         <div data-controller="followUser">
                             <%= link_to toggle_follows_path(user_id: user.id), class:"link-suggestion", remote: true, method: :post, data: { action: "click->followUser#refresh" }, style:"color: grey;" do %>
+                            <!-- this is a post request to the back end to toggle, cf controller. The front end is the data action refresh fonctions which will change the innerText (followUser#refresh) -->
+                            <!-- here we have 2 distinct link (method) : 1 for the front end (data: { action: "click->followUser#refresh" }), 1 for the back end (link_to toggle_follows_path(user_id: user.id)). -->
                             <%# followUser is the js controller and refresh the method found in it %>
                             <!-- the link default is black -->
                                 <%= render 'follows_button', user: user %>
