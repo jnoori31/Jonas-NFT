@@ -20,7 +20,8 @@ passwords = ['p12345', 'j12345', 'a12345', 'f12345']
 first_names = ['Pierre', 'Jonas', 'Alex', 'Felix']
 last_names = ['Ntiruhungwa', 'Høgh-Noori', 'Morey', 'Habert']
 base_path = "app/assets/images/"
-avatars = [ "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097103/default_profile_picture_l2jb9e.jpg", 
+avatars = [ 
+            "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097103/default_profile_picture_l2jb9e.jpg", 
             "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097003/jonas_pic_o8dy2p.jpg", 
             "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097136/alex_pic_ksi57n.png", 
             "https://res.cloudinary.com/dgpj2uzwa/image/upload/v1624097025/photo_felix_ifdkol.png"
@@ -77,7 +78,8 @@ puts "Creating 4 faker nfts"
 
 users = User.all
 users_id = users.map { |user| user.id }
-category_nft = %w(music art sport collectibles)
+# creating an array of user ids
+# category_nft = %w(music art sport collectibles)
 
 token_ids.each_with_index do |(key, value), index|
   value.each do |token_id|
@@ -91,8 +93,11 @@ token_ids.each_with_index do |(key, value), index|
       
       url_price = URI("https://opensea.io/assets/#{result["asset_contract"]["address"]}/#{token_id}")
       doc = Nokogiri::HTML(open(url_price).read)
-      regex = /\d+\.?(\d+)?/  
+      regex = /\d+\.?(\d+)?/
       price_text = doc.search('.Overflowreact__OverflowContainer-sc-10mm0lu-0.fqMVjm.Price--fiat-amount.Price--fiat-amount-secondary').text
+      # .text == in javascript innerText
+      # price_text = "($190,15)"   == 190,15
+      # if there's no price, price_text = ""
       if price_text != ""
           price = regex.match(price_text)[0].to_f
       else
@@ -102,7 +107,7 @@ token_ids.each_with_index do |(key, value), index|
       nft = Nft.create!(
           name: result["name"],
           media_type: "image",
-          user_id: users_id[index],
+          user_id: users_id.sample,
           category: key.to_s,
           price: price,
           description: result["description"],
@@ -112,42 +117,3 @@ token_ids.each_with_index do |(key, value), index|
       )
   end
 end
-
-
-# url = URI("https://api.opensea.io/api/v1/assets?order_direction=desc&offset=0&limit=40")
-# http = Net::HTTP.new(url.host, url.port)
-# http.use_ssl = true
-# request = Net::HTTP::Get.new(url)
-# response = http.request(request)
-# results = JSON.parse(response.read_body)
-
-
-# results["assets"].each do |result|
-#   next if result["image_url"].empty?
-  # nft = Nft.create!(
-  #   name: result["name"],
-  #   media_type: Faker::Address.street_address,
-  #   category: category_nft.sample,
-  #   price: rand(60..150),
-  #   description: result["description"],
-  #   image_url: result["image_url"],
-  #   user_id: users_id.sample,
-  #   creation: false,
-  #   external_url: result["permalink"]
-  # user: User.find(users_id.sample)
-  #   except 20 to be randomly allocated in between each user
-  # )
-  # html = URI.open(nft.external_url).read
-  # data = Nokogiri::HTML(html)
-  # price_nft = data.search('Overflowreact__OverflowContainer-sc-10mm0lu-0.fqMVjm.Price--fiat-amount.Price--fiat-amount-secondary').text.strip[1..-2].to_f
-  # if price_nft
-  #   nft.price = price_nft
-  #   nft.save!
-  # end
-# end
-
-# puts "It works"
-
-#.map
-#if image exists push into new array then use array to create
-# u.avatar.attach(io: File.open(File.join(Rails.root, avatars[index])), filename: 'default_profile_picture.jpg')
