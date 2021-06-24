@@ -73,13 +73,15 @@ emails.each_with_index do |email, index|
   regex = /\/(\w+\.\w+)$/
   fileName = regex.match(avatars[index])[1]
   u.avatar.attach(io: file, filename: fileName)
+  # cloudinary to open in view I) needs to be the file which is the url link for avatar
+  # and filenmane is the appended code that specifies our avatar. Use regex to get that piece of code.
 end
 puts "Creating 4 faker nfts"
 
 users = User.all
 users_id = users.map { |user| user.id }
 # creating an array of user ids
-# category_nft = %w(music art sport collectibles)
+# category_nft = %w(music art sport collectibles) flexKnob
 
 token_ids.each_with_index do |(key, value), index|
   value.each do |token_id|
@@ -90,10 +92,15 @@ token_ids.each_with_index do |(key, value), index|
       response = http.request(request)
       json_res = JSON.parse(response.read_body)
       result = json_res["assets"][0]
+      # open the url and 0 is the first array in the hash that containts the nft information.
       
       url_price = URI("https://opensea.io/assets/#{result["asset_contract"]["address"]}/#{token_id}")
+      # Parse the nft asset/result enter 0 in the array and find asset_contract and addresss (you need that in the url to find the nft)
       doc = Nokogiri::HTML(open(url_price).read)
-      regex = /\d+\.?(\d+)?/
+
+      # nokogiri to open the URI and then read, regex will find the price for us.
+      regex = /\d+\.?(\d+)?/  
+
       price_text = doc.search('.Overflowreact__OverflowContainer-sc-10mm0lu-0.fqMVjm.Price--fiat-amount.Price--fiat-amount-secondary').text
       # .text == in javascript innerText
       # price_text = "($190,15)"   == 190,15
