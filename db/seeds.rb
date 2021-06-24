@@ -81,7 +81,7 @@ puts "Creating 4 faker nfts"
 users = User.all
 users_id = users.map { |user| user.id }
 # creating an array of user ids
-# category_nft = %w(music art sport collectibles)
+# category_nft = %w(music art sport collectibles) flexKnob
 
 token_ids.each_with_index do |(key, value), index|
   value.each do |token_id|
