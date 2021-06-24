@@ -161,7 +161,7 @@
                         <ul class="dropdown-menu" style="background-color: transparent; border: none;" aria-labelledby="dropdownMenuButton1">
                             <div class="dropdown-chat">
                               <% @chatrooms.each do |chatroom| %>
-                                  <div class="d-flex align-items-center card-search-user my-3">
+                                  <div class="d-flex align-items-center card-search-user my-1">
                                     <% if chatroom.owner == @user %>
                                       <% if chatroom.client.avatar.attached? %>
                                         <%= cl_image_tag chatroom.client.avatar.key, crop: :fill, class:"avatar" %>
