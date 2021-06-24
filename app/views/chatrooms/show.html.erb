@@ -79,7 +79,16 @@
                 <div>
                     <p style="margin-bottom: 0px;">Choose either option 😉</p>
                 </div>
-                <div class="picture-message">
+                <div class="picture-message" style="margin-left: 40px;">
+                    <% if @chatroom.owner != current_user %>
+                        <%= link_to user_path(@owner) do %>
+                            <%= cl_image_tag @owner.avatar.key, class:"avatar", crop: :fill %>
+                        <% end %>
+                    <% else %>
+                        <%= link_to user_path(@client) do %>
+                            <%= cl_image_tag @client.avatar.key, class:"avatar", crop: :fill %>
+                        <% end %>
+                    <% end %>
                 </div>
             </div>
             <%= hidden_field_tag :image_nft, "", id:"hidden-field-chatroom" %>

@@ -1,10 +1,14 @@
-// import $ from 'jquery';
+import 'tilt.js';
+import $ from 'jquery';
 
 const nftChatroom = () => {
     const divBtn = document.querySelector('.nft-chatroom');
     const hiddenField = document.getElementById('hidden-field-chatroom');
     const uploadNft = document.getElementById('upload-nft-desk');
-    // $('.js-tilt').tilt();
+    $('.js-tilt').tilt({
+        glare: true,
+        maxGlare: .5
+    })
     // https://github.com/gijsroge/tilt.js
     if (divBtn) {
         const links = divBtn.querySelectorAll('.img-over');

@@ -64,7 +64,7 @@ h4 {
   // flex-grow: 1;
   border-radius: 10px;
   box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
-  height: 650px;
+  height: 800px;
   background-color: white;
   position: sticky;
   top: 100px;
@@ -146,4 +146,6 @@ h4 {
 .search-friend {
   width: 100% !important;
 }
-
+#login-navbar {
+  font-weight: 600;
+}

@@ -21,7 +21,7 @@
                  Following
               </button></strong>
               <!---target of bttn needs to be refrecned in the modal below--->
-              <div class="modal fade" id="following-users" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
+              <div class="modal fade" id="following-users" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -29,7 +29,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <% @following_users.each do |follower| %>
+                      <% @following_users.each_with_index do |follower, index| %>
                         <div class="d-flex align-items-center justify-content-around">
                           <%= cl_image_tag follower.avatar.key, class:"avatar", style:"margin-right: 20px;"  %>
                           <p class="m-0"> <%= follower.first_name.capitalize %> <%= follower.last_name.capitalize %> </p>
@@ -38,31 +38,39 @@
                         <hr>
                       <% end %>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn upload-file" data-bs-dismiss="modal">Close</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-4 column-items">
-              <p class="m-0"><strong><%= @follower_users.count %>
-              <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#follower-users">
-                 Follower
-              </button></strong></p>
-              <div class="modal fade" id="follower-users" tabindex="-1" aria-labelledby="follower-label" aria-hidden="true">
+              <p class="m-0"><strong>
+                <%= @follower_users.count %> <br>
+                <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#follower-users">
+                  Follower
+                </button></strong>
+              </p>
+              <div class="modal fade" id="follower-users" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="follower-label" aria-hidden="true">
                 <div class="modal-dialog">
-                  <div class="modal-content">
+                  <div class="modal-content" style="background-color: #F7F9FB;">
                     <div class="modal-header">
                       <h5 class="modal-title" id="follower-label">Follower users</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <% @follower_users.each do |follower| %>
+                      <% @follower_users.each_with_index do |follower, index| %>
                         <div class="d-flex align-items-center justify-content-around">
                           <%= image_tag current_user.avatar, class:"avatar", style:"margin-right: 20px;"  %>
                           <p class="m-0"> <%= follower.first_name.capitalize %> <%= follower.last_name.capitalize %> </p>
-                          <%= link_to "Profile", user_path(follower), class:"btn", style:"font-weight: 600;" %>
+                          <%= link_to "Profile", user_path(follower), class:"btn" %>
                         </div>
                         <hr>
                       <% end %>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn upload-file" data-bs-dismiss="modal">Close</button>
                     </div>
                   </div>
                 </div>
@@ -125,7 +133,7 @@
                   </div>
                 <% end %>
             </div>
-            <div class="container col-2 py-0" style="margin-bottom: 0px;">
+            <div class="container col-2" style="margin-bottom: 0px;">
               <p style="margin-bottom: 0px;"><%= @created_count %></p>
             </div>
           </div>
@@ -146,14 +154,14 @@
           <div class="container mt-4">
               <% if current_user == @user %>
                   <% if @chatrooms != []%>
-                    <div class="dropdown">
+                    <div class="dropdown my-2">
                         <button class="btn follow-button dropdown-toggle chat-button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             My chatrooms
                         </button>
                         <ul class="dropdown-menu" style="background-color: transparent; border: none;" aria-labelledby="dropdownMenuButton1">
                             <div class="dropdown-chat">
                               <% @chatrooms.each do |chatroom| %>
-                                  <div class="d-flex align-items-center card-search-user">
+                                  <div class="d-flex align-items-center card-search-user my-3">
                                     <% if chatroom.owner == @user %>
                                       <% if chatroom.client.avatar.attached? %>
                                         <%= cl_image_tag chatroom.client.avatar.key, crop: :fill, class:"avatar" %>
