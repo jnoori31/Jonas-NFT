@@ -10,12 +10,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <!-- get JavaScript via webpack -->
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
+    <%= favicon_link_tag asset_path('logo3.png') %>
   </head>
 
   <body style="background-color: #F7F9FB;">
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-
     <div style="margin-top: 100px; margin-bottom: 200px;">
       <button id="topBtn" class="btn"><i class="fas fa-arrow-up"></i></button>
       <%= yield %>
