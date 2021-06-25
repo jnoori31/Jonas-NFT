@@ -34,7 +34,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
 }
 
 .img-rounded-corner {
@@ -71,17 +70,17 @@
   place-self: center;
 }
 
-@media screen and (max-width: 1700px) {
-  .nfts-container {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
 @media screen and (max-width: 1200px) {
   .nfts-container {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 800px) {
+  .nfts-container {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
   }
 }
