@@ -62,7 +62,9 @@
       <%# style="min-width: 320px; border-style: solid; border-width: thin; border-radius: 5px; border-color: grey" %>
         <%= link_to user_path(@user), class:'text-decoration-none' do %>
           <div class="px-3">
-            <%= image_tag @user.avatar, class: "avatar-large", alt: "avatar" %>
+            <% if @user.avatar.attached? %>
+              <%= cl_image_tag @user.avatar.key, class: "avatar-large", alt: "avatar" %>
+            <% end %>
           </div>
         <% end %>
         <div style="margin-right: 50px;">
@@ -104,7 +106,9 @@
           <div class="comment-card-bio d-flex">
             <div class="comment-card-avatar">
               <% user = User.find(comment.user_id) %>
-              <%= image_tag user.avatar, class: "avatar-large", alt: "avatar" %>
+              <% if user.avatar.attached? %>
+                <%= cl_image_tag user.avatar.key, class: "avatar-large", alt: "avatar" %>
+              <% end %>
             </div>
             <div class="comment-card-info" style="margin-left: 20px;">
               <h5 style="font-weight: 500; color:#3A77BB;"><%= comment.user.first_name %><%= comment.user.last_name %></h5>
