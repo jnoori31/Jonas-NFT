@@ -18,7 +18,7 @@ const initStickyNav = () => {
 
       if (entry.isIntersecting == false) {
         mainNavbar.classList.add('navbar-alternate');
-        home_title.style.color = "#ffffff";
+        // home_title.style.color = "#ffffff";
         if (loginNavbar) {
           loginNavbar.style.color = "#ffffff";
         };
@@ -28,7 +28,7 @@ const initStickyNav = () => {
         }
       } else {
         mainNavbar.classList.remove('navbar-alternate');
-        home_title.style.color = "#2f6097";
+        // home_title.style.color = "#2f6097";
         if (loginNavbar) {
           loginNavbar.style.color = "#2f6097";
         };

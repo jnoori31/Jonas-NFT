@@ -17,9 +17,10 @@
           <div class="row d-flex align-items-center">
             <div class="col-4 column-items">
               <!-- <p class="m-0"><strong><%= @following_users.count %></strong></p> -->
-              <strong><%= @following_users.count %> <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#following-users">
+              <strong><%= @following_users.count %></strong>
+              <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#following-users">
                  Following
-              </button></strong>
+              </button>
               <!---target of bttn needs to be refrecned in the modal below--->
               <div class="modal fade" id="following-users" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
                 <div class="modal-dialog">
@@ -94,7 +95,7 @@
   <div class="mt-4 mx-5">
     <div class="row bottom-user-container">
       <div class="container col-3">
-        <div class="card card-user p-2">
+        <div class="card card-user p-2 card-user-profile-category">
           <div class="row">
             <div class="container col-2">
               <%= cl_image_tag @user.avatar.key, height: 40, width: 40, :crop=> 'fill', :class=> 'rounded-circle' %>
@@ -161,17 +162,17 @@
                         <ul class="dropdown-menu" style="background-color: transparent; border: none;" aria-labelledby="dropdownMenuButton1">
                             <div class="dropdown-chat">
                               <% @chatrooms.each do |chatroom| %>
-                                  <div class="d-flex align-items-center card-search-user my-1">
+                                  <div class="d-flex align-items-center card-search-user mt-3">
                                     <% if chatroom.owner == @user %>
                                       <% if chatroom.client.avatar.attached? %>
                                         <%= cl_image_tag chatroom.client.avatar.key, crop: :fill, class:"avatar" %>
                                       <% end %>
-                                      <li><%= link_to "Chat with #{chatroom.client.first_name.upcase} #{chatroom.client.last_name}", chatroom_path(chatroom), class:"btn dropdown-item" %></li>
+                                      <li><%= link_to "Chat with #{chatroom.client.first_name.upcase}", chatroom_path(chatroom), class:"btn dropdown-item" %></li>
                                     <% else %>
                                       <% if chatroom.client.avatar.attached? %>
                                         <%= cl_image_tag chatroom.owner.avatar.key, crop: :fill, class:"avatar" %>
                                       <% end %>
-                                      <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase} #{chatroom.owner.last_name}", chatroom_path(chatroom), class:"btn dropdown-item" %></li>
+                                      <li><%= link_to "Chat with #{chatroom.owner.first_name.upcase}", chatroom_path(chatroom), class:"btn dropdown-item" %></li>
                                     <% end %>
                                   </div>
                               <% end %>

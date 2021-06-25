@@ -1,5 +1,9 @@
 <div id="navbar" class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "Home", root_path, class: "nav-link", id: "home-link" %>
+  <%= link_to root_path do %>
+    <%= image_tag "logo3.png", class:"avatar-large-square", style:"margin-left: 15px;" %>
+  <% end %>
+
+  <%# <%= link_to "Home", root_path, class: "nav-link", id: "home-link" %> 
   
   <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon">hey</span>
@@ -26,9 +30,6 @@
                     <p><%= link_to "#{user.first_name} commented on #{n.comment.nft.name}", nft_path(n.comment.nft), style: "color: black" %></p>
                   </div>
                 </div>
-
-
-
               </li>
             <% end %>
           </div>
