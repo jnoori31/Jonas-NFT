@@ -17,10 +17,9 @@
           <div class="row d-flex align-items-center">
             <div class="col-4 column-items">
               <!-- <p class="m-0"><strong><%= @following_users.count %></strong></p> -->
-              <strong><%= @following_users.count %></strong>
-              <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#following-users">
+              <strong><%= @following_users.count %> <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#following-users">
                  Following
-              </button>
+              </button></strong>
               <!---target of bttn needs to be refrecned in the modal below--->
               <div class="modal fade" id="following-users" tabindex="-1" aria-labelledby="following-label" aria-hidden="true">
                 <div class="modal-dialog">
@@ -48,7 +47,7 @@
             </div>
             <div class="col-4 column-items">
               <p class="m-0"><strong>
-                <%= @follower_users.count %> <br>
+                <%= @follower_users.count %>
                 <button type="button" class="btn p-0" data-bs-toggle="modal" data-bs-target="#follower-users">
                   Follower
                 </button></strong>
